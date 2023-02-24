@@ -28,6 +28,7 @@ def handle(file):
     elif fileExt == 'docx':
         if file.name == 'DEGREE OF DIFFICULTY PER TOURNAMENT.docx':
             pass #
+        
 uri = "mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/"
 client = pymongo.MongoClient(uri)
 maledb =client.MaleData
