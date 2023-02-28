@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	.accordian{
+		background-color: #414143;
+		color: #BCB138;
+		cursor: pointer;
+		margin: 5px;
+		padding: 15px;
+		width: 100%;
+		border: thin;
+		text-align: center;
+		outline: none;
+		font-size: 14px;
+		transition: 0.4s;
+			}
+	
+	.active, .accordion:hover{
+		background-color: #6A6A6D;
+			}
+	.panel{
+		padding: 0 18px;
+		display: none;
+		background-color:#535355;
+		overflow: hidden;
+			}		
+</style>
+</head>
+	
+<title>Accordian</title>
+<link rel="icon" href="img/html icon.png" sizes="32x32">
+	
+<body style bgcolor="#303030">
+	
+	<h1 style="font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif'; text-align: center; color: #BCB138">How to make an Accordian</h1>
+	
+	<button class ="accordian">About Me</button>
+	<div class="panel">
+	<p style="font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif'; text-align: center; color: #BCB138">This section is all about me.</p>
+	</div>
+	
+	<button class="accordian">Winter</button>
+	<div class="panel">
+	<p style="font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif'; text-align: center; color: #BCB138">This section is about Winter.</p>
+	</div>
+	
+	<button class="accordian">Interest</button>
+	<div class="panel">
+	<p style="font-family: Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, 'sans-serif'; text-align: center; color: #BCB138">This section is about Interest.</p></div>
+	
+	<script>
+	var acc= document.getElementsByClassName("accordian");
+	var i;
+	
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+	</script>
+</body>
+</html>
