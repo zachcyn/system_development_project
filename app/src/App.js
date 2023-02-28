@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import './accordian.html';
+// import './accordian.html';
 
 function App() {
   return (
