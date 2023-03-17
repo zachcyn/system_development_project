@@ -8,7 +8,7 @@ const playerSchema = new Schema({
   Money: Number
 });
 
-module.exports = mongoose.model("Player", playerSchema);
+module.exports = playerSchema
 //const FPlayer = mongoose.model("FPlayer", PlayerSchema);
 
  

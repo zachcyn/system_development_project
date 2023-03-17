@@ -6,6 +6,8 @@ mongoose.connect(process.env.DATABASE_URI, {
     useNewUrlParser: true
 });
 
+
+
 const testplayer = new Player({
     ID: "test",
     Name: "alex",
