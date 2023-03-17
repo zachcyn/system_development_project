@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const RPSchema = new Schema({
+const RPSchema = new mongoose.Schema({
     Place: Number,
     TournamentRankingPoints: Number,
     });

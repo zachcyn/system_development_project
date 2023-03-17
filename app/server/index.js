@@ -5,7 +5,7 @@ const conn = require('./dbConn');
 //const playerController = require('./controllers/playersController')
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
 
-const Player = conn.models['Player'];
+const Player = conn.MaleDB.models['Player'];
 console.log(Player)
 const app = express();
 
