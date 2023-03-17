@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // mui material
@@ -23,7 +23,8 @@ import MobileNavbar from "./MobileVersion";
 // Material Kit 2 React base styles
 import breakpoints from "../../assets/theme/base/breakpoints";
 import TerminentLogo from "../../assets/logo/terminentlight.png"
-import PopUp from "../SignInUp";
+import PopUpMV from "../SignInUp/mvIndex";
+import FormComponent from "../SignInUp/webIndex";
 
 function Navbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -63,6 +64,12 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
 
   function brandSizeChecker(){
     if (mobileView === true) {
+      return "none"
+    }return "inline"
+  }
+
+  function formChecker(){
+    if (mobileView !== true) {
       return "none"
     }return "inline"
   }
@@ -303,8 +310,6 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   return (
     <Container
       sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}
-      disableGutters
-      maxWidth="xl"
     >
       <EditedBox
         py={1}
@@ -312,10 +317,9 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
         borderRadius="xl"
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
-        width= {relative ? "100%" : "calc(100% - 40px)"}
+        width={relative ? "100%" : "calc(100% - 48px)"}
         shadow={transparent ? "none" : "md"}
         color={light ? "white" : "dark"}
-        // position={relative ? "relative" : "absolute"}
         position={"relative"}
         left={0}
         zIndex={3}
@@ -354,7 +358,6 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                 >
                   Login / SignUp
                 </EditedButton>
-                <PopUp trigger={buttonPopup} setTrigger={setButtonPopup} />
           </EditedBox>
           <EditedBox
             display={{ xs: "inline-block", lg: "none" }}
@@ -378,6 +381,12 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
         </EditedBox>
       </EditedBox>
       {dropdownMenu}
+      <EditedBox display={brandSizeChecker}>
+        <FormComponent trigger={buttonPopup} setTrigger={setButtonPopup} />
+      </EditedBox>
+      <EditedBox display={formChecker}>
+        <PopUpMV trigger={buttonPopup} setTrigger={setButtonPopup} />
+      </EditedBox>
     </Container>
   );
 }

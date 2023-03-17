@@ -33,7 +33,6 @@ import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import Carousel from "../components/Carousel";
 import Cards from "../components/Card";
-import PopUp from "../components/SignInUp";
 
 
 function Main() {
