@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
 const conn = require('./dbConn');
-//const playerController = require('./controllers/playersController')
+const playerController = require('./controllers/playersController')
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
 
 const Player = conn.MaleDB.models['Player'];
@@ -34,6 +34,14 @@ app.get("/getPlayers", (req, res)  => {
         console.log(player)
     })
 })
+
+
+app.get("/getlol", (req, res)  => {
+   console.log("lolworks");
+    playerController.saveThePlayer(23,undefined,49,1000);      
+    
+})
+
 
 
 

@@ -1,18 +1,19 @@
-const mongoose = require('mongoose');
-const Player = require('../models/Player');
+// const mongoose = require('mongoose');
+// const Player = require('../models/Player');
+const conn = require('../dbConn');
+const Player = conn.MaleDB.models['Player'];
 
-mongoose.connect(process.env.DATABASE_URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
+const savePlayer = function saveThePlayer(ID='',Name='',Points=0,Money=0)
+{
+    const testplayer = new Player({
+    ID: ID,
+    Name: Name,
+    Points: Points,
+    Money: Money
 });
 
-
-
-const testplayer = new Player({
-    ID: "test",
-    Name: "alex",
-    Points: 50,
-    Money: 100
-});
-
-testplayer.save().then(() => console.log("Saved"));
+    testplayer.save().then(() => console.log("Saved"));
+}
+module.exports = {
+    saveThePlayer: savePlayer
+};
