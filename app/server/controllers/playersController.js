@@ -13,6 +13,7 @@ const savePlayer = function saveThePlayer(ID='',Name='',Points=0,Money=0)
 });
 
     testplayer.save().then(() => console.log("Saved"));
+
 }
 module.exports = {
     saveThePlayer: savePlayer

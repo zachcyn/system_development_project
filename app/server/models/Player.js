@@ -9,6 +9,3 @@ const playerSchema = new Schema({
 });
 
 module.exports = playerSchema
-//const FPlayer = mongoose.model("FPlayer", PlayerSchema);
-
- 

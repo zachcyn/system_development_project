@@ -5,4 +5,4 @@ difficulty: Number,
 prizeMoney: Object
 });
 
-const Tournament = mongoose.model("Tournament", TSchema);
+module.exports = TSchema
