@@ -4,6 +4,5 @@ const RPSchema = new mongoose.Schema({
     Place: Number,
     TournamentRankingPoints: Number,
     });
-    
-const Ranking = mongoose.model("Ranking", RPSchema);
-    
+
+module.exports = RPSchema

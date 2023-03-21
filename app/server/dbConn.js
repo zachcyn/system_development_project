@@ -1,18 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose');
 
-// const connectDB = async () => {
-//     try {
-//         return await mongoose.createConnection(process.env.DATABASE_URI).asPromise();
-//         // await mongoose.connect(process.env.DATABASE_URI, {
-//         //     useUnifiedTopology: true,
-//         //     useNewUrlParser: true
-//         // });
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-
 const MaleDB = mongoose.createConnection(process.env.MALEDB_URI);
 MaleDB.model('Player', require('./models/Player'));
 MaleDB.model('Game', require('./models/Games'));
