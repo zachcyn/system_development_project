@@ -2,9 +2,9 @@
 const fs = require('fs')
 //const csv = require('csv-parser');
 
-let string1=[];
+// let string1=[];
 
-function processData(filename) {
+const playercsv = function processData(filename) {
     alltext = fs.readFileSync(filename).toString();
     var allTextLines = alltext.split(/\r\n|\n/);
     var headers = allTextLines[0].split(',');
@@ -24,6 +24,10 @@ function processData(filename) {
     return lines;
 }
 
+module.exports={
+    processData: playercsv
+};
 
-datafile = processData("../../../Upload/FEMALE PLAYERS.csv");
-console.log(datafile[1]);
+
+// datafile = processData("../../../Upload/FEMALE PLAYERS.csv");
+// console.log(datafile[1]);
