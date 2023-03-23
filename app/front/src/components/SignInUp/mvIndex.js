@@ -1,8 +1,7 @@
-import { Box, Link, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 import SignInMV from "./mvLogin";
 import SignUpMV from "./mvSignUp";
 
@@ -101,19 +100,12 @@ export default function PopUpMV(props) {
                             <Tab label="Sign-in" {...a11yProps(0)} />
                             <Tab label="Sign-Up" {...a11yProps(1)} />
                         </Tabs>
-                    <SwipeableViews
-                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                        index={value}
-                        onChangeIndex={handleChangeIndex}
-                        enableMouseEvents
-                    >
                         <TabPanel value={value} index={0} dir={theme.direction}>
                             {value === 0 && <SignInMV pages={props}/> }
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
                             {value === 1 && <SignUpMV pages={props}/>}
                         </TabPanel>
-                    </SwipeableViews>
                 </Box>
             </Box>
     ) : "";
