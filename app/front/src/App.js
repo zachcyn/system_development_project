@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
+import { useEffect, React, useState } from 'react';
+import { ThemeProvider}  from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import Main from './pages/main';
 import routes from './components/Header/headerRoutes';
@@ -9,7 +9,17 @@ import theme from './assets/theme';
 
 function App() {
 
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("/main")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
+
+
   const { pathname } = useLocation();
+
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -35,7 +45,7 @@ function App() {
       <CssBaseline />
         <Routes>
           {getRoutes(routes)}
-          <Route path="/main" element={<Main />} />
+          <Route path="/main" element={ <Main/> } />
           <Route path="*" element={<Navigate to="/main" />} />
         </Routes>
     </ThemeProvider>
