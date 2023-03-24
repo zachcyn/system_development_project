@@ -31,7 +31,7 @@ import routes
 from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
-import Carousel from "../components/Carousel";
+import ImageSlider from "../components/Carousel";
 import Cards from "../components/Card";
 
 
@@ -44,7 +44,7 @@ function Main() {
       />
 
       <EditedBox>
-        <Carousel />
+        <ImageSlider />
       </EditedBox>
 
       <EditedBox>
