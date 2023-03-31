@@ -4,7 +4,10 @@ import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import { styled } from '@mui/material/styles';
-import { TableSortLabel, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper } from '@mui/material';
+import { TableSortLabel, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid } from '@mui/material';
+import { LooksOne, LooksTwo, Looks3 } from '@mui/icons-material';
+import colors from "../assets/theme/base/colors";
+
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs, protein };
 // }
@@ -17,13 +20,17 @@ import { TableSortLabel, TableRow, TableHead, TableContainer, TableCell, TableBo
 //   createData('Gingerbread', 356, 16.0, 49),
 // ];
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
+const { white, text, info, secondary } = colors;
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+
 
 function Leaderboards() {
   return (
@@ -32,7 +39,58 @@ function Leaderboards() {
         routes={routes}
         sticky
       />
-      <br />
+
+      <EditedBox sx={{ minWidth: '200px', maxWidth: '900px', margin: 'auto', display: "flex", mb: '20px', mt: '50px' }}>
+        <Grid container sx={{ fontSize: 15, fontWeight: 'bold', align: 'center', color: white.main }}>
+
+          <Grid item align='center' md={4}>
+          </Grid>
+          <Grid item align='center' md={4}>
+            <LooksOne />
+          </Grid>
+          <Grid item align='center' md={4}>
+          </Grid>
+
+          <Grid item align='center' md={4}>
+          </Grid>
+          <Grid item align='center' md={4} bgcolor='grey'>
+            Chu Yie Nian
+          </Grid>
+          <Grid item align='center' md={4}>
+            <Looks3></Looks3>
+          </Grid>
+
+          <Grid item align='center' md={4}>
+            <LooksTwo></LooksTwo>
+          </Grid>
+          <Grid item align='center' md={4} bgcolor='grey'>
+            25 $25,000
+          </Grid>
+          <Grid item align='center' md={4} bgcolor='grey'>
+            Eddy Levinskas
+          </Grid>
+
+          <Grid item align='center' md={4} bgcolor='grey'>
+            Hatim Bossman
+          </Grid>
+          <Grid item align='center' md={4} bgcolor='grey'>
+
+          </Grid>
+          <Grid item align='center' md={4} bgcolor='grey'>
+            15   $10,000
+          </Grid>
+
+          <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
+            23   $6,500
+          </Grid>
+          <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
+          </Grid>
+          <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
+          </Grid>
+        </Grid>
+
+      </EditedBox >
+
       <EditedBox minWidth='200px' maxWidth='900px' margin='auto' display="flex">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="Male Leaderboard">
