@@ -64,7 +64,7 @@ function Leaderboards() {
             <LooksTwo></LooksTwo>
           </Grid>
           <Grid item align='center' md={4} bgcolor='grey'>
-            25 $25,000
+            25&nbsp;&nbsp; $25,000
           </Grid>
           <Grid item align='center' md={4} bgcolor='grey'>
             Eddy Levinskas
@@ -77,11 +77,11 @@ function Leaderboards() {
 
           </Grid>
           <Grid item align='center' md={4} bgcolor='grey'>
-            15   $10,000
+            15&nbsp;&nbsp;$10,000
           </Grid>
 
           <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
-            23   $6,500
+            23&nbsp;&nbsp;$6,500
           </Grid>
           <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
           </Grid>
