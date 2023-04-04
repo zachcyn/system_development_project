@@ -2,7 +2,7 @@
 const settings = [
     {
         name: "Profile",
-        route: "",
+        route: "/profile",
     },{
         name: "Info Management",
         route: "",

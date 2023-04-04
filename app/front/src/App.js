@@ -6,6 +6,7 @@ import Main from './pages/main';
 import routes from './components/Header/headerRoutes';
 import theme from './assets/theme';
 import LoggedMain from './pages/loggedMain';
+import Profile from './pages/profile';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           {getRoutes(routes)}
           <Route path="/main" element={<Main />} />
           <Route path="/loggedMain" element={<LoggedMain />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
     </ThemeProvider>
   );
