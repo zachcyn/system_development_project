@@ -2,7 +2,6 @@ import React from 'react';
 import EditedBox from '../../material/EditedBox/EditedBox';
 import { styled } from '@mui/material/styles';
 import { TableSortLabel, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid } from '@mui/material';
-import { LooksOne, LooksTwo, Looks3 } from '@mui/icons-material';
 import colors from "../../assets/theme/base/colors";
 import maleLeaderboard from '../../pages/maleLeaderboard';
 
@@ -19,7 +18,7 @@ const Leaderboards = (props) => {
                     <Grid item align='center' md={4}>
                     </Grid>
                     <Grid item align='center' md={4}>
-                        <img src="/gold.png" width='80%' height='100%' alt="gold medal" />
+                        <img src="/gold1.png" width='40%' height='100%' alt="gold medal" />
                     </Grid>
                     <Grid item align='center' md={4}>
                     </Grid>
@@ -30,11 +29,11 @@ const Leaderboards = (props) => {
                         Chu Yie Nian
                     </Grid>
                     <Grid item align='center' md={4}>
-                        <img src="/silver.png" width='80%' height='100%' alt="silver medal" />
+                        <img src="/silver.png" width='40%' height='100%' alt="silver medal" />
                     </Grid>
 
                     <Grid item align='center' md={4}>
-                        <img src="/bronze.png" width='80%' height='100%' alt="bronze medal" />
+                        <img src="/bronze.png" width='40%' height='100%' alt="bronze medal" />
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         25&nbsp;&nbsp; $25,000
