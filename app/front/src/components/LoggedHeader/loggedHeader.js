@@ -24,6 +24,7 @@ import breakpoints from "../../assets/theme/base/breakpoints";
 import TerminentLogo from "../../assets/logo/terminentlight.png"
 import { AccountCircle } from "@mui/icons-material";
 import settings from "../Header/settings";
+import ProfilePic from "../../assets/img/profile.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -368,8 +369,7 @@ function LoggedNavbar({ brand, routes, transparent, light, sticky, relative, cen
           <EditedBox sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar>
-                    <AccountCircle fontSize="large" color='info'/>
+                <Avatar src={ProfilePic}>
                 </Avatar>
               </IconButton>
             </Tooltip>
