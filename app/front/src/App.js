@@ -1,11 +1,11 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import Main from './pages/main';
 import routes from './components/Header/headerRoutes';
 import theme from './assets/theme';
-
+import LoggedMain from './pages/loggedMain';
 
 function App() {
 
@@ -36,7 +36,7 @@ function App() {
         <Routes>
           {getRoutes(routes)}
           <Route path="/main" element={<Main />} />
-          <Route path="*" element={<Navigate to="/main" />} />
+          <Route path="/loggedMain" element={<LoggedMain />} />
         </Routes>
     </ThemeProvider>
   );
