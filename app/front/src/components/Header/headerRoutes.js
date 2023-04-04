@@ -1,9 +1,10 @@
 import { SportsTennis, Leaderboard } from "@mui/icons-material";
-import Leaderboards from "../../pages/leaderboards";
 import TBS2 from "../../pages/tbs2";
 import TAW11 from "../../pages/taw11";
 import TAE21 from "../../pages/tae21";
 import TAC1 from "../../pages/tac1";
+import MaleLeaderboard from "../../pages/maleLeaderboard";
+import FemaleLeaderbaord from "../../pages/femaleLeaderboard";
 
 const routes = [
   {
@@ -50,13 +51,13 @@ const routes = [
         collapse: [
           {
             name: "Male",
-            route: "/MaleLeaderboard",
-            component: <Leaderboards />,
+            route: "/male/leaderboard",
+            component: <MaleLeaderboard />,
           },
           {
             name: "Female",
-            route: "",
-            component: "",
+            route: "/female/leaderboard",
+            component: <FemaleLeaderbaord />,
           },
         ],
       },
