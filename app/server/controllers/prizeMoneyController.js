@@ -1,33 +1,45 @@
 const conn = require('../dbConn');
-const PrizeMoney1 = conn.TournDB.models['Tournament']
-const csvhandler = require('./csvhandler')
+const TournModel = conn.TournDB.models['Tournament'];
+const csvhandler = require('./csvhandler');
 
-const saveTournament = function Tournament(name,difficulty,prizeMoney)
-{
-    console.log(name,difficulty);
-    const rank = new PrizeMoney1({
-        name:name,
-        difficulty:difficulty,
-        prizeMoney:prizeMoney
-});
+const saveTournament = function Tournament(name, position, prizeMoney, difficulty) {
+    const prizeMoneyDict = {
+        position: position,
+        prizeMoney: prizeMoney
+    };
 
-    rank.update().then(() => console.log("Saved"));
-}
+    const tournament = new TournModel({
+        name: name,
+        difficulty: difficulty,
+        prizeMoney: prizeMoneyDict
+    });
 
-const SaveTour = function saveAllTournaments(fileName)
-{
-    ID = csvhandler.processData(fileName);
+    tournament.save().then(() => console.log("Saved"));
+};
 
+const saveAllTournaments = function(fileName, difficultyFileName) {
+    const data = csvhandler.processData(fileName);
+    const difficultyData = csvhandler.processData(difficultyFileName);
 
-    for(let i in ID)
-    {
-        if ID[i][0]= 
-        saveTournament(ID[i][0],ID[i][1]);
-        console.log(ID[i][0],ID[i][1]);
-        }
-}
+    const difficultyMap = new Map();
+    for (const row of difficultyData) {
+        const name = row[0];
+        const difficulty = parseFloat(row[1]);
+        difficultyMap.set(name, difficulty);
+    }
+
+    for (const row of data) {
+        const name = row[0];
+        const position = row[1];
+        const prizeMoney = row[2];
+        const difficulty = difficultyMap.get(name) || 0;
+
+        saveTournament(name, position, prizeMoney, difficulty);
+        console.log(name, position,di);
+    }
+};
 
 module.exports = {
-    saveAllTournaments:SaveTour,
-    rankingPoints:saveTournament
-}
+    saveAllTournaments: saveAllTournaments,
+    saveTournament: saveTournament
+};
