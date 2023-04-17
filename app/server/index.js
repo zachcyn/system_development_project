@@ -3,7 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const conn = require('./dbConn');
 const playerController = require('./controllers/playersController')
-const rankingPointController = require('./controllers/rankingPointController')
+const rankingPointController = require('./controllers/rankingpointController')
+const prizeMoneyController = require('./controllers/prizeMoneyController')
+
 
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
 
@@ -56,5 +58,9 @@ app.get("/getlolol2",(req,res)=>{
     rankingPointController.saveAllRanking("../../Upload/Ranking Points.csv");
 })
 
+app.get("/getlolol3",(req,res)=>{
+    console.log("lololworks");
+    prizeMoneyController.saveAllTournaments("../../Upload/PRIZE MONEY.csv","../../Upload/DEGREE OF DIFFICULTY.csv");
+})
 
 

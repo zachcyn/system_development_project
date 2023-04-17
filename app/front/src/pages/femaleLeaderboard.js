@@ -4,7 +4,6 @@ import Leaderboards from "../components/Leaderboards/index";
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
-import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 import femaleLeaderboard_data from "../data/femaleLeaderboard_data";
 
