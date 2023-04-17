@@ -4,10 +4,6 @@ import Leaderboards from "../components/Leaderboards/index";
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
-import { styled } from '@mui/material/styles';
-import { Paper } from '@mui/material';
-//import { LooksOne, LooksTwo, Looks3 } from '@mui/icons-material';
-import colors from "../assets/theme/base/colors";
 import maleLeaderboard_data from "../data/maleLeaderboard_data";
 
 function MaleLeaderboard() {
