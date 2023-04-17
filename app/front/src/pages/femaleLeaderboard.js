@@ -5,9 +5,8 @@ import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import { styled } from '@mui/material/styles';
-import { Paper } from '@mui/material';
-//import { LooksOne, LooksTwo, Looks3 } from '@mui/icons-material';
-import femaleLeaderboard_data from "../data/maleLeaderboard_data";
+import { Typography } from '@mui/material';
+import femaleLeaderboard_data from "../data/femaleLeaderboard_data";
 
 function FemaleLeaderboard() {
     return (
@@ -16,7 +15,7 @@ function FemaleLeaderboard() {
                 routes={routes}
                 sticky
             />
-
+            <Typography variant='h1' align='center'>Female Leaderboard</Typography>
             <Leaderboards gender={femaleLeaderboard_data} />
 
             <EditedBox pt={6} px={1} mt={6}>

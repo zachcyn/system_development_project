@@ -4,7 +4,7 @@ import TAW11 from "../../pages/taw11";
 import TAE21 from "../../pages/tae21";
 import TAC1 from "../../pages/tac1";
 import MaleLeaderboard from "../../pages/maleLeaderboard";
-import FemaleLeaderbaord from "../../pages/femaleLeaderboard";
+import FemaleLeaderboard from "../../pages/femaleLeaderboard";
 
 const routes = [
   {
@@ -51,13 +51,13 @@ const routes = [
         collapse: [
           {
             name: "Male",
-            route: "/male/leaderboard",
+            route: "/pages/maleLeaderboard",
             component: <MaleLeaderboard />,
           },
           {
             name: "Female",
-            route: "/female/leaderboard",
-            component: <FemaleLeaderbaord />,
+            route: "/pages/femaleLeaderboard",
+            component: <FemaleLeaderboard />,
           },
         ],
       },

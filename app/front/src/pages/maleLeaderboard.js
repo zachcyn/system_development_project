@@ -5,8 +5,7 @@ import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import { styled } from '@mui/material/styles';
-import { Paper } from '@mui/material';
-//import { LooksOne, LooksTwo, Looks3 } from '@mui/icons-material';
+import { Typography } from '@mui/material';
 import colors from "../assets/theme/base/colors";
 import maleLeaderboard_data from "../data/maleLeaderboard_data";
 
@@ -17,7 +16,7 @@ function MaleLeaderboard() {
         routes={routes}
         sticky
       />
-
+      <Typography variant='h1' align='center'>Male Leaderboard</Typography>
       <Leaderboards gender={maleLeaderboard_data} />
 
       <EditedBox pt={6} px={1} mt={6}>
