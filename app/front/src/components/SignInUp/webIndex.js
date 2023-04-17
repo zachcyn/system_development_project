@@ -2,9 +2,12 @@ import React from "react";
 import * as Components from './webComponents';
 import { Box } from "@mui/material";
 import Icon from "@mui/material/Icon";
+import { useNavigate } from "react-router-dom";
 
 function FormComponent(props) {
     const [signIn, toggle] = React.useState(true);
+    const navigation = useNavigate();
+
      return(props.trigger) ? (
         <>
         <Box 
@@ -55,7 +58,7 @@ function FormComponent(props) {
                       <Components.Input type='email' placeholder='Email' />
                       <Components.Input type='password' placeholder='Password' />
                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                      <Components.Button>Sigin In</Components.Button>
+                      <Components.Button onClick={() => navigation("/loggedMain")}>Sigin In</Components.Button>
                   </Components.Form>
              </Components.SignInContainer>
 

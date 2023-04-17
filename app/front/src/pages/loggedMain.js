@@ -1,19 +1,20 @@
 import Footer from "../components/Footer/footer";
-import Navbar from "../components/Header";
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import ImageSlider from "../components/Carousel";
 import Cards from "../components/Card";
+import LoggedNavbar from "../components/LoggedHeader/loggedHeader";
 
-
-function Main() {
+function LoggedMain() {
   return (
     <>
-      <Navbar
+ 
+      <LoggedNavbar
         routes={routes}
         sticky
-      />
+        />
+
       <EditedBox>
         <ImageSlider />
       </EditedBox>
@@ -29,4 +30,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default LoggedMain;

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 // mui material
 import Container from "@mui/material/Container";
-import { Icon } from "@mui/material";
+import { Icon, Tooltip, IconButton, Avatar, Menu, MenuItem } from "@mui/material";
 import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
@@ -14,27 +14,39 @@ import MuiLink from "@mui/material/Link";
 // edited material
 import EditedBox from "../../material/EditedBox/EditedBox";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
-import EditedButton from "../../material/EditedButton/EditedButton";
 
 // components file
-import Dropdown from "./Dropdown";
-import MobileNavbar from "./MobileVersion";
+import Dropdown from "../Header/Dropdown";
+import MobileNavbar from "../Header/MobileVersion";
 
 // Material Kit 2 React base styles
 import breakpoints from "../../assets/theme/base/breakpoints";
 import TerminentLogo from "../../assets/logo/terminentlight.png"
-import PopUpMV from "../SignInUp/mvIndex";
-import FormComponent from "../SignInUp/webIndex";
+import { AccountCircle } from "@mui/icons-material";
+import settings from "../Header/settings";
+import ProfilePic from "../../assets/img/profile.png";
 
+import { useNavigate } from "react-router-dom";
 
-function Navbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
+function LoggedNavbar({ brand, routes, transparent, light, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
   const [dropdownName, setDropdownName] = useState("");
   const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
-  const [buttonPopup, setButtonPopup] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const navigation = useNavigate();
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
@@ -65,12 +77,6 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
 
   function brandSizeChecker(){
     if (mobileView === true) {
-      return "none"
-    }return "inline"
-  }
-
-  function formChecker(){
-    if (mobileView !== true) {
       return "none"
     }return "inline"
   }
@@ -352,13 +358,43 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
           >
             {renderNavbarItems}
           </EditedBox>
-          <EditedBox ml={{ xs: "auto", lg: 0 }}>
+          {/* <EditedBox ml={{ xs: "auto", lg: 0 }}>
               <EditedButton 
                 onClick={() => setButtonPopup(true)}
                 color='info'
                 >
                   Login / SignUp
                 </EditedButton>
+          </EditedBox> */}
+          <EditedBox sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu}>
+                <Avatar src={ProfilePic}>
+                </Avatar>
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '70px'}}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting,index) => (
+                <MenuItem key={index} onClick={() => {navigation(setting.route)}}>
+                  <EditedTypo textAlign="center" fontSize="15px">{setting.name}</EditedTypo>
+                </MenuItem>
+              ))}
+            </Menu>
           </EditedBox>
           <EditedBox
             display={{ xs: "inline-block", lg: "none" }}
@@ -382,18 +418,18 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
         </EditedBox>
       </EditedBox>
       {dropdownMenu}
-      <EditedBox display={brandSizeChecker}>
+      {/* <EditedBox display={brandSizeChecker}>
         <FormComponent trigger={buttonPopup} setTrigger={setButtonPopup}/>
       </EditedBox>
       <EditedBox display={formChecker}>
         <PopUpMV trigger={buttonPopup} setTrigger={setButtonPopup} />
-      </EditedBox>
+      </EditedBox> */}
     </Container>
   );
 }
 
 // Setting default values for the props of DefaultNavbar
-Navbar.defaultProps = {
+LoggedNavbar.defaultProps = {
   brand: "TennisTracker",
   transparent: false,
   light: false,
@@ -404,7 +440,7 @@ Navbar.defaultProps = {
 };
 
 // Typechecking props for the DefaultNavbar
-Navbar.propTypes = {
+LoggedNavbar.propTypes = {
   brand: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
   transparent: PropTypes.bool,
@@ -434,4 +470,4 @@ Navbar.propTypes = {
   center: PropTypes.bool,
 };
 
-export default Navbar;
+export default LoggedNavbar;
