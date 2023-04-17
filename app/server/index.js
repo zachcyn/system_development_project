@@ -5,6 +5,7 @@ const conn = require('./dbConn');
 const playerController = require('./controllers/playersController')
 const rankingPointController = require('./controllers/rankingpointController')
 const prizeMoneyController = require('./controllers/prizeMoneyController')
+const ladiesGamesController = require('./controllers/ladiesGamesController')
 
 
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
@@ -63,4 +64,17 @@ app.get("/getlolol3",(req,res)=>{
     prizeMoneyController.saveAllTournaments("../../Upload/PRIZE MONEY.csv","../../Upload/DEGREE OF DIFFICULTY.csv");
 })
 
+app.get("/getlolol4",(req,res)=>{
+    console.log("lololworks");
+    const csvFiles = [
+        "../../Upload/TAC1 ROUND 1 LADIES.csv",
+        "../../Upload/TAC1 ROUND 2 LADIES.csv",
+        "../../Upload/TAC1 ROUND 3 LADIES.csv",
+        "../../Upload/TAC1 ROUND 4 LADIES.csv",
+        "../../Upload/TAC1 ROUND 5 LADIES.csv",
+    ];
+    csvFiles.forEach((csvFile) => {
+        ladiesGamesController.saveAllLadies(csvFile);
+    });
+});
 

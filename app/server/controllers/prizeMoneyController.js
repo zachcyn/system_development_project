@@ -35,7 +35,7 @@ const saveAllTournaments = function(fileName, difficultyFileName) {
         const difficulty = difficultyMap.get(name) || 0;
 
         saveTournament(name, position, prizeMoney, difficulty);
-        console.log(name, position,di);
+        console.log(name, position,difficulty);
     }
 };
 
