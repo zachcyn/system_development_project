@@ -394,7 +394,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
 
 // Setting default values for the props of DefaultNavbar
 Navbar.defaultProps = {
-  brand: "Terminent",
+  brand: "TennisTracker",
   transparent: false,
   light: false,
   action: false,
