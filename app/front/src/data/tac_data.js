@@ -41,7 +41,7 @@ export const TAC_data = [
                 round_icon: <LooksTwo />, 
                 round_detail:[
                     {
-                        player_a: "FP14",
+                        player_a: "Hello",
                         score_a: 2,
                         player_b: "FP20",
                         score_b: 0
@@ -72,7 +72,7 @@ export const TAC_data = [
                 round_icon: <Looks3 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
+                        player_a: "World",
                         score_a: 2,
                         player_b: "FP20",
                         score_b: 0
@@ -103,7 +103,7 @@ export const TAC_data = [
                 round_icon: <Looks4 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
+                        player_a: "React",
                         score_a: 2,
                         player_b: "FP20",
                         score_b: 0
@@ -134,7 +134,7 @@ export const TAC_data = [
                 round_icon: <Looks5 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
+                        player_a: "Is",
                         score_a: 2,
                         player_b: "FP20",
                         score_b: 0
@@ -173,7 +173,7 @@ export const TAC_data = [
             round_icon: <LooksOne />,
             round_detail:[
                 {
-                    player_a: "FP14",
+                    player_a: "A",
                     score_a: 2,
                     player_b: "FP20",
                     score_b: 0
@@ -204,7 +204,7 @@ export const TAC_data = [
             round_icon: <LooksTwo />,
             round_detail:[
                 {
-                    player_a: "FP14",
+                    player_a: "Pain",
                     score_a: 2,
                     player_b: "FP20",
                     score_b: 0
@@ -235,7 +235,7 @@ export const TAC_data = [
             round_icon: <Looks3 />,
             round_detail:[
                 {
-                    player_a: "FP14",
+                    player_a: "N",
                     score_a: 2,
                     player_b: "FP20",
                     score_b: 0
@@ -266,7 +266,7 @@ export const TAC_data = [
             round_icon: <Looks4 />,
             round_detail:[
                 {
-                    player_a: "FP14",
+                    player_a: "G",
                     score_a: 2,
                     player_b: "FP20",
                     score_b: 0
@@ -297,7 +297,7 @@ export const TAC_data = [
             round_icon: <Looks5 />,
             round_detail:[
                 {
-                    player_a: "FP14",
+                    player_a: "L",
                     score_a: 2,
                     player_b: "FP20",
                     score_b: 0

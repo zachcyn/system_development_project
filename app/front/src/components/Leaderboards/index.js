@@ -1,9 +1,13 @@
 import React from 'react';
 import EditedBox from '../../material/EditedBox/EditedBox';
 import { styled } from '@mui/material/styles';
-import { TableSortLabel, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid } from '@mui/material';
+import { TableSortLabel, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid, Typography } from '@mui/material';
 import colors from "../../assets/theme/base/colors";
 import maleLeaderboard from '../../pages/maleLeaderboard';
+import gold from "../../assets/img/gold1.png";
+import sliver from "../../assets/img/silver.png";
+import bronze from "../../assets/img/bronze.png";
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 const { white, text, info, secondary } = colors;
 
@@ -11,14 +15,13 @@ const Leaderboards = (props) => {
 
     return (
         <>
-
             <EditedBox sx={{ minWidth: '200px', maxWidth: '900px', margin: 'auto', display: "flex", mb: '20px', mt: '50px' }}>
                 <Grid container sx={{ fontSize: 15, fontWeight: 'bold', align: 'center', color: white.main }}>
 
                     <Grid item align='center' md={4}>
                     </Grid>
                     <Grid item align='center' md={4}>
-                        <img src="/gold1.png" width='40%' height='100%' alt="gold medal" />
+                        <img src={gold} width='20%' height='100%' alt="gold medal" />
                     </Grid>
                     <Grid item align='center' md={4}>
                     </Grid>
@@ -26,41 +29,49 @@ const Leaderboards = (props) => {
                     <Grid item align='center' md={4}>
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        Chu Yie Nian
+                        <Box>
+                        <Typography>Chu Yie Nian</Typography>
+                        <Typography>25&nbsp;&nbsp; $25,000</Typography>
+                        </Box>
                     </Grid>
                     <Grid item align='center' md={4}>
-                        <img src="/silver.png" width='40%' height='100%' alt="silver medal" />
+                        <img src={sliver} width='20%' height='100%' alt="silver medal" />
                     </Grid>
 
                     <Grid item align='center' md={4}>
-                        <img src="/bronze.png" width='40%' height='100%' alt="bronze medal" />
+                        <img src={bronze} width='20%' height='100%' alt="bronze medal" />
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        25&nbsp;&nbsp; $25,000
+                        
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        Eddy Levinskas
+                        <Box>
+                        <Typography>Eddy Levinskas</Typography>
+                        <Typography>15&nbsp;&nbsp;$10,000</Typography>
+                        </Box>
                     </Grid>
 
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        Hatim Bossman
+                        <Box>
+                        <Typography>Hatim Bossman</Typography>
+                        <Typography>23&nbsp;&nbsp;$6,500</Typography>
+                        </Box>
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
 
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        15&nbsp;&nbsp;$10,000
+                
                     </Grid>
 
                     <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
-                        23&nbsp;&nbsp;$6,500
+                        
                     </Grid>
                     <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
                     </Grid>
                     <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
                     </Grid>
                 </Grid>
-
             </EditedBox >
 
             <EditedBox minWidth='200px' maxWidth='900px' margin='auto' display="flex">

@@ -67,7 +67,7 @@ function Footer({ company, links, socials, light }) {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <EditedTypo variant="body2" color={light ? "white" : "secondary"}>
-            Copyright &copy; {year} Terminent by{" "}
+            Copyright &copy; {year} TennisTracker by{" "}
             <EditedTypo
               component={Link}
               href={href}
@@ -96,20 +96,20 @@ Footer.defaultProps = {
 
   ],
   socials: [
-    { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/CreativeTim/" },
+    { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/" },
     {
       icon: <TwitterIcon fontSize="small" />,
-      link: "https://twitter.com/creativetim",
+      link: "https://twitter.com/",
     },
     {
       icon: <InstagramIcon fontSize="small" />,
-      link: "https://www.instagram.com/creativetimofficial/",
+      link: "https://www.instagram.com/",
     },
     {
       icon: <PinterestIcon fontSize="small" />,
-      link: "https://ro.pinterest.com/thecreativetim/",
+      link: "https://ro.pinterest.com/",
     },
-    { icon: <GitHubIcon fontSize="small" />, link: "https://github.com/creativetimofficial" },
+    { icon: <GitHubIcon fontSize="small" />, link: "https://github.com" },
   ],
   light: false,
 };

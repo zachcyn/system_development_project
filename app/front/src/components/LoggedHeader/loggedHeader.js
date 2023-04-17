@@ -430,7 +430,7 @@ function LoggedNavbar({ brand, routes, transparent, light, sticky, relative, cen
 
 // Setting default values for the props of DefaultNavbar
 LoggedNavbar.defaultProps = {
-  brand: "Terminent",
+  brand: "TennisTracker",
   transparent: false,
   light: false,
   action: false,
