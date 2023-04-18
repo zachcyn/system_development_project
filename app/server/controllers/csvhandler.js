@@ -14,6 +14,12 @@ const playercsv = function processData(filename) {
         var data = allTextLines[i].split(',');
         //if (data.length == headers.length) {
 
+
+            // Skip empty lines
+            if (data.length === 1 && data[0].trim() === '') {
+                continue; // Skip to next iteration
+                }
+                
             var tarr = [];
             for (var j=0; j<headers.length; j++) {
                 tarr.push(data[j]);

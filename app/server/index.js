@@ -6,6 +6,7 @@ const playerController = require('./controllers/playersController')
 const rankingPointController = require('./controllers/rankingpointController')
 const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
+const maleGamesController = require('./controllers/maleGamesController')
 
 
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
@@ -72,9 +73,53 @@ app.get("/getlolol4",(req,res)=>{
         "../../Upload/TAC1 ROUND 3 LADIES.csv",
         "../../Upload/TAC1 ROUND 4 LADIES.csv",
         "../../Upload/TAC1 ROUND 5 LADIES.csv",
-    ];
+        "../../Upload/TAE21 ROUND 1 LADIES.csv",
+        "../../Upload/TAE21 ROUND 2 LADIES.csv",
+        "../../Upload/TAE21 ROUND 3 LADIES.csv",
+        "../../Upload/TAE21 ROUND 4 LADIES.csv",
+        "../../Upload/TAE21 ROUND 5 LADIES.csv",
+        "../../Upload/TAW11 ROUND 1 LADIES.csv",
+        "../../Upload/TAW11 ROUND 2 LADIES.csv",
+        "../../Upload/TAW11 ROUND 3 LADIES.csv",
+        "../../Upload/TAW11 ROUND 4 LADIES.csv",
+        "../../Upload/TAW11 ROUND 5 LADIES.csv",
+        "../../Upload/TBS2 ROUND 1 LADIES.csv",
+        "../../Upload/TBS2 ROUND 2 LADIES.csv",
+        "../../Upload/TBS2 ROUND 3 LADIES.csv",
+        "../../Upload/TBS2 ROUND 4 LADIES.csv",
+        "../../Upload/TBS2 ROUND 5 LADIES.csv",
+];
     csvFiles.forEach((csvFile) => {
         ladiesGamesController.saveAllLadies(csvFile);
+    });
+});
+
+app.get("/getlolol5",(req,res)=>{
+    console.log("lololworks");
+    const csvFiles = [
+        "../../Upload/TAC1 ROUND 1 MEN.csv",
+        "../../Upload/TAC1 ROUND 2 MEN.csv",
+        "../../Upload/TAC1 ROUND 3 MEN.csv",
+        "../../Upload/TAC1 ROUND 4 MEN.csv",
+        "../../Upload/TAC1 ROUND 5 MEN.csv",
+        "../../Upload/TAE21 ROUND 1 MEN.csv",
+        "../../Upload/TAE21 ROUND 2 MEN.csv",
+        "../../Upload/TAE21 ROUND 3 MEN.csv",
+        "../../Upload/TAE21 ROUND 4 MEN.csv",
+        "../../Upload/TAE21 ROUND 5 MEN.csv",
+        "../../Upload/TAW11 ROUND 1 MEN.csv",
+        "../../Upload/TAW11 ROUND 2 MEN.csv",
+        "../../Upload/TAW11 ROUND 3 MEN.csv",
+        "../../Upload/TAW11 ROUND 4 MEN.csv",
+        "../../Upload/TAW11 ROUND 5 MEN.csv",
+        "../../Upload/TBS2 ROUND 1 MEN.csv",
+        "../../Upload/TBS2 ROUND 2 MEN.csv",
+        "../../Upload/TBS2 ROUND 3 MEN.csv",
+        "../../Upload/TBS2 ROUND 4 MEN.csv",
+        "../../Upload/TBS2 ROUND 5 MEN.csv",
+];
+    csvFiles.forEach((csvFile) => {
+        maleGamesController.saveAllMales(csvFile);
     });
 });
 
