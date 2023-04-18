@@ -2,7 +2,8 @@ require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
 const conn = require('./dbConn');
-const playerController = require('./controllers/playersController')
+const maleplayerController = require('./controllers/malePlayersController')
+const femaleplayerController = require('./controllers/femalePlayersController')
 const rankingPointController = require('./controllers/rankingpointController')
 const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
@@ -46,13 +47,13 @@ app.get("/getPlayers", (req, res)  => {
 
 app.get("/getlol", (req, res)  => {
    console.log("lolworks");
-    playerController.saveThePlayer(24,undefined,49,1000);      
+   femaleplayerController.savefemalePlayers("../../Upload/FEMALE PLAYERS.csv",true);
     
 })
 
 app.get("/getlolol",(req,res)=>{
     console.log("lololworks");
-    playerController.saveAllThePlayers("../../Upload/FEMALE PLAYERS.csv");
+    maleplayerController.saveMalePlayers("../../Upload/MALE PLAYERS.csv",true);
 })
 
 app.get("/getlolol2",(req,res)=>{
