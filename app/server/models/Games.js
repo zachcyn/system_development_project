@@ -6,7 +6,8 @@ const GameSchema = new Schema({
   ScorePlayerA: Number,
   PlayerB: String,
   ScorePlayerB: Number,
-  Round: String 
+  Round: String,
+  Winner: String
 });
 
 module.exports = GameSchema
