@@ -2,15 +2,46 @@ const conn = require('../dbConn');
 const Game = conn.MaleDB.models['Game']
 const csvhandler = require('./csvhandler')
 
-const saveMalesGames = function MalesGames(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
+// Function to calculate and validate the winner
+const getMalesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
+  let winner = '';
+
+  if (ScorePlayerA > ScorePlayerB) {
+    winner = PlayerA;
+  } else if (ScorePlayerA < ScorePlayerB) {
+    winner = PlayerB;
+  }
+
+  // Validate winner
+  if (ScorePlayerA === 3 && ScorePlayerB === 3) {
+    console.error(`Error: Both ${PlayerA} and ${PlayerB} cannot win two points each in the same match.`);
+    return '';
+  } else if (winner === '') {
+    console.error(`Error: No winner found for match between ${PlayerA} and ${PlayerB}.`);
+    return '';
+  }
+
+  return winner;
+};
+
+// Function to save ladies games
+const saveMalesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
+  // Call getWinner function to calculate and validate the winner
+  const winner = getMalesWinner(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB);
+
+  // If winner is not valid, return
+  if (winner === '') {
+    return;
+  }
+
   const malesGames = new Game({
     PlayerA: PlayerA,
     ScorePlayerA: ScorePlayerA,
     PlayerB: PlayerB,
     ScorePlayerB: ScorePlayerB,
-    Round: Round
+    Round: Round,
+    Winner: winner // Add winner to the Game schema
   });
-
   malesGames.save().then(() => {
     console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
   }).catch(err => {
@@ -41,5 +72,6 @@ const saveAllMales = function(fileName) {
 
 module.exports = {
   saveMalesGames: saveMalesGames,
-  saveAllMales: saveAllMales
+  saveAllMales: saveAllMales,
+  getMalesWinner: getMalesWinner
 };
