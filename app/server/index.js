@@ -4,12 +4,15 @@ const mongoose = require("mongoose");
 const conn = require('./dbConn');
 const playerController = require('./controllers/playersController')
 const rankingPointController = require('./controllers/rankingPointController')
+const cors = require('cors');
 
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
 
 const Player = conn.MaleDB.models['Player'];
 console.log(Player)
 const app = express();
+
+app.use(cors());
 
 app.listen(3001, () => {
     console.log("Server is servering...");
