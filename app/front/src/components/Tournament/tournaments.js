@@ -67,7 +67,7 @@ import * as Components from './tour_component';
 // }));
 
 
-function Tournaments() {
+function Tournaments(props) {
   return (
     <>
       <Navbar
@@ -101,16 +101,16 @@ function Tournaments() {
                 {elem.gender}
                 </EditedTypo>
                 {elem.game.map((item) => (
-                  <Accordion>
-                    <AccordionSummary
+                  <Components.Accordion>
+                    <Components.AccordionSummary
                       expandIcon={<ExpandMore />}
                       aria-controls="panel-content"
                       id="panel-header"
                     >
                       <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{item.round_icon}</EditedTypo>
                       <EditedTypo display="inline" sx={{fontSize:"inherit"}}>Round {item.round_no}</EditedTypo>
-                    </AccordionSummary>
-                    <AccordionDetails>
+                    </Components.AccordionSummary>
+                    <Components.AccordionDetails>
                       {item.round_detail.map((details) => (
                             // <Card sx={{margin:2}}>
                             //   <Typography>{item.player_a} vs {item.player_b}</Typography>
@@ -123,8 +123,8 @@ function Tournaments() {
                                 </Data>
                             </Stack>
                       ))}
-                    </AccordionDetails>
-                  </Accordion>
+                    </Components.AccordionDetails>
+                  </Components.Accordion>
                 ))}
           </Grid>
         ))}
