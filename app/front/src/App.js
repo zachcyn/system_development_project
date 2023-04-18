@@ -1,5 +1,6 @@
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import Main from './pages/main';
@@ -11,16 +12,21 @@ import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
 
 function App() {
+  const [books, setBooks] = useState([]);
 
-  const { pathname } = useLocation();
-
-  // Setting page scroll to 0 when changing the route
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
+    axios
+      .get('http://localhost:3001/getMalePayers')
+      .then((res) => {
+        setBooks(res.data);
+      })
+      .catch((err) => {
+        console.log('Error from ShowBookList');
+      });
+  }, []);
+    console.log(books)
 
-  const getRoutes = (allRoutes) =>
+    const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
         return getRoutes(route.collapse);
@@ -33,20 +39,20 @@ function App() {
       return null;
     });
 
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="/main" element={<Main />} />
-          <Route path="/loggedMain" element={<LoggedMain />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/info_manage" element={<InfoManage />} />
-          <Route path="/tournament_manage" element={<TourModify/>} />
-          <Route path="*" element={<Navigate to="/main" />} />
-        </Routes>
-    </ThemeProvider>
-  );
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <Routes>
+            {getRoutes(routes)}
+            <Route path="/main" element={<Main />} />
+            <Route path="/loggedMain" element={<LoggedMain />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/info_manage" element={<InfoManage />} />
+            <Route path="/tournament_manage" element={<TourModify/>} />
+            <Route path="*" element={<Navigate to="/main" />} />
+          </Routes>
+      </ThemeProvider>
+    );
 }
 
 export default App;

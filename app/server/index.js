@@ -8,6 +8,8 @@ const rankingPointController = require('./controllers/rankingpointController')
 const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
 const maleGamesController = require('./controllers/maleGamesController')
+const playerController = require('./controllers/playersController')
+const cors = require('cors');
 
 
 //mongoose.connect("mongodb+srv://dev:dev123@tennisdata.fxv0bhm.mongodb.net/?retryWrites=true&w=majority")
@@ -16,7 +18,7 @@ const Player = conn.MaleDB.models['Player'];
 console.log(Player)
 const app = express();
 
-
+app.use(cors());
 
 app.listen(3001, () => {
     console.log("Server is servering...");
@@ -124,3 +126,7 @@ app.get("/getlolol5",(req,res)=>{
     });
 });
 
+app.get("/getMalePayers",(req,res)=>{
+    res.json({
+         playersList: playerController.getMalePlayers()
+})})
