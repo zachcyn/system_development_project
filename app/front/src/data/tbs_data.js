@@ -10,12 +10,12 @@ export const TBS_data = [
                 round_icon: <LooksOne />,
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
+                        player_a: "12345667",
+                        score_a: 5,
                         player_b: "FP20",
-                        score_b: 0
+                        score_b: 1
                     },{
-                        player_a: "FP15",
+                        player_a: "1234567890",
                         score_a: 2,
                         player_b: "FP20",
                         score_b: 0

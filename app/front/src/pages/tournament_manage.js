@@ -5,10 +5,11 @@ import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import ModifyMatch from "../components/Modifier/modify_match";
-import { TAW_data } from "../data/taw_data";
+import { TAC_data } from "../data/tac_data";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
+import { filetitle, tournaments, levels } from "./info_manage";
 
-function TAWModify() {
+function TourModify() {
     return (
         <>
             <LoggedNavbar
@@ -16,10 +17,10 @@ function TAWModify() {
                 sticky
             />
 
-            <EditedTypo variant="h1" sx={{mt:5}} align='center'>TAW 11</EditedTypo>
-            <EditedTypo variant="subtitle1" textTransform="capitalize" align='center'>Level 3.1</EditedTypo>
+            <EditedTypo variant="h1" sx={{mt:5}} align='center'>{tournaments}</EditedTypo>
+            <EditedTypo variant="subtitle1" textTransform="capitalize" align='center'>{levels}</EditedTypo>
             <br />
-            <ModifyMatch data={TAW_data} />
+            <ModifyMatch data={filetitle} />
 
             <EditedBox pt={6} px={1} mt={6}>
                 <Footer content={footerRoutes} />
@@ -27,4 +28,4 @@ function TAWModify() {
         </>
     );
 }
-export default TAWModify;
+export default TourModify;

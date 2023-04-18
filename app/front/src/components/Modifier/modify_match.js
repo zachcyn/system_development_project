@@ -132,7 +132,7 @@ const Accordion = styled((props) => (
                                         onSubmit={handleSubmit}
                                     >
                                         <Grid container>
-                                            <Grid container md={11}>
+                                            <Grid container md={10}>
                                                 <Grid item marginRight={2}>
                                                 <TextField
                                                     fullWidth
@@ -141,7 +141,7 @@ const Accordion = styled((props) => (
                                                     onChange={handleChange}
                                                     required
                                                     defaultValue={details.player_a}
-                                                    sx={{width:"150px"}}
+                                                    sx={{width:"120px"}}
                                                     />
                                                 </Grid>
                                                 <Grid item md={1} marginRight={2}>
@@ -155,7 +155,7 @@ const Accordion = styled((props) => (
                                                     sx={{width:"75px"}}
                                                     />
                                                 </Grid>
-                                                <Grid item md={2} marginRight={2}>
+                                                <Grid item md={2} marginRight={2} marginLeft={2}>
                                                 <TextField
                                                     fullWidth
                                                     label="Player B"
@@ -163,7 +163,7 @@ const Accordion = styled((props) => (
                                                     onChange={handleChange}
                                                     required
                                                     defaultValue={details.player_b}
-                                                    sx={{width:"150px"}}
+                                                    sx={{width:"120px"}}
                                                     />
                                                 </Grid>
                                                 <Grid item md={1} marginRight={2}>
@@ -177,7 +177,7 @@ const Accordion = styled((props) => (
                                                     sx={{width:"75px"}}
                                                     />
                                                 </Grid>
-                                                <Grid item md={2} marginRight={2}>
+                                                <Grid item md={2} marginRight={2} marginLeft={2}>
                                                 <TextField
                                                     fullWidth
                                                     label="Winner"
@@ -185,11 +185,11 @@ const Accordion = styled((props) => (
                                                     onChange={handleChange}
                                                     required
                                                     defaultValue={details.score_b}
-                                                    sx={{width:"150px"}}
+                                                    sx={{width:"120px"}}
                                                     />
                                                 </Grid>
                                             </Grid>
-                                            <Grid container md={1}>
+                                            <Grid container md={2}>
                                                 <Grid item>
                                                     <IconButton aria-label="submit">
                                                     <Check />

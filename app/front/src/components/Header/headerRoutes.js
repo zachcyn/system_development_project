@@ -14,7 +14,7 @@ const routes = [
     rowsPerColumn: 2,
     collapse: [
       {
-        name: "Difficulties",
+        name: "Tournaments",
         collapse: [
           {
             name: "TAC 1",
