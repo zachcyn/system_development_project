@@ -10,10 +10,10 @@ export const TAW_data = [
                 round_icon: <LooksOne />,
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                        player_a: "1231455",
+                        score_a: 12,
+                        player_b: "123131245",
+                        score_b: 12
                     },{
                         player_a: "FP15",
                         score_a: 2,

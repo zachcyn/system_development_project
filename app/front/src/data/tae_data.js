@@ -11,7 +11,7 @@ export const TAE_data = [
                     round_icon: <LooksOne />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "Chu",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -42,7 +42,7 @@ export const TAE_data = [
                     round_icon: <LooksTwo />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "Yie",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -73,7 +73,7 @@ export const TAE_data = [
                     round_icon: <Looks3 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "Nian",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -104,7 +104,7 @@ export const TAE_data = [
                     round_icon: <Looks4 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "No",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -135,7 +135,7 @@ export const TAE_data = [
                     round_icon: <Looks5 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "osksna",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -166,7 +166,7 @@ export const TAE_data = [
                     round_icon: <Looks5 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "kebab",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -205,7 +205,7 @@ export const TAE_data = [
                     round_icon: <LooksOne />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "eddy",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -236,7 +236,7 @@ export const TAE_data = [
                     round_icon: <LooksTwo />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "levinskas",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -267,7 +267,7 @@ export const TAE_data = [
                     round_icon: <Looks3 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "olla",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -298,7 +298,7 @@ export const TAE_data = [
                     round_icon: <Looks4 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "asadsa",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0
@@ -329,7 +329,7 @@ export const TAE_data = [
                     round_icon: <Looks5 />,
                     round_detail: [
                         {
-                            player_a: "FP14",
+                            player_a: "pandi",
                             score_a: 2,
                             player_b: "FP20",
                             score_b: 0

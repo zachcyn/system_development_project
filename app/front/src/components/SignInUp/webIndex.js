@@ -1,12 +1,25 @@
-import React from "react";
+import {useState} from "react";
 import * as Components from './webComponents';
 import { Box } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import { useNavigate } from "react-router-dom";
 
 function FormComponent(props) {
-    const [signIn, toggle] = React.useState(true);
+    const [signIn, toggle] = useState(true);
+    const [inputs, setInputs] = useState({});
     const navigation = useNavigate();
+
+    const handleChange = (event) => {
+        const email = event.target.name;
+        const pass = event.target.value;
+        setInputs(values => ({...values, [email]: pass}))
+      }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(inputs)
+        navigation("/loggedMain");
+    };
 
      return(props.trigger) ? (
         <>
@@ -53,12 +66,14 @@ function FormComponent(props) {
                 >
                      <Icon onClick={() => props.setTrigger(false)} sx={{cursor:'pointer'}}>close</Icon>
                 </Box>
-                  <Components.Form>
+                  <Components.Form
+                    onSubmit={handleSubmit}
+                  >
                       <Components.Title>Sign in</Components.Title>
-                      <Components.Input type='email' placeholder='Email' />
-                      <Components.Input type='password' placeholder='Password' />
+                      <Components.Input name='email' type='email' placeholder='Email' onChange={handleChange} value={inputs.email} />
+                      <Components.Input name='pass' type='password' placeholder='Password' onChange={handleChange} value={inputs.pass} />
                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                      <Components.Button onClick={() => navigation("/loggedMain")}>Sigin In</Components.Button>
+                      <Components.Button type="submit">Sign In</Components.Button>
                   </Components.Form>
              </Components.SignInContainer>
 
@@ -81,7 +96,7 @@ function FormComponent(props) {
                            Enter Your personal details and start journey with us
                        </Components.Paragraph>
                            <Components.GhostButton onClick={() => toggle(false)}>
-                               Sigin Up
+                               Sign Up
                            </Components.GhostButton> 
                      </Components.RightOverlayPanel>
  
