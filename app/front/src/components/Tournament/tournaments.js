@@ -1,80 +1,15 @@
-import Footer from "../components/Footer/footer";
-import Navbar from "../components/Header";
-
-// Routes
-import routes
-
-from "../components/Header/headerRoutes";
-import EditedBox from "../material/EditedBox/EditedBox";
-import footerRoutes from "../components/Footer/footerRoutes";
 import { Grid, Stack, Paper } from "@mui/material";
-import { TAC_data } from "../data/tac_data";
 import { ExpandMore } from "@mui/icons-material";
-import styled from "@emotion/styled";
-import MuiAccordion from "@mui/material/Accordion"
-import MuiAccordionSummary from "@mui/material/AccordionSummary"
-import MuiAccordionDetails from "@mui/material/AccordionDetails"
-import EditedTypo from "../material/EditedTypo/EditedTypo";
+import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
+import {names, levels, filename } from '../Header/index';
 
-// const Accordion = styled((props) => (
-//   <MuiAccordion diasbleGutters elecatoin={0} {...props}/>
-// ))(({ theme }) => ({
-//   border: `0px solid ${theme.palette.divider}`,
-//   margin: 10,
-//   backgroundColor: "transparent",
-//   '&:not(:last-child)': {
-//     borderBottom: 0,
-//   },
-//   '&:before': {
-//     display: 'none',
-//   },
-// }));
+console.log(names, levels, filename)
 
-// const AccordionSummary = styled((props) => (
-//   <MuiAccordionSummary
-//     expandIcon={<ExpandMore sx={{ fontSize: '0.9rem' }} />}
-//     {...props}
-//   />
-// ))(({ theme }) => ({
-//   // borderRadius: "10px",
-//   backgroundColor:
-//     theme.palette.mode === 'dark'
-//       ? 'rgba(255, 255, 255, .05)'
-//       : 'white',
-//   // flexDirection: 'row-reverse',
-//   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-//     transform: 'rotate(-90deg)',
-//   },
-//   '& .MuiAccordionSummary-content': {
-//     marginLeft: theme.spacing(1),
-//   },
-// }));
+const Tournaments = (filename) => {
 
-// const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-//   padding: theme.spacing(2),
-//   borderTop: '1px solid rgba(0, 0, 0, .125)',
-//   backgroundColor: "transparent",
-// }));
-
-// const Data = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-//   margin: 4,
-// }));
-
-
-function Tournaments(props) {
   return (
     <>
-      <Navbar
-        routes={routes}
-        sticky
-      />
-
       <Grid
         container
         spacing={2}
@@ -84,8 +19,8 @@ function Tournaments(props) {
       >
         <EditedTypo variant="h1" sx={{mt:5}}>TAC 1</EditedTypo>
         <EditedTypo variant="subtitle1" textTransform="capitalize">degree of difficulty 2.7</EditedTypo>
-        {TAC_data.map((elem) => (
-          <Grid item key={TAC_data.indexOf(elem)} width="70%" md={2}>
+        {filename.data.map((elem) => (
+          <Grid item key={filename.data.indexOf(elem)} width="70%" md={2}>
               <EditedTypo 
               textTransform="capitalize" 
               sx={{textAlign: "center", 
@@ -112,15 +47,11 @@ function Tournaments(props) {
                     </Components.AccordionSummary>
                     <Components.AccordionDetails>
                       {item.round_detail.map((details) => (
-                            // <Card sx={{margin:2}}>
-                            //   <Typography>{item.player_a} vs {item.player_b}</Typography>
-                            //   <Typography>{item.score_a} : {item.score_b}</Typography>
-                            // </Card>
                             <Stack>
-                              <Data>
+                              <Components.Data>
                                 <EditedTypo>{details.player_a} vs {details.player_b}</EditedTypo>
                                 <EditedTypo>{details.score_a} : {details.score_b}</EditedTypo>
-                                </Data>
+                                </Components.Data>
                             </Stack>
                       ))}
                     </Components.AccordionDetails>
@@ -129,12 +60,6 @@ function Tournaments(props) {
           </Grid>
         ))}
       </Grid>
-
-
-      <EditedBox pt={6} px={1} mt={6}>
-        <Footer content={footerRoutes} />
-      </EditedBox>
-
     </>
   );
 }

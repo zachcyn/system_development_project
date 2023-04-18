@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
-import { Tournament } from "../data/tournaments";
+import { Tournament } from "../data/tournaments_data";
 import ModifyMatch from "../components/Modifier/modify_match";
 
 export var filetitle;
@@ -29,7 +29,7 @@ export var levels;
 function InfoManage() {
   const navigation = useNavigate();
   
-  const handleListItemClick = (tournament,level,file) => {
+  const handleListItemClick = (tournament, level, file) => {
     tournaments = tournament;
     levels = level;
     filetitle = file;

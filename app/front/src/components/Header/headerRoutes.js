@@ -1,8 +1,9 @@
 import { SportsTennis, Leaderboard } from "@mui/icons-material";
-import TBS2 from "../../pages/tbs2";
-import TAW11 from "../../pages/taw11";
-import TAE21 from "../../pages/tae21";
-import TAC1 from "../../pages/tac1";
+import { TAE_data } from "../../data/tae_data";
+import { TAC_data } from "../../data/tac_data";
+import { TBS_data } from "../../data/tbs_data";
+import { TAW_data } from "../../data/taw_data";
+import Tournaments_page from "../../pages/tournament_page";
 import MaleLeaderboard from "../../pages/maleLeaderboard";
 import FemaleLeaderboard from "../../pages/femaleLeaderboard";
 
@@ -18,23 +19,31 @@ const routes = [
         collapse: [
           {
             name: "TAC 1",
-            route: "/pages/tac1",
-            component: <TAC1 />,
+            route: "/pages/Tournaments_page",
+            component: <Tournaments_page />,
+            file: TAC_data,
+            level: 2.1,
           },
           {
             name: "TAE 21",
-            route: "/pages/tae21",
-            component: <TAE21 />,
+            route: "/pages/tournament_page",
+            component: <Tournaments_page />,
+            file: TAE_data,
+            level: 2.3,
           },
           {
             name: "TAW 11",
-            route: "/pages/taw11",
-            component: <TAW11 />,
+            route: "/pages/tournament_page",
+            component: <Tournaments_page />,
+            file: TAW_data,
+            level: 3.1,
           },
           {
             name: "TBS 2",
-            route: "/pages/tbs2",
-            component: <TBS2 />,
+            route: "/pages/tournament_page",
+            component: <Tournaments_page />,
+            file: TBS_data,
+            level: 3.25,
           },
         ],
       },

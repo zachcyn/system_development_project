@@ -1,21 +1,18 @@
 import Footer from "../Footer/footer";
 import Navbar from "../Header";
 import {React, useCallback, useState} from "react";
-// Routes
-import routes
-from "../Header/headerRoutes";
-import EditedBox from "../../material/EditedBox/EditedBox";
-import footerRoutes from "../Footer/footerRoutes";
-import { Grid, Stack, Paper, TextField, IconButton } from "@mui/material";
+import { Grid, Stack, Paper, TextField, IconButton, Container } from "@mui/material";
 import { ExpandMore, Clear, Delete, Check } from "@mui/icons-material";
 import styled from "@emotion/styled";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
-import LoggedNavbar from "../LoggedHeader/loggedHeader";
-// import { TAC_data } from "../../data/tac_data";
+import EditedButton from "../../material/EditedButton/EditedButton";
+import EditedBox from "../../material/EditedButton/EditedButton";
+import colors from '../../assets/theme/base/colors';
 
+const { white, text, error, primary, success, dark, secondary, transparent } = colors;
 
 const Accordion = styled((props) => (
     <MuiAccordion diasbleGutters elecatoin={0} {...props}/>
@@ -211,7 +208,22 @@ const Accordion = styled((props) => (
                   ))}
             </Grid>
           ))}
-        </Grid>
+
+          <Container
+            // maxWidth="xl"
+            bgcolor= {transparent.main}
+            sx={{ml: "20px", mr: "20px", display:"flex", justifyContent:"space-between"}}
+          // color='black' sx={{bgcolor: 'black', margin: 'auto', spacing: 5}}
+          >
+            <EditedButton variant="contained" sx= {{bgcolor: success.main, display:'flex',alignSelf:"flex-start", justifyContent:"flex-start"}}>
+              Add Round
+            </EditedButton>
+            <EditedButton variant="contained" sx= {{bgcolor: error.main, display:'flex',alignSelf:"flex-end", justifyContent:"flex-end"}}>
+              Delete Round
+            </EditedButton>
+          </Container>
+</Grid>
+
   
       </>
     );

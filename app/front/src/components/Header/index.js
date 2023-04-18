@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 // mui material
 import Container from "@mui/material/Container";
-import { Icon } from "@mui/material";
+import { Icon, Typography } from "@mui/material";
 import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
@@ -26,6 +26,9 @@ import TerminentLogo from "../../assets/logo/terminentlight.png"
 import PopUpMV from "../SignInUp/mvIndex";
 import FormComponent from "../SignInUp/webIndex";
 
+export var names;
+export var levels;
+export var filename;
 
 function Navbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -99,6 +102,13 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
 
+    const handleClick = (name, level, file) => {
+      names = name;
+      levels = level;
+      filename = file;
+      console.log(name,level,file);
+    }
+
     // Render the dropdown menu that should be display as columns
     if (collapse && columns && name === dropdownName) {
       const calculateColumns = collapse.reduce((resultArray, item, index) => {
@@ -138,7 +148,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                       <EditedTypo
                         key={item.name}
                         component={item.route ? Link : MuiLink}
-                        to={item.route ? item.route : ""}
+                        // to={item.route ? item.route : ""}
                         href={item.href ? item.href : (e) => e.preventDefault()}
                         target={item.href ? "_blank" : ""}
                         rel={item.href ? "noreferrer" : "noreferrer"}
@@ -161,7 +171,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                           },
                         })}
                       >
-                        {item.name}
+                        <EditedButton onClick={handleClick(item.name, item.level, item.file)} sx={{fontSize:"small"}}>{item.name}</EditedButton>
                       </EditedTypo>
                     ))}
                   </Fragment>
