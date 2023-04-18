@@ -11,8 +11,6 @@ const Player = conn.MaleDB.models['Player'];
 console.log(Player)
 const app = express();
 
-
-
 app.listen(3001, () => {
     console.log("Server is servering...");
 })
@@ -56,5 +54,9 @@ app.get("/getlolol2",(req,res)=>{
     rankingPointController.saveAllRanking("../../Upload/Ranking Points.csv");
 })
 
+app.get("/getMalePayers",(req,res)=>{
+    res.json({
+         playersList: playerController.getMalePlayers()
+})})
 
 
