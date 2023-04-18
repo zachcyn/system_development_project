@@ -18,7 +18,7 @@ AccDB.model('User', require('./models/User'));
 
 module.exports = {
     MaleDB: MaleDB,
-    FmaleDB: FMaleDB,
+    FMaleDB: FMaleDB,
     TournDB: TournDB,
     AccDB: AccDB,
 };

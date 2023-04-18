@@ -1,9 +1,9 @@
 const conn = require('../dbConn');
-const Game = conn.FMaleDB.models['Game']
+const Game = conn.MaleDB.models['Game']
 const csvhandler = require('./csvhandler')
 
-const saveLadiesGames = function LadiesGames(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
-  const ladiesGames = new Game({
+const saveMalesGames = function MalesGames(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
+  const malesGames = new Game({
     PlayerA: PlayerA,
     ScorePlayerA: ScorePlayerA,
     PlayerB: PlayerB,
@@ -11,7 +11,7 @@ const saveLadiesGames = function LadiesGames(PlayerA='', ScorePlayerA=0, PlayerB
     Round: Round
   });
 
-  ladiesGames.save().then(() => {
+  malesGames.save().then(() => {
     console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
   }).catch(err => {
     console.error("Error saving game:", err);
@@ -19,10 +19,10 @@ const saveLadiesGames = function LadiesGames(PlayerA='', ScorePlayerA=0, PlayerB
 };
 
 
-const saveAllLadies = function(fileName) {
+const saveAllMales = function(fileName) {
   const data = csvhandler.processData(fileName);
   const seasonNumber = parseInt(fileName.match(/SEASON (\d+)/)?.[1] || '1');
-  const tournamentName = fileName.match(/(\w+) ROUND \d+ LADIES.csv/)?.[1];
+  const tournamentName = fileName.match(/(\w+) ROUND \d+ MEN.csv/)?.[1];
   const roundNumber = parseInt(fileName.match(/ROUND (\d+)/)?.[1]);
   const Round = "S" + seasonNumber + tournamentName + "R" + roundNumber;
 
@@ -32,7 +32,7 @@ const saveAllLadies = function(fileName) {
     const PlayerB = row[2];
     const ScorePlayerB = parseInt(row[3]);
 
-    saveLadiesGames(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
+    saveMalesGames(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
     console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
   }
 };
@@ -40,6 +40,6 @@ const saveAllLadies = function(fileName) {
 
 
 module.exports = {
-  saveLadiesGames: saveLadiesGames,
-  saveAllLadies: saveAllLadies
+  saveMalesGames: saveMalesGames,
+  saveAllMales: saveAllMales
 };

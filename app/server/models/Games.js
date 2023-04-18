@@ -9,12 +9,8 @@ const GameSchema = new Schema({
   Round: String 
 });
 
-
+module.exports = GameSchema
 
   
-  module.exports = {
-     GameSchema: GameSchema
-    // ladiesGameSchema:ladiesGameSchema,
-    // LadiesGame: LadiesGame
-};
+
 
