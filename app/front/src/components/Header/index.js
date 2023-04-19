@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -38,6 +38,8 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [,updateState] = useState();
+  const forceRender = useCallback(() => updateState({}),[]);
 
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
@@ -106,7 +108,6 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
       names = name;
       levels = level;
       filename = file;
-      console.log(name,level,file);
     }
 
     // Render the dropdown menu that should be display as columns
@@ -148,10 +149,11 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                       <EditedTypo
                         key={item.name}
                         component={item.route ? Link : MuiLink}
-                        // to={item.route ? item.route : ""}
+                        to={item.route ? item.route : ""}
                         href={item.href ? item.href : (e) => e.preventDefault()}
                         target={item.href ? "_blank" : ""}
                         rel={item.href ? "noreferrer" : "noreferrer"}
+                        onClick={() =>{handleClick(item.name,item.level,item.file)}}
                         minWidth="11.25rem"
                         display="block"
                         variant="button"
@@ -171,7 +173,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                           },
                         })}
                       >
-                        <EditedButton onClick={handleClick(item.name, item.level, item.file)} sx={{fontSize:"small"}}>{item.name}</EditedButton>
+                        {item.name}
                       </EditedTypo>
                     ))}
                   </Fragment>

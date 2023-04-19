@@ -10,6 +10,7 @@ import LoggedMain from './pages/loggedMain';
 import Profile from './pages/profile';
 import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
+import Tournament_page from './pages/tournament_page';
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -46,6 +47,7 @@ function App() {
             {getRoutes(routes)}
             <Route path="/main" element={<Main />} />
             <Route path="/loggedMain" element={<LoggedMain />} />
+            <Route path="/tournament_page" element={<Tournament_page/>} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/info_manage" element={<InfoManage />} />
             <Route path="/tournament_manage" element={<TourModify/>} />

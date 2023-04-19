@@ -8,7 +8,7 @@ from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import Tournaments from '../components/Tournament/tournaments';
-import { filename } from "../components/Header";
+import { filename } from "../components/Header/index";
 
 function Tournament_page() {
   return (

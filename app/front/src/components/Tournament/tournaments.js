@@ -2,12 +2,13 @@ import { Grid, Stack, Paper } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
-import {names, levels, filename } from '../Header/index';
+import {names, levels } from '../Header/index';
+import {useState, useEffect} from 'react';
 
-console.log(names, levels, filename)
+// console.log(names, levels, filename)
 
 const Tournaments = (filename) => {
-
+  
   return (
     <>
       <Grid
@@ -17,8 +18,8 @@ const Tournaments = (filename) => {
         justify="center"
         alignItems="center"
       >
-        <EditedTypo variant="h1" sx={{mt:5}}>TAC 1</EditedTypo>
-        <EditedTypo variant="subtitle1" textTransform="capitalize">degree of difficulty 2.7</EditedTypo>
+        <EditedTypo variant="h1" sx={{mt:5}}>{names}</EditedTypo>
+        <EditedTypo variant="subtitle1" textTransform="capitalize">Degree of Difficulty {levels}</EditedTypo>
         {filename.data.map((elem) => (
           <Grid item key={filename.data.indexOf(elem)} width="70%" md={2}>
               <EditedTypo 
