@@ -22,7 +22,7 @@ const routes = [
             route: "/pages/tac1",
             component: <Tournaments_page />,
             file: TAC_data,
-            level: 2.1,
+            level: "xxxxx",
           },
           {
             name: "TAE 21",
