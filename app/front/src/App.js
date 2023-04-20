@@ -12,20 +12,23 @@ import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
 import Tournament_page from './pages/tournament_page';
 
+const cors = require('cors');
+
 function App() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getMalePayers')
+      .get('http://localhost:3001/api/GetTournamentData')
       .then((res) => {
         setBooks(res.data);
+        console.log("API GET! :", res.data);
       })
       .catch((err) => {
-        console.log('Error from ShowBookList');
+        console.log('Error from GetTournamentData');
       });
   }, []);
-    console.log(books)
+  console.log("API AFTER! :", books);
 
     const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {

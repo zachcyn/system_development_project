@@ -10,7 +10,13 @@ function FormComponent(props) {
     const [inputs, setInputs] = useState({});
     const navigation = useNavigate();
 
-    const handleChange = (event) => {
+    const handleSignin = (event) => {
+        const email = event.target.name;
+        const pass = event.target.value;
+        setInputs(values => ({...values, [email]: pass}))
+      }
+
+    const handleSignup = (event) => {
         const email = event.target.name;
         const pass = event.target.value;
         setInputs(values => ({...values, [email]: pass}))
@@ -72,8 +78,8 @@ function FormComponent(props) {
                     onSubmit={handleSubmit}
                   >
                       <Components.Title>Sign in</Components.Title>
-                      <Components.Input name='email' type='email' placeholder='Email' onChange={handleChange} value={inputs.email} />
-                      <Components.Input name='pass' type='password' placeholder='Password' onChange={handleChange} value={inputs.pass} />
+                      <Components.Input name='email' type='email' placeholder='Email' onChange={handleSignin} value={inputs.email} />
+                      <Components.Input name='pass' type='password' placeholder='Password' onChange={handleSignin} value={inputs.pass} />
                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
                       <Components.Button type="submit">Sign In</Components.Button>
                   </Components.Form>

@@ -7,7 +7,8 @@ import { TAE_data } from "./tae_data";
 export const Tournament = [
     {
         name: "TAC1",
-        subtitle: "Difficulty Degree 2.7",
+        //subtitle: "Difficulty Degree 2.7",
+        subtitle: "Difficulty Degree xxxxxx",
         icon: <Man />,
         path: "/tac_manage",
         file: TAC_data
