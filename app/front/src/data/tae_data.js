@@ -2,7 +2,7 @@ import { Man, Woman, LooksOne, LooksTwo, Looks3, Looks4, Looks5 } from "@mui/ico
 
 export const TAE_data = [
     { title: "TAE21",
-      difficulty: 2.3,
+      difficulty: 2.8,
       details:
         [
         { gender: "men",
@@ -40,96 +40,6 @@ export const TAE_data = [
                     ]
                 },{
                     round_no: 2,
-                    round_detail:[
-                        {
-                            player_a: "Hello",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP15",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        }
-                    ]
-                },{
-                    round_no: 3,
-                    round_detail:[
-                        {
-                            player_a: "World",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP15",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        }
-                    ]
-                },{
-                    round_no: 4,
-                    round_detail:[
-                        {
-                            player_a: "React",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP15",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        },{
-                            player_a: "FP14",
-                            score_a: 2,
-                            player_b: "FP20",
-                            score_b: 0
-                        }
-                    ]
-                },{
-                    round_no: 5,
                     round_detail:[
                         {
                             player_a: "Is",

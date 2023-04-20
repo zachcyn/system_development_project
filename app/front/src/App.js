@@ -19,16 +19,17 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/GetTournamentData')
+      .get('http://localhost:3001/api/TAC1')
       .then((res) => {
         setBooks(res.data);
         console.log("API GET! :", res.data);
+        //console.log("API AFTER! :", books[0].PlayerA);
       })
       .catch((err) => {
         console.log('Error from GetTournamentData');
       });
   }, []);
-  console.log("API AFTER! :", books);
+  console.log("API AFTER! :", books[0]);
 
     const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {

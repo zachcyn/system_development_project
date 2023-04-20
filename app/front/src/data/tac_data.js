@@ -1,7 +1,28 @@
 import { Man, Woman, LooksOne, LooksTwo, Looks3, Looks4, Looks5 } from "@mui/icons-material"
+import axios from 'axios'
+import React, {useState, useEffect} from 'react'
+
+// export const TAC_data = function useData() {
+//     const [tournament, setTournament] = useState([]);
+    
+//     useEffect(() => {
+//         axios
+//         .get('http://localhost:3001/api/TAC1')
+//         .then((res) => {
+//             setTournament(res.data);
+//             console.log("API GET INSIDE TACDATA! :", res.data);
+//             //console.log("API AFTER! :", books[0].PlayerA);
+//         })
+//         .catch((err) => {
+//             console.log('Error from GetTournamentData');
+//         });
+//     }, []);
+//     return tournament;
+//     //console.log("API AFTER! :", books[0]);
+// }
 
 export const TAC_data = [
-    { title: "TAC1",
+    { title: "TAC1!!!!!",
       difficulty: 2.3,
       details:
         [

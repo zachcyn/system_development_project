@@ -2,7 +2,7 @@ import { Man, Woman, LooksOne, LooksTwo, Looks3, Looks4, Looks5 } from "@mui/ico
 
 export const TAW_data = [
     { title: "TAW11",
-      difficulty: 2.3,
+      difficulty: 2.10,
       details:
         [
         { gender: "men",

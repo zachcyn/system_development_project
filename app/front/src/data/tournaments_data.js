@@ -1,8 +1,11 @@
 import { Man, Woman } from "@mui/icons-material"
-import { TAC_data } from "../data/tac_data";
+//import { TAC_data } from "../data/tac_data";
 import { TAW_data } from "./taw_data";
 import { TBS_data } from "./tbs_data";
 import { TAE_data } from "./tae_data";
+
+const TAC_data = [ ]
+
 
 export const Tournament = [
     {
