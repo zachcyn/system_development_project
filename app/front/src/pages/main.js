@@ -6,7 +6,6 @@ import footerRoutes from "../components/Footer/footerRoutes";
 import ImageSlider from "../components/Carousel";
 import Cards from "../components/Card";
 
-
 function Main() {
   return (
     <>

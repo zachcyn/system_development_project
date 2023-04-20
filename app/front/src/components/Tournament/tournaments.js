@@ -1,14 +1,41 @@
-import { Grid, Stack, Paper } from "@mui/material";
+import { Grid, Stack, Paper, Box, Icon } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
-import {names, levels } from '../Header/index';
-import {useState, useEffect} from 'react';
-
-// console.log(names, levels, filename)
+import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
 
 const Tournaments = (filename) => {
   
+  function genderChecker(gender){
+    if (gender === "men"){
+      return (<Icon>{men}</Icon>)
+    } 
+    if (gender === 'women'){
+      return (<Icon>{women}</Icon>)
+    }
+  }
+
+  function numberChecker(number){
+    if (number === 1){
+      return (<Icon>{one}</Icon>)
+    }
+    if (number === 2){
+      return (<Icon>{two}</Icon>)
+    }
+    if (number === 3){
+      return (<Icon>{three}</Icon>)
+    }
+    if (number === 4){
+      return (<Icon>{four}</Icon>)
+    }
+    if (number === 5){
+      return (<Icon>{five}</Icon>)
+    }
+    if (number === 6){
+      return (<Icon>{six}</Icon>)
+    }
+  }
+
   return (
     <>
       <Grid
@@ -16,11 +43,8 @@ const Tournaments = (filename) => {
         spacing={2}
         direction="column"
         justify="center"
-        alignItems="center"
-      >
-        <EditedTypo variant="h1" sx={{mt:5}}>{names}</EditedTypo>
-        <EditedTypo variant="subtitle1" textTransform="capitalize">Degree of Difficulty {levels}</EditedTypo>
-        {filename.data.map((elem) => (
+        alignItems="center">
+        {filename.data?.map((elem) => (
           <Grid item key={filename.data.indexOf(elem)} width="70%" md={2}>
               <EditedTypo 
               textTransform="capitalize" 
@@ -32,18 +56,19 @@ const Tournaments = (filename) => {
                 display="inline" 
                 sx={{fontSize:"inherit"}}
                 >
-                  {elem.icon}
                   </EditedTypo>
-                {elem.gender}
-                </EditedTypo>
-                {elem.game.map((item) => (
+                  </EditedTypo>
+                  {elem.details.map((information) => (
+                    <Box>
+                    <EditedTypo textTransform="capitalize" sx={{textAlign:"center", mt:2}}>{genderChecker(information.gender)}{information.gender}</EditedTypo>
+                {information.game.map((item) => (
                   <Components.Accordion>
                     <Components.AccordionSummary
                       expandIcon={<ExpandMore />}
                       aria-controls="panel-content"
                       id="panel-header"
                     >
-                      <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{item.round_icon}</EditedTypo>
+                      <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{numberChecker(item.round_no)}</EditedTypo>
                       <EditedTypo display="inline" sx={{fontSize:"inherit"}}>Round {item.round_no}</EditedTypo>
                     </Components.AccordionSummary>
                     <Components.AccordionDetails>
@@ -58,9 +83,11 @@ const Tournaments = (filename) => {
                     </Components.AccordionDetails>
                   </Components.Accordion>
                 ))}
+                </Box>
+              ))}
           </Grid>
         ))}
-      </Grid>
+      </Grid>  
     </>
   );
 }

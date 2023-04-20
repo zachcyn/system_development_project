@@ -25,6 +25,7 @@ import TerminentLogo from "../../assets/logo/terminentlight.png"
 import { AccountCircle } from "@mui/icons-material";
 import settings from "../Header/settings";
 import ProfilePic from "../../assets/img/profile.png";
+import { names,levels,filename } from "../Header";
 
 import { useNavigate } from "react-router-dom";
 
@@ -101,6 +102,13 @@ function LoggedNavbar({ brand, routes, transparent, light, sticky, relative, cen
     />
   ));
 
+
+  const handleClick = (name, level, file) => {
+    names = name;
+    levels = level;
+    filename = file;
+  }
+
   // Render the routes on the dropdown menu
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
@@ -167,6 +175,9 @@ function LoggedNavbar({ brand, routes, transparent, light, sticky, relative, cen
                           },
                         })}
                       >
+                        {item.file?.map((index) => (
+                          <EditedTypo fontSize="15px" onClick={() =>{handleClick(index.title,index.difficulty,item.file)}}>{index.title}</EditedTypo>))
+                          }
                         {item.name}
                       </EditedTypo>
                     ))}

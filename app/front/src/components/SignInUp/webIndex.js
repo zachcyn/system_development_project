@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import { useNavigate } from "react-router-dom";
 
+
 function FormComponent(props) {
     const [signIn, toggle] = useState(true);
     const [inputs, setInputs] = useState({});
@@ -17,8 +18,9 @@ function FormComponent(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputs)
-        navigation("/loggedMain");
+        console.log(inputs);
+        props.setTrigger(false);
+        props.setLogged(true);
     };
 
      return(props.trigger) ? (

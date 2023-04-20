@@ -1,7 +1,7 @@
 import Footer from "../Footer/footer";
 import Navbar from "../Header";
 import {React, useCallback, useState} from "react";
-import { Grid, Stack, Paper, TextField, IconButton, Container } from "@mui/material";
+import { Grid, Stack, Paper, TextField, IconButton, Container, Box } from "@mui/material";
 import { ExpandMore, Clear, Delete, Check } from "@mui/icons-material";
 import styled from "@emotion/styled";
 import MuiAccordion from "@mui/material/Accordion";
@@ -11,6 +11,8 @@ import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import EditedButton from "../../material/EditedButton/EditedButton";
 import EditedBox from "../../material/EditedButton/EditedButton";
 import colors from '../../assets/theme/base/colors';
+import AddRound from "./add_round";
+import DeleteRound from "./delete_round";
 
 const { white, text, error, primary, success, dark, secondary, transparent } = colors;
 
@@ -65,7 +67,9 @@ const Accordion = styled((props) => (
   
   
   const ModifyMatch = (props) => {
-    const [values, setValues] = useState("");
+    const [, setValues] = useState("");
+    const [addPopup, setAddPopup] = useState(false);
+    const [deletePopup, setDeletePopup] = useState(false);
       
     const handleChange = useCallback(
         (event) => {
@@ -95,6 +99,8 @@ const Accordion = styled((props) => (
         >
           {props.data.map((elem) => (
             <Grid item key={props.data.indexOf(elem)} width="70%" md={2}>
+              {elem.details?.map((index) => (
+                <>
                 <EditedTypo 
                 textTransform="capitalize" 
                 sx={{textAlign: "center", 
@@ -105,11 +111,12 @@ const Accordion = styled((props) => (
                   display="inline" 
                   sx={{fontSize:"inherit"}}
                   >
-                    {elem.icon}
+                    {index.icon}
                     </EditedTypo>
-                  {elem.gender}
+                  {index.gender}
                   </EditedTypo>
-                  {elem.game.map((item) => (
+                  <Box>
+                  {index.game.map((item) => (
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMore />}
@@ -206,22 +213,24 @@ const Accordion = styled((props) => (
                       </AccordionDetails>
                     </Accordion>
                   ))}
+                  </Box>
+                  </>
+                  ))}
             </Grid>
           ))}
 
-          <Container
-            // maxWidth="xl"
-            bgcolor= {transparent.main}
-            sx={{ml: "20px", mr: "20px", display:"flex", justifyContent:"space-between"}}
-          // color='black' sx={{bgcolor: 'black', margin: 'auto', spacing: 5}}
+          <Box
+            sx={{display:"flex", justifyContent:"space-between", width:"70%",padding:"16px", ml:2}}
           >
-            <EditedButton variant="contained" sx= {{bgcolor: success.main, display:'flex',alignSelf:"flex-start", justifyContent:"flex-start"}}>
+            <EditedButton onClick={() => setAddPopup(true)} variant="contained" sx= {{bgcolor: success.main, display:'flex',alignSelf:"flex-start", justifyContent:"flex-start", color:'#ffffff'}}>
               Add Round
             </EditedButton>
-            <EditedButton variant="contained" sx= {{bgcolor: error.main, display:'flex',alignSelf:"flex-end", justifyContent:"flex-end"}}>
+            <AddRound trigger={addPopup} setTrigger={setAddPopup} />
+            <EditedButton onClick={() => setDeletePopup(true)} variant="contained" sx= {{bgcolor: error.main, display:'flex',alignSelf:"flex-end", justifyContent:"flex-end", color:"#ffffff"}}>
               Delete Round
             </EditedButton>
-          </Container>
+            <DeleteRound trigger={deletePopup} setTrigger={setDeletePopup} />
+          </Box>
 </Grid>
 
   
