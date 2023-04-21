@@ -9,6 +9,7 @@ const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
 const maleGamesController = require('./controllers/maleGamesController')
 const playerController = require('./controllers/playersController')
+const positionScoreHandler = require('./controllers/positionScoreHandler')
 const cors = require('cors');
 
 
@@ -130,3 +131,39 @@ app.get("/getMalePayers",(req,res)=>{
     res.json({
          playersList: playerController.getMalePlayers()
 })})
+
+
+app.get("/getlolol6",(req,res)=>{
+    console.log("lololworks");
+    positionScoreHandler.findListPlayers("../../Upload/MALE PLAYERS.csv",true);
+})
+
+
+app.get("/getlolol7", async (req, res) => {
+    console.log("lololworks");
+    try {
+        await maleplayerController.updateMalePlayerPoints("../../Upload/MALE PLAYERS.csv");
+        res.status(200).json({ message: "Player points updated successfully." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to update player points." });
+    }
+});
+
+app.get("/getlolol8", async (req, res) => {
+    console.log("lololworks");
+    try {
+        await maleplayerController.generateRankingPoints();
+        res.status(200).json({ message: "ranking points points updated successfully." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to update player points." });
+    }
+});
+
+app.get("/getlolol9",(req,res)=>{
+    console.log("lololworks");
+    prizeMoneyController.getPrizeMoneyArray();
+})
+
+
