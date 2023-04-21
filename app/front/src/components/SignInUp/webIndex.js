@@ -1,13 +1,14 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import * as Components from './webComponents';
 import { Box } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import { useNavigate } from "react-router-dom";
-
+import { UserLoggedIn } from "../../App";
 
 function FormComponent(props) {
     const [signIn, toggle] = useState(true);
     const [inputs, setInputs] = useState({});
+    const [pressLog, setPressLog] = useContext(UserLoggedIn);
 
     const handleSignin = (event) => {
         const email = event.target.name;
@@ -23,7 +24,7 @@ function FormComponent(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputs);
+        // console.log(inputs);
         props.setTrigger(false);
         props.setLogged(true);
     };
@@ -80,7 +81,7 @@ function FormComponent(props) {
                       <Components.Input name='email' type='email' placeholder='Email' onChange={handleSignin} value={inputs.email} />
                       <Components.Input name='pass' type='password' placeholder='Password' onChange={handleSignin} value={inputs.pass} />
                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                      <Components.Button type="submit">Sign In</Components.Button>
+                      <Components.Button type="submit" onClick={() => setPressLog(true)}>Sign In</Components.Button>
                   </Components.Form>
              </Components.SignInContainer>
 

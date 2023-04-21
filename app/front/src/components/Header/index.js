@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect, useRef, useCallback } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -29,12 +29,14 @@ import settings from "../Header/settings";
 import ProfilePic from "../../assets/img/profile.png";
 import FormComponent from "../SignInUp/webIndex";
 import { useNavigate } from "react-router-dom";
+import { UserLoggedIn } from "../../App";
 
 import axios from 'axios'
 
 export var names;
 export var levels;
 export var filename;
+
 
 function Navbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -48,6 +50,8 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const [loggedView, setLoggedView] = useState(false);
   const navigation = useNavigate();
   const [tournament, setTournament] = useState([]);
+  const [user, setUser] = useContext(UserLoggedIn)
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -96,13 +100,13 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   }
 
   function loggedChecker(){
-    if (loggedView === true){
+    if (user === true){
       return "inline"
     }return "none"
   }
 
   function mainChecker(){
-    if (loggedView !== true){
+    if (user !== true){
       return "inline"
     }return "none"
   }
@@ -450,8 +454,8 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                   <EditedTypo textAlign="center" fontSize="15px">{setting.name}</EditedTypo>
                 </MenuItem>
               ))}
-              <MenuItem>
-              <EditedTypo fontSize="15px" onClick={() => {setLoggedView(false);setAnchorElUser(null)}}>Logout</EditedTypo>
+              <MenuItem  onClick={() => {setLoggedView(false);setAnchorElUser(null);setUser(false)}}>
+              <EditedTypo fontSize="15px">Logout</EditedTypo>
               </MenuItem>
             </Menu>
           </EditedBox>
