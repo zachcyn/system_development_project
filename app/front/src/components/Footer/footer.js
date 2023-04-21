@@ -17,25 +17,27 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EditedBox from "../../material/EditedBox/EditedBox";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import TermsandCondition from "../../pages/t&c";
+import SettingsPage from "../Settings";
+import { useState } from "react";
 
 function Footer({ company, links, socials, light }) {
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [languagePopup, setLanguagePopup] = useState(false);
   const { href, name } = company;
 
   const year = new Date().getFullYear();
 
-  const renderLinks = links.map((link) => (
-    <EditedTypo
-      key={link.name}
-      component={link.routes ? Link : MuiLink}
-      to={link.routes? link.routes : ""}
-      href={link.href}
-      variant="body2"
-      color={light ? "white" : "secondary"}
-      fontWeight="regular"
-    >
-      {link.name}
-    </EditedTypo>
-  ));
+  function settingsChecker(name){
+    if(name === "Settings"){
+      setButtonPopup(true);
+    }setButtonPopup(false);
+  }
+
+  function routeChecker(link){
+    if(link === "settings"){
+      return null;
+    }return link;
+  }
 
   const renderSocials = socials.map((social) => (
     <EditedTypo
@@ -61,7 +63,39 @@ function Footer({ company, links, socials, light }) {
             spacing={{ xs: 2, lg: 3, xl: 6 }}
             mb={3}
           >
-            {renderLinks}
+            <EditedTypo
+              component={Link}
+              href={"/terms_and_condition"}
+              to={"/terms_and_condition"}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+              sx={{cursor:"pointer"}}
+            >
+              T&Cs
+            </EditedTypo>
+            <EditedTypo
+              component={Link}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+              sx={{cursor:"pointer"}}
+              onClick={() => setButtonPopup(true)}
+            >
+              Settings
+            </EditedTypo>
+            <SettingsPage trigger={buttonPopup} setTrigger={setButtonPopup} />
+            <EditedTypo
+              component={Link}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+              sx={{cursor:"pointer"}}
+              onClick={() => setLanguagePopup(true)}
+            >
+              Languages
+            </EditedTypo>
+            <SettingsPage trigger={buttonPopup} setTrigger={setButtonPopup} />
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8}>
@@ -93,12 +127,6 @@ function Footer({ company, links, socials, light }) {
 // Setting default values for the props of CenteredFooter
 Footer.defaultProps = {
   company: { href: "", name: "UWE SysDev Project Team 2" },
-  links: [
-    { href: "", routes: "/terms_and_condition", name: "T&Cs", component:<TermsandCondition /> },
-    { href: "", name: "Settings" },
-    { href: "", name: "Languages" },
-
-  ],
   socials: [
     { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/" },
     {
