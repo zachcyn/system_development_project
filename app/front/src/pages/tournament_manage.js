@@ -8,11 +8,12 @@ import ModifyMatch from "../components/Modifier/modify_match";
 import { TAC_data } from "../data/tac_data";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
 import { filetitle, tournaments, levels } from "./info_manage";
+import { Navbar } from "react-bootstrap";
 
 function TourModify() {
     return (
         <>
-            <LoggedNavbar
+            <Navbar
                 routes={routes}
                 sticky
             />

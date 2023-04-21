@@ -21,6 +21,7 @@ import { Delete } from "@mui/icons-material";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
 import { Tournament } from "../data/tournaments_data";
 import ModifyMatch from "../components/Modifier/modify_match";
+import Navbar from "../components/Header";
 
 export var filetitle;
 export var tournaments;
@@ -38,7 +39,7 @@ function InfoManage() {
 
   return (
     <>
-      <LoggedNavbar routes={routes} sticky />
+      <Navbar routes={routes} sticky />
 
       <Grid
         container

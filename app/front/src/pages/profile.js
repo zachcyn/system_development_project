@@ -6,12 +6,13 @@ import LoggedNavbar from "../components/LoggedHeader/loggedHeader";
 import { AccountProfile } from "../components/Profile/profileCard";
 import { Container, Typography, Grid, Stack } from "@mui/material";
 import { AccountProfileDetails } from "../components/Profile/profileDetails";
+import Navbar from "../components/Header";
 
 function Profile() {
   return (
     <>
  
-      <LoggedNavbar
+      <Navbar
         routes={routes}
         sticky
         />

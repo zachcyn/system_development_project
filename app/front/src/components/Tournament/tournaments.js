@@ -75,8 +75,8 @@ const Tournaments = (filename) => {
                       {item.round_detail.map((details) => (
                             <Stack>
                               <Components.Data>
-                                <EditedTypo>{details.player_a} vs {details.player_b}</EditedTypo>
-                                <EditedTypo>{details.score_a} : {details.score_b}</EditedTypo>
+                                <EditedTypo>{details.PlayerA} vs {details.PlayerB}</EditedTypo>
+                                <EditedTypo>{details.ScorePlayerA} : {details.ScorePlayerB}</EditedTypo>
                                 </Components.Data>
                             </Stack>
                       ))}

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 function FormComponent(props) {
     const [signIn, toggle] = useState(true);
     const [inputs, setInputs] = useState({});
-    const navigation = useNavigate();
 
     const handleSignin = (event) => {
         const email = event.target.name;

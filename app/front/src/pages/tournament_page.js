@@ -17,7 +17,6 @@ function Tournament_page() {
     <>
       <Navbar
         routes={routes}
-        file = {TAC_data}
         sticky
       />
 
