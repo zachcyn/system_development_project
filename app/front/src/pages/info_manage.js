@@ -1,6 +1,5 @@
 import Footer from "../components/Footer/footer";
 import React, { useState } from "react";
-import LoggedNavbar from "../components/LoggedHeader/loggedHeader";
 import { useNavigate } from "react-router-dom";
 
 // Routes

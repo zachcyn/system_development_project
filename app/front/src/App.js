@@ -10,6 +10,7 @@ import Profile from './pages/profile';
 import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
 import Tournament_page from './pages/tournament_page';
+import TermsandCondition from './pages/t&c';
 
 // const cors = require('cors');
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/info_manage" element={<InfoManage />} />
             <Route path="/tournament_manage" element={<TourModify />} />
+            <Route path="/terms_and_condition" element={<TermsandCondition />} />
             <Route path="*" element={<Navigate to="/main" />} />
           </Routes>
         </UserLoggedIn.Provider>

@@ -97,9 +97,9 @@ const Accordion = styled((props) => (
           justify="center"
           alignItems="center"
         >
-          {props.data.map((elem) => (
+          {props.data?.map((elem) => (
             <Grid item key={props.data.indexOf(elem)} width="70%" md={2}>
-              {elem.details?.map((index) => (
+              {elem.details.map((index) => (
                 <>
                 <EditedTypo 
                 textTransform="capitalize" 

@@ -1,5 +1,4 @@
 import Footer from "../components/Footer/footer";
-import LoggedNavbar from "../components/LoggedHeader/loggedHeader";
 import Leaderboards from "../components/Leaderboards/index";
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
@@ -8,7 +7,7 @@ import ModifyMatch from "../components/Modifier/modify_match";
 import { TAC_data } from "../data/tac_data";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
 import { filetitle, tournaments, levels } from "./info_manage";
-import { Navbar } from "react-bootstrap";
+import Navbar from "../components/Header";
 
 function TourModify() {
     return (

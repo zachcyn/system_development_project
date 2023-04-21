@@ -56,7 +56,7 @@ function FormComponent(props) {
                 >
                      <Icon onClick={() => props.setTrigger(false)} sx={{cursor:'pointer'}}>close</Icon>
                 </Box>
-                 <Components.Form>
+                 <Components.Form onSubmit={handleSubmit}>
                      <Components.Title>Create Account</Components.Title>
                      <Components.Input type='text' placeholder='Name' />
                      <Components.Input type='email' placeholder='Email' />

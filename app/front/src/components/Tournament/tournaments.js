@@ -44,20 +44,8 @@ const Tournaments = (filename) => {
         direction="column"
         justify="center"
         alignItems="center">
-        {filename.data?.map((elem) => (
+        {filename.data.map((elem) => (
           <Grid item key={filename.data.indexOf(elem)} width="70%" md={2}>
-              <EditedTypo 
-              textTransform="capitalize" 
-              sx={{textAlign: "center", 
-              fontSize:"1.2rem", 
-              "@media (min-width:600px)" : {fontSize: '1.5rem'}}}
-              >
-                <EditedTypo 
-                display="inline" 
-                sx={{fontSize:"inherit"}}
-                >
-                  </EditedTypo>
-                  </EditedTypo>
                   {elem.details.map((information) => (
                     <Box>
                     <EditedTypo textTransform="capitalize" sx={{textAlign:"center", mt:2}}>{genderChecker(information.gender)}{information.gender}</EditedTypo>
