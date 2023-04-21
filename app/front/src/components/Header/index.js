@@ -30,6 +30,8 @@ import ProfilePic from "../../assets/img/profile.png";
 import FormComponent from "../SignInUp/webIndex";
 import { useNavigate } from "react-router-dom";
 
+import axios from 'axios'
+
 export var names;
 export var levels;
 export var filename;
@@ -45,7 +47,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [loggedView, setLoggedView] = useState(false);
   const navigation = useNavigate();
-
+  const [tournament, setTournament] = useState([]);
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -124,7 +126,22 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
       light={light}
     />
   ));
-
+  
+  const TAC_data = function useData() {
+    useEffect(() => {
+        axios
+        .get('http://localhost:3001/api/T/' + names)
+        .then((res) => {
+            setTournament(res.data);
+            console.log("API GET INSIDE TACDATA! :", names);
+        })
+        .catch((err) => {
+            console.log('Error from useData');
+        });
+    }, []);
+  }
+  TAC_data();
+  
   // Render the routes on the dropdown menu
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
@@ -133,7 +150,12 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
     const handleClick = (name, level, file) => {
       names = name;
       levels = level;
-      filename = file;
+      // if(names == "TAC1") {
+        
+      //   filename = tournament;
+      // }
+      // else filename = file;
+      filename = tournament
     }
 
     // Render the dropdown menu that should be display as columns

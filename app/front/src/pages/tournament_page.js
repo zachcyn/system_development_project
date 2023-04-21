@@ -12,6 +12,8 @@ import { filename } from "../components/Header/index";
 import TournamentHeader from "../components/Tournament/tournament_header";
 import { TAC_data } from "../data/tac_data";
 
+
+
 function Tournament_page() {
   return (
     <>
