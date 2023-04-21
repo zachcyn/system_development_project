@@ -3,9 +3,42 @@ import { ExpandMore } from "@mui/icons-material";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
 import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
+import axios from 'axios'
+import { useAsync } from "react-async"
 
-const Tournaments = (filename) => {
-  
+const Tournaments = async (filename) => {
+  const [tournament, setTournament] = useState([]);
+  // const TAC_data = function useData() {
+  //   useEffect(() => {
+  //       axios
+  //       .get('http://localhost:3001/api/T/' + filename.data)
+  //       .then((res) => {
+  //           setTournament(res.data);
+  //           console.log("API GET INSIDE TACDATA! :", filename.data);
+  //           console.log("API DATA FETCHED:", res.data)
+  //       })
+  //       .catch((err) => {
+  //           console.log('Error from useData');
+  //       });
+  //   }, []);
+  // }
+  const TAC_data = function useData() {
+    useEffect(() => {
+        axios
+        .get('http://localhost:3001/api/T/' + filename.data)
+        .then((res) => {
+            setTournament(res.data);
+            console.log("API GET INSIDE TACDATA! :", filename.data);
+            console.log("API DATA FETCHED:", res.data)
+        })
+        .catch((err) => {
+            console.log('Error from useData');
+        });
+    }, []);
+  }
+  await TAC_data();
+
   function genderChecker(gender){
     if (gender === "men"){
       return (<Icon>{men}</Icon>)
@@ -36,6 +69,7 @@ const Tournaments = (filename) => {
     }
   }
 
+  
   return (
     <>
       <Grid
@@ -44,8 +78,20 @@ const Tournaments = (filename) => {
         direction="column"
         justify="center"
         alignItems="center">
-        {filename.data.map((elem) => (
-          <Grid item key={filename.data.indexOf(elem)} width="70%" md={2}>
+        {tournament.data?.map((elem) => (
+          <Grid item key={tournament.data.indexOf(elem)} width="70%" md={2}>
+              <EditedTypo 
+              textTransform="capitalize" 
+              sx={{textAlign: "center", 
+              fontSize:"1.2rem", 
+              "@media (min-width:600px)" : {fontSize: '1.5rem'}}}
+              >
+                <EditedTypo 
+                display="inline" 
+                sx={{fontSize:"inherit"}}
+                >
+                  </EditedTypo>
+                  </EditedTypo>
                   {elem.details.map((information) => (
                     <Box>
                     <EditedTypo textTransform="capitalize" sx={{textAlign:"center", mt:2}}>{genderChecker(information.gender)}{information.gender}</EditedTypo>
