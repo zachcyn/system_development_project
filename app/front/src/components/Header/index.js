@@ -131,20 +131,20 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
     />
   ));
   
-  const TAC_data = function useData() {
-    useEffect(() => {
-        axios
-        .get('http://localhost:3001/api/T/' + names)
-        .then((res) => {
-            setTournament(res.data);
-            console.log("API GET INSIDE TACDATA! :", names);
-        })
-        .catch((err) => {
-            console.log('Error from useData');
-        });
-    }, []);
-  }
-  TAC_data();
+  // const TAC_data = function useData() {
+  //   useEffect(() => {
+  //       axios
+  //       .get('http://localhost:3001/api/T/' + names)
+  //       .then((res) => {
+  //           setTournament(res.data);
+  //           console.log("API GET INSIDE TACDATA! :", names);
+  //       })
+  //       .catch((err) => {
+  //           console.log('Error from useData');
+  //       });
+  //   }, []);
+  // }
+  // TAC_data();
   
   // Render the routes on the dropdown menu
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
@@ -153,13 +153,9 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
 
     const handleClick = (name, level, file) => {
       names = name;
+      console.log("ONCLICK!: ", names);
       levels = level;
-      // if(names == "TAC1") {
-        
-      //   filename = tournament;
-      // }
-      // else filename = file;
-      filename = tournament
+      filename = file;
     }
 
     // Render the dropdown menu that should be display as columns

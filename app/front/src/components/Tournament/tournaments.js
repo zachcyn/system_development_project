@@ -1,14 +1,17 @@
 import { Grid, Stack, Paper, Box, Icon } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, Refresh } from "@mui/icons-material";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
 import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
 import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import axios from 'axios'
 import { useAsync } from "react-async"
+import Async from "react-async";
+import { empty_data } from "../../data/empty_data";
+import names from "../Header/index";
 
-const Tournaments = async (filename) => {
-  const [tournament, setTournament] = useState([]);
+const Tournaments = (filename) => {
+  const [tournament, setTournament] = useState(empty_data);
   // const TAC_data = function useData() {
   //   useEffect(() => {
   //       axios
@@ -25,25 +28,33 @@ const Tournaments = async (filename) => {
   // }
   const TAC_data = function useData() {
     useEffect(() => {
+      if(filename.data !== tournament[0].title) {
         axios
         .get('http://localhost:3001/api/T/' + filename.data)
         .then((res) => {
+            console.log("Setting tournament");
             setTournament(res.data);
             console.log("API GET INSIDE TACDATA! :", filename.data);
             console.log("API DATA FETCHED:", res.data)
         })
         .catch((err) => {
             console.log('Error from useData');
-        });
-    }, []);
+        }
+        );
+      }
+  });
   }
-  await TAC_data();
-
+  TAC_data();
+  console.log(filename.data, ":Data tour:", tournament[0].title)
+  if(filename.data !== tournament[0].title){
+    console.log("False");
+  }
+  
   function genderChecker(gender){
     if (gender === "men"){
       return (<Icon>{men}</Icon>)
     } 
-    if (gender === 'women'){
+    if (gender === 'women' || gender === "ladies"){
       return (<Icon>{women}</Icon>)
     }
   }
@@ -68,8 +79,7 @@ const Tournaments = async (filename) => {
       return (<Icon>{six}</Icon>)
     }
   }
-
-  
+  console.log(empty_data);
   return (
     <>
       <Grid
@@ -78,8 +88,11 @@ const Tournaments = async (filename) => {
         direction="column"
         justify="center"
         alignItems="center">
-        {tournament.data?.map((elem) => (
-          <Grid item key={tournament.data.indexOf(elem)} width="70%" md={2}>
+        <EditedTypo variant="h1" sx={{mt:5}}>{tournament[0].title}</EditedTypo>
+        <EditedTypo variant="subtitle1" textTransform="capitalize">Degree of Difficulty {tournament[0].difficulty}</EditedTypo>
+
+        {tournament.map((elem) => (
+          <Grid item key={tournament.indexOf(elem)} width="70%" md={2}>
               <EditedTypo 
               textTransform="capitalize" 
               sx={{textAlign: "center", 
@@ -123,7 +136,7 @@ const Tournaments = async (filename) => {
         ))}
       </Grid>  
     </>
-  );
+  );   
 }
 
 export default Tournaments;

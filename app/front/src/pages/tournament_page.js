@@ -23,7 +23,7 @@ function Tournament_page() {
         sticky
       />
 
-      <TournamentHeader />
+      {/* <TournamentHeader /> */}
       <Tournaments data={names} />
 
       <EditedBox pt={6} px={1} mt={6}>
