@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 
 // mui material
-import Link from "@mui/material/Link";
+import MuiLink from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+
+import { Link } from "react-router-dom";
 
 // mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -14,6 +16,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 import EditedBox from "../../material/EditedBox/EditedBox";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
+import TermsandCondition from "../../pages/t&c";
 
 function Footer({ company, links, socials, light }) {
   const { href, name } = company;
@@ -23,7 +26,8 @@ function Footer({ company, links, socials, light }) {
   const renderLinks = links.map((link) => (
     <EditedTypo
       key={link.name}
-      component={Link}
+      component={link.routes ? Link : MuiLink}
+      to={link.routes? link.routes : ""}
       href={link.href}
       variant="body2"
       color={light ? "white" : "secondary"}
@@ -90,7 +94,7 @@ function Footer({ company, links, socials, light }) {
 Footer.defaultProps = {
   company: { href: "", name: "UWE SysDev Project Team 2" },
   links: [
-    { href: "", name: "T&Cs" },
+    { href: "", routes: "/terms_and_condition", name: "T&Cs", component:<TermsandCondition /> },
     { href: "", name: "Settings" },
     { href: "", name: "Languages" },
 
