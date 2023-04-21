@@ -15,12 +15,13 @@ function TermsandCondition() {
 
             <Grid
                 container
-                spacing={2}
                 direction="column"
                 justify="center"
                 alignItems="center"
+                height="100%"
+                sx={{mt: 10}}
             >
-                <EditedBox sx={{width:"70%", mt:10}}>
+                <EditedBox sx={{width:"70%", height:"100%"}}>
 
 <h2><strong>Terms and Conditions</strong></h2>
 
@@ -143,6 +144,7 @@ function TermsandCondition() {
 <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
 
                 </EditedBox>
+
             </Grid>
             <EditedBox pt={6} px={1} mt={6}>
                 <Footer content={footerRoutes} />
