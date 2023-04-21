@@ -1,163 +1,161 @@
 import { Man, Woman, LooksOne, LooksTwo, Looks3, Looks4, Looks5 } from "@mui/icons-material"
 
 export const TAW_data = [
-    { gender: "men",
-      icon: <Man />,
-      game: 
+    { title: "TAW11",
+      difficulty: 2.10,
+      details:
+        [
+        { gender: "men",
+        game: 
         [
             {
                 round_no: 1,
-                round_icon: <LooksOne />,
                 round_detail:[
                     {
-                        player_a: "1231455",
-                        score_a: 12,
-                        player_b: "123131245",
-                        score_b: 12
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP15",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP15",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP16",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP16",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     }
                 ]
             },{
                 round_no: 2,
-                round_icon: <LooksTwo />, 
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "Hello",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP15",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP15",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     }
                 ]
             },{
                 round_no: 3,
-                round_icon: <Looks3 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "World",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP15",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP15",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     }
                 ]
             },{
                 round_no: 4,
-                round_icon: <Looks4 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "React",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP15",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP15",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     }
                 ]
             },{
                 round_no: 5,
-                round_icon: <Looks5 />,
                 round_detail:[
                     {
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "Is",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP15",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP15",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     },{
-                        player_a: "FP14",
-                        score_a: 2,
-                        player_b: "FP20",
-                        score_b: 0
+                         PlayerA: "FP14",
+                        ScorePlayerA: 2,
+                         PlayerB: "FP20",
+                        ScorePlayerB: 0
                     }
                 ]
             }
@@ -165,165 +163,161 @@ export const TAW_data = [
     },
     { 
     gender: "women",
-    icon: <Woman />,
     game: 
         [
             {
             round_no: 1,
-            round_icon: <LooksOne />,
             round_detail:[
                 {
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "A",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP15",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP15",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP16",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP16",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 }
             ]
         },{
             round_no: 2,
-            round_icon: <LooksTwo />,
             round_detail:[
                 {
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "Pain",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP15",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP15",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 }
             ]
         },{
             round_no: 3,
-            round_icon: <Looks3 />,
             round_detail:[
                 {
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "N",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP15",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP15",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 }
             ]
         },{
             round_no: 4,
-            round_icon: <Looks4 />,
             round_detail:[
                 {
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "G",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP15",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP15",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 }
             ]
         },{
             round_no: 5,
-            round_icon: <Looks5 />,
             round_detail:[
                 {
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "L",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP15",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP15",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 },{
-                    player_a: "FP14",
-                    score_a: 2,
-                    player_b: "FP20",
-                    score_b: 0
+                     PlayerA: "FP14",
+                    ScorePlayerA: 2,
+                     PlayerB: "FP20",
+                    ScorePlayerB: 0
                 }
             ]
         }
-     ]
+    ]
     }
+]
+}
 ]

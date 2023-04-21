@@ -1,10 +1,11 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // mui material
 import Container from "@mui/material/Container";
 import { Icon, Typography } from "@mui/material";
+import { Tooltip, IconButton, Avatar, Menu, MenuItem } from "@mui/material";
 import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
@@ -24,11 +25,18 @@ import MobileNavbar from "./MobileVersion";
 import breakpoints from "../../assets/theme/base/breakpoints";
 import TerminentLogo from "../../assets/logo/terminentlight.png"
 import PopUpMV from "../SignInUp/mvIndex";
+import settings from "../Header/settings";
+import ProfilePic from "../../assets/img/profile.png";
 import FormComponent from "../SignInUp/webIndex";
+import { useNavigate } from "react-router-dom";
+import { UserLoggedIn } from "../../App";
+
+import axios from 'axios'
 
 export var names;
 export var levels;
 export var filename;
+
 
 function Navbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -38,6 +46,19 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [loggedView, setLoggedView] = useState(false);
+  const navigation = useNavigate();
+  const [tournament, setTournament] = useState([]);
+  const [user, setUser] = useContext(UserLoggedIn)
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
 
@@ -78,6 +99,18 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
     }return "inline"
   }
 
+  function loggedChecker(){
+    if (user === true){
+      return "inline"
+    }return "none"
+  }
+
+  function mainChecker(){
+    if (user !== true){
+      return "inline"
+    }return "none"
+  }
+
   const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
     <Dropdown
       key={name}
@@ -97,16 +130,32 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
       light={light}
     />
   ));
-
+  
+  // const TAC_data = function useData() {
+  //   useEffect(() => {
+  //       axios
+  //       .get('http://localhost:3001/api/T/' + names)
+  //       .then((res) => {
+  //           setTournament(res.data);
+  //           console.log("API GET INSIDE TACDATA! :", names);
+  //       })
+  //       .catch((err) => {
+  //           console.log('Error from useData');
+  //       });
+  //   }, []);
+  // }
+  // TAC_data();
+  
   // Render the routes on the dropdown menu
   const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
 
+
     const handleClick = (name, level, file) => {
       names = name;
+      console.log("ONCLICK!: ", names);
       levels = level;
       filename = file;
-      console.log(name,level,file);
     }
 
     // Render the dropdown menu that should be display as columns
@@ -148,7 +197,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                       <EditedTypo
                         key={item.name}
                         component={item.route ? Link : MuiLink}
-                        // to={item.route ? item.route : ""}
+                        to={item.route ? item.route : ""}
                         href={item.href ? item.href : (e) => e.preventDefault()}
                         target={item.href ? "_blank" : ""}
                         rel={item.href ? "noreferrer" : "noreferrer"}
@@ -159,21 +208,23 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                         textTransform="capitalize"
                         fontWeight="regular"
                         py={0.625}
-                        px={2}
                         sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                           borderRadius: borderRadius.md,
                           cursor: "pointer",
                           transition: "all 300ms linear",
-
+                          
                           "&:hover": {
                             backgroundColor: grey[200],
                             color: dark.main,
-                          },
-                        })}
-                      >
-                        <EditedButton onClick={handleClick(item.name, item.level, item.file)} sx={{fontSize:"small"}}>{item.name}</EditedButton>
-                      </EditedTypo>
-                    ))}
+                          }})}
+                        px={2}
+                        >
+                          {item.file?.map((index) => (
+                          <EditedTypo fontSize="15px" onClick={() =>{handleClick(index.title,index.difficulty,item.file)}}>{index.title}</EditedTypo>))
+                          }
+                          {item.name}
+                      </EditedTypo>))
+                    }
                   </Fragment>
                 ))}
                 {key !== 0 && (
@@ -363,12 +414,47 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
             {renderNavbarItems}
           </EditedBox>
           <EditedBox ml={{ xs: "auto", lg: 0 }}>
+            <EditedBox display={mainChecker}>
               <EditedButton 
                 onClick={() => setButtonPopup(true)}
                 color='info'
                 >
-                  Login / SignUp
+                  Login / SignUp  
                 </EditedButton>
+                </EditedBox>
+              <EditedBox display={loggedChecker} sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu}>
+                <Avatar src={ProfilePic}>
+                </Avatar>
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '70px'}}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting,index) => (
+                <MenuItem key={index} onClick={() => {navigation(setting.route)}}>
+                  <EditedTypo textAlign="center" fontSize="15px">{setting.name}</EditedTypo>
+                </MenuItem>
+              ))}
+              <MenuItem  onClick={() => {setLoggedView(false);setAnchorElUser(null);setUser(false)}}>
+              <EditedTypo fontSize="15px">Logout</EditedTypo>
+              </MenuItem>
+            </Menu>
+          </EditedBox>
           </EditedBox>
           <EditedBox
             display={{ xs: "inline-block", lg: "none" }}
@@ -393,7 +479,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
       </EditedBox>
       {dropdownMenu}
       <EditedBox display={brandSizeChecker}>
-        <FormComponent trigger={buttonPopup} setTrigger={setButtonPopup}/>
+        <FormComponent trigger={buttonPopup} setTrigger={setButtonPopup} setLogged={setLoggedView}/>
       </EditedBox>
       <EditedBox display={formChecker}>
         <PopUpMV trigger={buttonPopup} setTrigger={setButtonPopup} />

@@ -4,8 +4,8 @@ import { TAC_data } from "../../data/tac_data";
 import { TBS_data } from "../../data/tbs_data";
 import { TAW_data } from "../../data/taw_data";
 import Tournaments_page from "../../pages/tournament_page";
-import MaleLeaderboard from "../../pages/maleLeaderboard";
 import FemaleLeaderboard from "../../pages/femaleLeaderboard";
+import MaleLeaderboard from "../../pages/maleLeaderboard";
 
 const routes = [
   {
@@ -18,32 +18,25 @@ const routes = [
         name: "Tournaments",
         collapse: [
           {
-            name: "TAC 1",
-            route: "/pages/Tournaments_page",
+            route: "/pages/tac1",
             component: <Tournaments_page />,
             file: TAC_data,
-            level: 2.1,
-          },
+          }
+          ,
           {
-            name: "TAE 21",
-            route: "/pages/tournament_page",
+            route: "/pages/tae21",
             component: <Tournaments_page />,
             file: TAE_data,
-            level: 2.3,
           },
           {
-            name: "TAW 11",
-            route: "/pages/tournament_page",
+            route: "/pages/taw11",
             component: <Tournaments_page />,
             file: TAW_data,
-            level: 3.1,
           },
           {
-            name: "TBS 2",
-            route: "/pages/tournament_page",
+            route: "/pages/tbs2",
             component: <Tournaments_page />,
             file: TBS_data,
-            level: 3.25,
           },
         ],
       },

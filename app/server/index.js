@@ -9,7 +9,6 @@ const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
 const maleGamesController = require('./controllers/maleGamesController')
 const playerController = require('./controllers/playersController')
-const positionScoreHandler = require('./controllers/positionScoreHandler')
 const cors = require('cors');
 
 
@@ -20,6 +19,8 @@ console.log(Player)
 const app = express();
 
 app.use(cors());
+
+app.use(require("./routes/tournamentRoute"));
 
 app.listen(3001, () => {
     console.log("Server is servering...");
@@ -131,6 +132,11 @@ app.get("/getMalePayers",(req,res)=>{
     res.json({
          playersList: playerController.getMalePlayers()
 })})
+
+// app.get("/api/GetTournamentData", (req, res)=>{
+//     res.json({
+//          tournamentList: tournamentController.getTournamentData()
+// })})
 
 
 app.get("/getlolol6",(req,res)=>{

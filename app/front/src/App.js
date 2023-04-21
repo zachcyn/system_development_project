@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, createContext} from 'react'
 import axios from 'axios'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
@@ -6,25 +6,34 @@ import { CssBaseline } from '@mui/material';
 import Main from './pages/main';
 import routes from './components/Header/headerRoutes';
 import theme from './assets/theme';
-import LoggedMain from './pages/loggedMain';
 import Profile from './pages/profile';
 import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
+import Tournament_page from './pages/tournament_page';
+import TermsandCondition from './pages/t&c';
+import Settings from './components/Settings';
+
+// const cors = require('cors');
+
+export const UserLoggedIn = createContext();
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [userLog, setUserLog] = useState(false);
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getMalePayers')
+      .get('http://localhost:3001/api/TAC1')
       .then((res) => {
         setBooks(res.data);
+        console.log("API GET! :", res.data);
+        //console.log("API AFTER! :", books[0].PlayerA);
       })
       .catch((err) => {
-        console.log('Error from ShowBookList');
+        console.log('Error from GetTournamentData');
       });
   }, []);
-    console.log(books)
+  console.log("API AFTER! :", books[0]);
 
     const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -42,15 +51,18 @@ function App() {
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <UserLoggedIn.Provider value={[userLog, setUserLog]}>
           <Routes>
             {getRoutes(routes)}
             <Route path="/main" element={<Main />} />
-            <Route path="/loggedMain" element={<LoggedMain />} />
+            <Route path="/tournament_page" element={<Tournament_page />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/info_manage" element={<InfoManage />} />
-            <Route path="/tournament_manage" element={<TourModify/>} />
+            <Route path="/tournament_manage" element={<TourModify />} />
+            <Route path="/terms_and_condition" element={<TermsandCondition />} />
             <Route path="*" element={<Navigate to="/main" />} />
           </Routes>
+        </UserLoggedIn.Provider>
       </ThemeProvider>
     );
 }

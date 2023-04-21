@@ -2,16 +2,16 @@ import Footer from "../components/Footer/footer";
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
-import LoggedNavbar from "../components/LoggedHeader/loggedHeader";
 import { AccountProfile } from "../components/Profile/profileCard";
 import { Container, Typography, Grid, Stack } from "@mui/material";
 import { AccountProfileDetails } from "../components/Profile/profileDetails";
+import Navbar from "../components/Header";
 
 function Profile() {
   return (
     <>
  
-      <LoggedNavbar
+      <Navbar
         routes={routes}
         sticky
         />

@@ -1,7 +1,7 @@
 import Footer from "../Footer/footer";
 import Navbar from "../Header";
 import {React, useCallback, useState} from "react";
-import { Grid, Stack, Paper, TextField, IconButton, Container } from "@mui/material";
+import { Grid, Stack, Paper, TextField, IconButton, Container, Box, Button, Icon } from "@mui/material";
 import { ExpandMore, Clear, Delete, Check } from "@mui/icons-material";
 import styled from "@emotion/styled";
 import MuiAccordion from "@mui/material/Accordion";
@@ -11,6 +11,9 @@ import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import EditedButton from "../../material/EditedButton/EditedButton";
 import EditedBox from "../../material/EditedButton/EditedButton";
 import colors from '../../assets/theme/base/colors';
+import AddRound from "./add_round";
+import DeleteRound from "./delete_round";
+import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
 
 const { white, text, error, primary, success, dark, secondary, transparent } = colors;
 
@@ -65,7 +68,39 @@ const Accordion = styled((props) => (
   
   
   const ModifyMatch = (props) => {
-    const [values, setValues] = useState("");
+    const [, setValues] = useState("");
+    const [addPopup, setAddPopup] = useState(false);
+    const [deletePopup, setDeletePopup] = useState(false);
+
+    function genderChecker(gender){
+      if (gender === "men"){
+        return (<Icon>{men}</Icon>)
+      } 
+      if (gender === 'women'){
+        return (<Icon>{women}</Icon>)
+      }
+    }
+  
+    function numberChecker(number){
+      if (number === 1){
+        return (<Icon>{one}</Icon>)
+      }
+      if (number === 2){
+        return (<Icon>{two}</Icon>)
+      }
+      if (number === 3){
+        return (<Icon>{three}</Icon>)
+      }
+      if (number === 4){
+        return (<Icon>{four}</Icon>)
+      }
+      if (number === 5){
+        return (<Icon>{five}</Icon>)
+      }
+      if (number === 6){
+        return (<Icon>{six}</Icon>)
+      }
+    }
       
     const handleChange = useCallback(
         (event) => {
@@ -93,30 +128,20 @@ const Accordion = styled((props) => (
           justify="center"
           alignItems="center"
         >
-          {props.data.map((elem) => (
+          {props.data?.map((elem) => (
             <Grid item key={props.data.indexOf(elem)} width="70%" md={2}>
-                <EditedTypo 
-                textTransform="capitalize" 
-                sx={{textAlign: "center", 
-                fontSize:"1.2rem", 
-                "@media (min-width:600px)" : {fontSize: '1.5rem'}}}
-                >
-                  <EditedTypo 
-                  display="inline" 
-                  sx={{fontSize:"inherit"}}
-                  >
-                    {elem.icon}
-                    </EditedTypo>
-                  {elem.gender}
-                  </EditedTypo>
-                  {elem.game.map((item) => (
+              {elem.details.map((index) => (
+                <>
+                  <Box>
+                  <EditedTypo textTransform="capitalize" sx={{textAlign:"center", mt:2}}>{genderChecker(index.gender)}{index.gender}</EditedTypo>
+                  {index.game.map((item) => (
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMore />}
                         aria-controls="panel-content"
                         id="panel-header"
                       >
-                        <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{item.round_icon}</EditedTypo>
+                        <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{numberChecker(item.round_no)}</EditedTypo>
                         <EditedTypo display="inline" sx={{fontSize:"inherit"}}>Round {item.round_no}</EditedTypo>
                       </AccordionSummary>
                       <AccordionDetails>
@@ -206,22 +231,54 @@ const Accordion = styled((props) => (
                       </AccordionDetails>
                     </Accordion>
                   ))}
+                  </Box>
+                  </>
+                  ))}
             </Grid>
           ))}
 
-          <Container
-            // maxWidth="xl"
-            bgcolor= {transparent.main}
-            sx={{ml: "20px", mr: "20px", display:"flex", justifyContent:"space-between"}}
-          // color='black' sx={{bgcolor: 'black', margin: 'auto', spacing: 5}}
+          <Box
+            sx={{display:"flex", justifyContent:"space-between", width:"70%",padding:"16px", ml:2}}
           >
-            <EditedButton variant="contained" sx= {{bgcolor: success.main, display:'flex',alignSelf:"flex-start", justifyContent:"flex-start"}}>
+            <Button 
+              onClick={() => setAddPopup(true)} 
+              variant="contained" 
+              sx= {{
+                bgcolor: success.main, 
+                display:'flex',
+                alignSelf:"flex-start", 
+                justifyContent:"flex-start", 
+                color: white.main,
+
+                "&:hover": {
+                  backgroundColor: success.focus,
+                  color: white.focus,
+                }
+                }}
+            >
               Add Round
-            </EditedButton>
-            <EditedButton variant="contained" sx= {{bgcolor: error.main, display:'flex',alignSelf:"flex-end", justifyContent:"flex-end"}}>
+            </Button>
+            <AddRound trigger={addPopup} setTrigger={setAddPopup} />
+            <Button 
+              onClick={() => setDeletePopup(true)}
+             variant="contained" 
+             sx= {{
+              bgcolor: error.main, 
+              display:'flex',
+              alignSelf:"flex-end", 
+              justifyContent:"flex-end", 
+              color: white.main,
+
+              "&:hover": {
+                backgroundColor: error.focus,
+                color: white.focus,
+              }
+              }}
+            >
               Delete Round
-            </EditedButton>
-          </Container>
+            </Button>
+            <DeleteRound trigger={deletePopup} setTrigger={setDeletePopup} />
+          </Box>
 </Grid>
 
   

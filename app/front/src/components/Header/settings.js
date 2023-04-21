@@ -6,9 +6,6 @@ const settings = [
     },{
         name: "Info Management",
         route: "/info_manage",
-    },{
-        name: "Logout",
-        route: "/main",
     }
 ]
 
