@@ -22,7 +22,7 @@ import React, {useState, useEffect} from 'react'
 // }
 
 export const TAC_data = [
-    { title: "TAC1!!!!!",
+    { title: "TAC1",
       difficulty: 2.3,
       details:
         [
