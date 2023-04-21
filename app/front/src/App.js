@@ -11,6 +11,7 @@ import InfoManage from './pages/info_manage';
 import TourModify from './pages/tournament_manage';
 import Tournament_page from './pages/tournament_page';
 import TermsandCondition from './pages/t&c';
+import Settings from './components/Settings';
 
 // const cors = require('cors');
 
