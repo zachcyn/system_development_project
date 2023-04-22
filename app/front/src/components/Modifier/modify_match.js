@@ -1,6 +1,7 @@
 import Footer from "../Footer/footer";
 import Navbar from "../Header";
-import {React, useCallback, useState} from "react";
+import {React, useCallback, useState, useEffect} from "react";
+import axios from 'axios'
 import { Grid, Stack, Paper, TextField, IconButton, Container, Box, Button, Icon } from "@mui/material";
 import { ExpandMore, Clear, Delete, Check } from "@mui/icons-material";
 import styled from "@emotion/styled";
@@ -14,8 +15,9 @@ import colors from '../../assets/theme/base/colors';
 import AddRound from "./add_round";
 import DeleteRound from "./delete_round";
 import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
-
+import { empty_data } from "../../data/empty_data";
 const { white, text, error, primary, success, dark, secondary, transparent } = colors;
+
 
 const Accordion = styled((props) => (
     <MuiAccordion diasbleGutters elecatoin={0} {...props}/>
@@ -71,6 +73,28 @@ const Accordion = styled((props) => (
     const [, setValues] = useState("");
     const [addPopup, setAddPopup] = useState(false);
     const [deletePopup, setDeletePopup] = useState(false);
+
+    const [tournament, setTournament] = useState(empty_data);
+    const TOUR_data = function useData() {
+    useEffect(() => {
+      if(props.data !== tournament[0].title) {
+        axios
+        .get('http://localhost:3001/api/T/' + props.data)
+        .then((res) => {
+            console.log("Setting tournament");
+            setTournament(res.data);
+            console.log("API GET INSIDE TACDATA! :", props.data);
+            console.log("API DATA FETCHED:", res.data)
+        })
+        .catch((err) => {
+            console.log('Error from useData');
+        }
+        );
+      }
+    });
+    }
+    TOUR_data();
+    console.log("INSIDE MATCH: ", props.data);
 
     function genderChecker(gender){
       if (gender === "men"){
@@ -128,8 +152,8 @@ const Accordion = styled((props) => (
           justify="center"
           alignItems="center"
         >
-          {props.data?.map((elem) => (
-            <Grid item key={props.data.indexOf(elem)} width="70%" md={2}>
+          {tournament?.map((elem) => (
+            <Grid item key={tournament.indexOf(elem)} width="70%" md={2}>
               {elem.details.map((index) => (
                 <>
                   <Box>

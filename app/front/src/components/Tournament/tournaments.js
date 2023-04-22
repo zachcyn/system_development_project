@@ -12,20 +12,6 @@ import names from "../Header/index";
 
 const Tournaments = (filename) => {
   const [tournament, setTournament] = useState(empty_data);
-  // const TAC_data = function useData() {
-  //   useEffect(() => {
-  //       axios
-  //       .get('http://localhost:3001/api/T/' + filename.data)
-  //       .then((res) => {
-  //           setTournament(res.data);
-  //           console.log("API GET INSIDE TACDATA! :", filename.data);
-  //           console.log("API DATA FETCHED:", res.data)
-  //       })
-  //       .catch((err) => {
-  //           console.log('Error from useData');
-  //       });
-  //   }, []);
-  // }
   const TAC_data = function useData() {
     useEffect(() => {
       if(filename.data !== tournament[0].title) {
@@ -45,10 +31,6 @@ const Tournaments = (filename) => {
   });
   }
   TAC_data();
-  console.log(filename.data, ":Data tour:", tournament[0].title)
-  if(filename.data !== tournament[0].title){
-    console.log("False");
-  }
   
   function genderChecker(gender){
     if (gender === "men"){

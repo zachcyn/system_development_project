@@ -20,7 +20,7 @@ function TourModify() {
             <EditedTypo variant="h1" sx={{mt:5}} align='center'>{tournaments}</EditedTypo>
             <EditedTypo variant="subtitle1" textTransform="capitalize" align='center'>{levels}</EditedTypo>
             <br />
-            <ModifyMatch data={filetitle} />
+            <ModifyMatch data={tournaments} />
 
             <EditedBox pt={6} px={1} mt={6}>
                 <Footer content={footerRoutes} />

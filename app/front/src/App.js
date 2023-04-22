@@ -18,22 +18,7 @@ import Settings from './components/Settings';
 export const UserLoggedIn = createContext();
 
 function App() {
-  const [books, setBooks] = useState([]);
   const [userLog, setUserLog] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/api/TAC1')
-      .then((res) => {
-        setBooks(res.data);
-        console.log("API GET! :", res.data);
-        //console.log("API AFTER! :", books[0].PlayerA);
-      })
-      .catch((err) => {
-        console.log('Error from GetTournamentData');
-      });
-  }, []);
-  console.log("API AFTER! :", books[0]);
 
     const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
