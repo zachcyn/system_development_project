@@ -66,9 +66,13 @@ const Accordion = styled((props) => (
   
   
   const ModifyMatch = (props) => {
-    const [values, setValues] = useState({});
     const [addPopup, setAddPopup] = useState(false);
     const [tournament, setTournament] = useState(empty_data);
+    const [values, setValues] = useState({});
+    const [a, setA] = useState();
+    const [b, setB] = useState();
+    const [sA, setSA] = useState();
+    const [sB, setSB] = useState();
 
     const TOUR_data = function useData() {
     useEffect(() => {
@@ -110,14 +114,22 @@ const Accordion = styled((props) => (
     //     []
     //   );
 
-      const handleChange = (event) => {
-        const name = event.target.name;
-        values[name] = event.target.value;
-        // const playerA = event.target.name;
-        // const scoreA = event.target.value;
-        // const playerB = event.target.name;
-        // const scoreB = event.target.value
-        // setValues(values => ({...values, [playerA]: scoreA, [playerB]: scoreB}))
+    // let tempValues;
+    // console.log(tempValues[0][1]);
+    
+    useEffect(() => {
+      let tempValues = new Object();
+      // setValues(tempValues)
+      },[]);
+
+      // console.log(values);
+
+      const handleChange = (index) => {
+        let tempValues = values;
+        for(let i=0; i < tournament[0].details[0].game.length; i++){
+          tempValues[index] = [a,sA,b,sB];
+        };
+        setValues(tempValues);
       }
    
       const handleSubmit = (event, index) => {
@@ -182,6 +194,7 @@ const Accordion = styled((props) => (
                                         autoComplete="off"
                                         noValidate
                                         onSubmit={(event) => handleSubmit(event,details._id)}
+                                        onChange={() => handleChange(details._id)}
                                     >
                                         <Grid container>
                                             <Grid container md={10}>
@@ -190,8 +203,8 @@ const Accordion = styled((props) => (
                                                     key={item.round_detail.indexOf(details)}
                                                     fullWidth
                                                     label="Player A"
-                                                    name="playerA"
-                                                    onChange={(event) => handleChange(event)}
+                                                    id="a"
+                                                    onChange={(event) => setA(event.target.value)}
                                                     required
                                                     defaultValue={details.PlayerA}
                                                     value={values.playerA}
@@ -202,8 +215,8 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="A Score"
-                                                    name="scoreA"
-                                                    onChange={(event) => handleChange(event)}
+                                                    id="sA"
+                                                    onChange={(event) => setSA(event.target.value)}
                                                     required
                                                     defaultValue={details.ScorePlayerA}
                                                     value={values.scoreA}
@@ -214,8 +227,8 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="Player B"
-                                                    name="playerB"
-                                                    onChange={(event) => handleChange(event)}
+                                                    id="b"
+                                                    onChange={(event) => setB(event.target.value)}
                                                     required
                                                     defaultValue={details.PlayerB}
                                                     value={values.playerB}
@@ -226,8 +239,8 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="B Score"
-                                                    name="scoreB"
-                                                    onChange={(event) => handleChange(event)}
+                                                    id="sB"
+                                                    onChange={(event) => setSB(event.target.value)}
                                                     required
                                                     defaultValue={details.ScorePlayerB}
                                                     value={values.scoreB}
