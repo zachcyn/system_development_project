@@ -1,21 +1,17 @@
-import Footer from "../Footer/footer";
-import Navbar from "../Header";
 import {React, useCallback, useState, useEffect} from "react";
 import axios from 'axios'
-import { Grid, Stack, Paper, TextField, IconButton, Container, Box, Button, Icon } from "@mui/material";
-import { ExpandMore, Clear, Delete, Check } from "@mui/icons-material";
+import { Grid, Stack, Paper, TextField, IconButton, Box, Button, Icon, Skeleton, Container, Typography, Divider } from "@mui/material";
+import { ExpandMore, Clear, Check } from "@mui/icons-material";
 import styled from "@emotion/styled";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
-import EditedButton from "../../material/EditedButton/EditedButton";
-import EditedBox from "../../material/EditedButton/EditedButton";
 import colors from '../../assets/theme/base/colors';
 import AddRound from "./add_round";
-import DeleteRound from "./delete_round";
-import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
+import {men, women} from "../../assets/logo/logo";
 import { empty_data } from "../../data/empty_data";
+import PropTypes from "prop-types";
 const { white, text, error, primary, success, dark, secondary, transparent } = colors;
 
 
@@ -70,11 +66,10 @@ const Accordion = styled((props) => (
   
   
   const ModifyMatch = (props) => {
-    const [, setValues] = useState("");
+    const [values, setValues] = useState({});
     const [addPopup, setAddPopup] = useState(false);
-    const [deletePopup, setDeletePopup] = useState(false);
-
     const [tournament, setTournament] = useState(empty_data);
+
     const TOUR_data = function useData() {
     useEffect(() => {
       if(props.data !== tournament[0].title) {
@@ -100,51 +95,59 @@ const Accordion = styled((props) => (
       if (gender === "men"){
         return (<Icon>{men}</Icon>)
       } 
-      if (gender === 'women'){
+      if (gender === 'women' || gender === "ladies"){
         return (<Icon>{women}</Icon>)
       }
     }
-  
-    function numberChecker(number){
-      if (number === 1){
-        return (<Icon>{one}</Icon>)
+        
+    // const handleChange = useCallback(
+    //     (event) => {
+    //       setValues((prevState) => ({
+    //         ...prevState,
+    //         [event.target.name]: event.target.value
+    //       }));
+    //     },
+    //     []
+    //   );
+
+      const handleChange = (event, index) => {
+        const name = event.target.name;
+        values[name] = event.target.value;
+        // const playerA = event.target.name;
+        // const scoreA = event.target.value;
+        // const playerB = event.target.name;
+        // const scoreB = event.target.value
+        // setValues(values => ({...values, [playerA]: scoreA, [playerB]: scoreB}))
       }
-      if (number === 2){
-        return (<Icon>{two}</Icon>)
-      }
-      if (number === 3){
-        return (<Icon>{three}</Icon>)
-      }
-      if (number === 4){
-        return (<Icon>{four}</Icon>)
-      }
-      if (number === 5){
-        return (<Icon>{five}</Icon>)
-      }
-      if (number === 6){
-        return (<Icon>{six}</Icon>)
-      }
-    }
-      
-    const handleChange = useCallback(
-        (event) => {
-          setValues((prevState) => ({
-            ...prevState,
-            [event.target.name]: event.target.value
-          }));
-        },
-        []
-      );
-    
-      const handleSubmit = useCallback(
-        (event) => {
+   
+      const handleSubmit = (event) => {
           event.preventDefault();
-        },
-        []
-      );
+          console.log(values)
+        };
+
+      function handleDelete(info){
+        console.log(info);
+      }
+
+      const loading = loadingChecker(tournament[0].title);
+
+      function loadingChecker(data){
+        if (data!== empty_data[0].title){
+          return true;
+        }else {
+          return false;
+      }
+      }
+      // if(tournament[0].title === empty_data[0].title){
+      //   return (<EditedTypo variant="h1" sx={{mt:5}} align='center'>Loading</EditedTypo>)
+      // }
 
     return (
       <>
+      {(loading ? (
+      <>
+            <EditedTypo variant="h1" sx={{mt:5}} align='center'>{tournament[0].title}</EditedTypo>
+            <EditedTypo variant="subtitle1" textTransform="capitalize" align='center'>Difficulty Degree {tournament[0].difficulty}</EditedTypo>
         <Grid
           container
           spacing={2}
@@ -165,11 +168,13 @@ const Accordion = styled((props) => (
                         aria-controls="panel-content"
                         id="panel-header"
                       >
-                        <EditedTypo display="inline" sx={{textAlign:"right", fontSize:"1.2rem", mr:2}}>{numberChecker(item.round_no)}</EditedTypo>
+                        <IconButton aria-label="delete" display="inline" sx={{fontSize:"1.2rem"}} onClick={() => {handleDelete(item.round_no)}}>
+                          <Clear />
+                        </IconButton>
                         <EditedTypo display="inline" sx={{fontSize:"inherit"}}>Round {item.round_no}</EditedTypo>
                       </AccordionSummary>
                       <AccordionDetails>
-                        {item.round_detail.map((details) => (
+                        {item.round_detail.filter(details => details.PlayerA !== empty_data[0].details[0].game[0].round_detail[0].PlayerA).map((details) => (
                               <Stack>
                                 <Data>
                                     <form
@@ -181,12 +186,14 @@ const Accordion = styled((props) => (
                                             <Grid container md={10}>
                                                 <Grid item marginRight={2}>
                                                 <TextField
+                                                    key={item.round_detail.indexOf(details)}
                                                     fullWidth
                                                     label="Player A"
-                                                    name="firstName"
-                                                    onChange={handleChange}
+                                                    name="playerA"
+                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
                                                     required
-                                                    defaultValue={details.player_a}
+                                                    defaultValue={details.PlayerA}
+                                                    value={values.playerA}
                                                     sx={{width:"120px"}}
                                                     />
                                                 </Grid>
@@ -194,10 +201,11 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="A Score"
-                                                    name="firstName"
-                                                    onChange={handleChange}
+                                                    name="scoreA"
+                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
                                                     required
-                                                    defaultValue={details.score_a}
+                                                    defaultValue={details.ScorePlayerA}
+                                                    value={values.scoreA}
                                                     sx={{width:"75px"}}
                                                     />
                                                 </Grid>
@@ -205,10 +213,11 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="Player B"
-                                                    name="firstName"
-                                                    onChange={handleChange}
+                                                    name="playerB"
+                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
                                                     required
-                                                    defaultValue={details.player_b}
+                                                    defaultValue={details.PlayerB}
+                                                    value={values.playerB}
                                                     sx={{width:"120px"}}
                                                     />
                                                 </Grid>
@@ -216,33 +225,23 @@ const Accordion = styled((props) => (
                                                 <TextField
                                                     fullWidth
                                                     label="B Score"
-                                                    name="firstName"
-                                                    onChange={handleChange}
+                                                    name="scoreB"
+                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
                                                     required
-                                                    defaultValue={details.score_b}
+                                                    defaultValue={details.ScorePlayerB}
+                                                    value={values.scoreB}
                                                     sx={{width:"75px"}}
-                                                    />
-                                                </Grid>
-                                                <Grid item md={2} marginRight={2} marginLeft={2}>
-                                                <TextField
-                                                    fullWidth
-                                                    label="Winner"
-                                                    name="firstName"
-                                                    onChange={handleChange}
-                                                    required
-                                                    defaultValue={details.score_b}
-                                                    sx={{width:"120px"}}
                                                     />
                                                 </Grid>
                                             </Grid>
                                             <Grid container md={2}>
                                                 <Grid item>
-                                                    <IconButton aria-label="submit">
+                                                    <IconButton aria-label="submit" type="submit">
                                                     <Check />
                                                     </IconButton>
                                                 </Grid>
                                                 <Grid item>
-                                                    <IconButton aria-label="delete">
+                                                    <IconButton aria-label="delete" onClick={() => {handleDelete(details._id)}}>
                                                     <Clear />
                                                     </IconButton>
                                                 </Grid>
@@ -262,16 +261,17 @@ const Accordion = styled((props) => (
           ))}
 
           <Box
-            sx={{display:"flex", justifyContent:"space-between", width:"70%",padding:"16px", ml:2}}
+            display={"flex"}
+            alignItems="center"
+            justifyItems="center"
+            justifyContent={"center"}
+            sx={{width:"70%", padding:2}}
           >
             <Button 
               onClick={() => setAddPopup(true)} 
               variant="contained" 
               sx= {{
                 bgcolor: success.main, 
-                display:'flex',
-                alignSelf:"flex-start", 
-                justifyContent:"flex-start", 
                 color: white.main,
 
                 "&:hover": {
@@ -282,33 +282,54 @@ const Accordion = styled((props) => (
             >
               Add Round
             </Button>
-            <AddRound trigger={addPopup} setTrigger={setAddPopup} />
-            <Button 
-              onClick={() => setDeletePopup(true)}
-             variant="contained" 
-             sx= {{
-              bgcolor: error.main, 
-              display:'flex',
-              alignSelf:"flex-end", 
-              justifyContent:"flex-end", 
-              color: white.main,
-
-              "&:hover": {
-                backgroundColor: error.focus,
-                color: white.focus,
-              }
-              }}
-            >
-              Delete Round
-            </Button>
-            <DeleteRound trigger={deletePopup} setTrigger={setDeletePopup} />
           </Box>
+            <AddRound trigger={addPopup} setTrigger={setAddPopup} />
 </Grid>
-
-  
+</>
+) : (
+  <>
+    <Grid
+      container
+      spacing={2}
+      direction="column"
+      justify="center"
+      alignItems="center"
+    >
+    <EditedTypo variant="h1" sx={{mt:5}} align='center' width="20%"><Skeleton variant="text" animation="wave"/></EditedTypo>
+    <EditedTypo variant="subtitle1" textTransform="capitalize" align='center' width="10%"><Skeleton variant="text" animation="wave"/></EditedTypo>
+          {tournament?.map((elem) => (
+            <Grid item key={tournament.indexOf(elem)} width="70%" md={2}>
+              {elem.details.map((index) => (
+                <>
+                  <Box display="flex" alignItems={"center"} justifyContent={"center"}>
+                  <EditedTypo width="15%" textTransform="capitalize" sx={{textAlign:"center", mt:2}}><Skeleton variant="text" animation="wave"/></EditedTypo>
+                  </Box>
+                  {index.game.map((item) => (
+                    <Box>
+                    <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mb:2}}/>
+                    <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave"/>
+                    <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mt:2}}/>
+                    </Box>
+                  ))}
+                  
+                  </>
+                  ))}
+            </Grid>
+          ))}
+        </Grid>
+  </>
+)
+)}
       </>
     );
   }
   
-  export default ModifyMatch;
+  ModifyMatch.propTypes = {
+    loading:  PropTypes.bool
+
+  };
+
+
+
+export default ModifyMatch;
   

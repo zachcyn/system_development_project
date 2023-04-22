@@ -1,14 +1,13 @@
-import { Grid, Stack, Paper, Box, Icon } from "@mui/material";
+import { Grid, Stack, Paper, Box, Icon, Skeleton } from "@mui/material";
 import { ExpandMore, Refresh } from "@mui/icons-material";
 import EditedTypo from "../../material/EditedTypo/EditedTypo";
 import * as Components from './tour_component';
 import {men, women, one, two, three, four, five, six} from "../../assets/logo/logo";
 import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import axios from 'axios'
-import { useAsync } from "react-async"
-import Async from "react-async";
 import { empty_data } from "../../data/empty_data";
 import names from "../Header/index";
+import PropTypes from "prop-types";
 
 const Tournaments = (filename) => {
   const [tournament, setTournament] = useState(empty_data);
@@ -62,7 +61,20 @@ const Tournaments = (filename) => {
     }
   }
   console.log(empty_data);
+
+  const loading = loadingChecker(tournament[0].title);
+
+  function loadingChecker(data){
+    if (data!== empty_data[0].title){
+      return true;
+    }else {
+      return false;
+  }
+  }
+
   return (
+    <>
+    {(loading ? (
     <>
       <Grid
         container
@@ -118,7 +130,47 @@ const Tournaments = (filename) => {
         ))}
       </Grid>  
     </>
-  );   
-}
+  ) : (
+    <>
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+      <EditedTypo variant="h1" sx={{mt:5}} align='center' width="20%"><Skeleton variant="text" animation="wave"/></EditedTypo>
+      <EditedTypo variant="subtitle1" textTransform="capitalize" align='center' width="10%"><Skeleton variant="text" animation="wave"/></EditedTypo>
+            {tournament?.map((elem) => (
+              <Grid item key={tournament.indexOf(elem)} width="70%" md={2}>
+                {elem.details.map((index) => (
+                  <>
+                    <Box display="flex" alignItems={"center"} justifyContent={"center"}>
+                    <EditedTypo width="15%" textTransform="capitalize" sx={{textAlign:"center", mt:2}}><Skeleton variant="text" animation="wave"/></EditedTypo>
+                    </Box>
+                    {index.game.map((item) => (
+                      <Box>
+                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mb:2}}/>
+                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave"/>
+                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mt:2}}/>
+                      </Box>
+                    ))}
+                    
+                    </>
+                    ))}
+              </Grid>
+            ))}
+          </Grid>
+    </>
+  )
+  )}
+    </>
+  );
+};   
+
+Tournaments.propTypes = {
+  loading:  PropTypes.bool
+
+};
 
 export default Tournaments;
