@@ -4,16 +4,21 @@ const recordRoutes = express.Router();
 const dbo = require("../dbConn");
 const maleGames = dbo.MaleDB.models['Game'];
 const femaleGames = dbo.FMaleDB.models['Game'];
+const tournaments = dbo.TournDB.models['Tournament']
 
-const tournaments = ["TAC1", "TAE21", "TAW11", "TBS2"]
+// const tournaments = ["TAC1", "TAE21", "TAW11", "TBS2"]
 
-recordRoutes.route("/api/GetTournamentData").get(function (req, res) {
-    console.log(tournaments[0])
-    maleGames.find({ Round: "S1" + tournaments[0] +"R1" }).then( Games => {
-        console.log(Games);
-        res.json(Games);
-    });
-});
+// recordRoutes.route("/api/GetTournamentData").get(function (req, res) {
+//     console.log(tournaments[0])
+//     maleGames.find({ Round: "S1" + tournaments[0] +"R1" }).then( Games => {
+//         console.log(Games);
+//         res.json(Games);
+//     });
+// });
+
+function FetchTournament(TournamentName) {
+    return tournaments.findOne({ name: TournamentName }).exec()
+}
 
 function FetchMaleRound(TournamentName, Round) {
     return maleGames.find({ Round: "S1" + TournamentName +"R" + Round}).exec()
@@ -46,7 +51,8 @@ async function FetchTournamentData(TournamentName) {
         }
         else break;
     }
-
+    Tournament = await FetchTournament(TournamentName);
+    // console.log("Difficulty found:", Tournament.difficulty);
     details = [{
         gender: "men",
         game: MaleRounds    
@@ -58,7 +64,7 @@ async function FetchTournamentData(TournamentName) {
     tournament_data = [
     {
         title: TournamentName,
-        difficulty: 2.3,
+        difficulty: Tournament.difficulty,
         details: details
     }];
 
