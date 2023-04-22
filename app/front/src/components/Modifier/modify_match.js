@@ -110,7 +110,7 @@ const Accordion = styled((props) => (
     //     []
     //   );
 
-      const handleChange = (event, index) => {
+      const handleChange = (event) => {
         const name = event.target.name;
         values[name] = event.target.value;
         // const playerA = event.target.name;
@@ -120,9 +120,10 @@ const Accordion = styled((props) => (
         // setValues(values => ({...values, [playerA]: scoreA, [playerB]: scoreB}))
       }
    
-      const handleSubmit = (event) => {
+      const handleSubmit = (event, index) => {
           event.preventDefault();
-          console.log(values)
+          console.log(index);
+          console.log(values); 
         };
 
       function handleDelete(info){
@@ -180,7 +181,7 @@ const Accordion = styled((props) => (
                                     <form
                                         autoComplete="off"
                                         noValidate
-                                        onSubmit={handleSubmit}
+                                        onSubmit={(event) => handleSubmit(event,details._id)}
                                     >
                                         <Grid container>
                                             <Grid container md={10}>
@@ -190,7 +191,7 @@ const Accordion = styled((props) => (
                                                     fullWidth
                                                     label="Player A"
                                                     name="playerA"
-                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
+                                                    onChange={(event) => handleChange(event)}
                                                     required
                                                     defaultValue={details.PlayerA}
                                                     value={values.playerA}
@@ -202,7 +203,7 @@ const Accordion = styled((props) => (
                                                     fullWidth
                                                     label="A Score"
                                                     name="scoreA"
-                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
+                                                    onChange={(event) => handleChange(event)}
                                                     required
                                                     defaultValue={details.ScorePlayerA}
                                                     value={values.scoreA}
@@ -214,7 +215,7 @@ const Accordion = styled((props) => (
                                                     fullWidth
                                                     label="Player B"
                                                     name="playerB"
-                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
+                                                    onChange={(event) => handleChange(event)}
                                                     required
                                                     defaultValue={details.PlayerB}
                                                     value={values.playerB}
@@ -226,7 +227,7 @@ const Accordion = styled((props) => (
                                                     fullWidth
                                                     label="B Score"
                                                     name="scoreB"
-                                                    onChange={(event) => handleChange(event, item.round_detail.indexOf(details))}
+                                                    onChange={(event) => handleChange(event)}
                                                     required
                                                     defaultValue={details.ScorePlayerB}
                                                     value={values.scoreB}
