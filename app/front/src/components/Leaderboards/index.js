@@ -6,18 +6,70 @@ import gold from "../../assets/img/gold1.png";
 import sliver from "../../assets/img/silver.png";
 import bronze from "../../assets/img/bronze.png";
 import EditedButton from "../../material/EditedButton/EditedButton";
-
+import axios from 'axios'
+import { useState, useEffect } from "react";
+import { Leaderboard_data_empty } from "../../data/Leaderboard_data_empty";
 const { white } = colors;
 
 
 const Leaderboards = (props) => {
 
+
+    const [Lead, setLead] = useState(Leaderboard_data_empty);
+    const [Sorting, setSorting] = useState(props.genderPT);
+    const [Data, setData] = useState(Leaderboard_data_empty); 
+  // if(filename.data !== tournament[0].title) {
+  //   tournament = empty_data;
+  // }
+  const LEAD_data = function useData() {
+    useEffect(() => {
+      if(Lead === Leaderboard_data_empty || Sorting[1] !== Data) {
+        if(Sorting[0] == "male") {
+            console.log("API DATA FETCHED MALES:");    
+            axios
+            .get('http://localhost:3001/api/MP' + Sorting[1])
+            .then((res) => {
+                // console.log("Setting tournament");
+                setLead(res.data);
+                setData(Sorting[1])
+                // console.log("API GET INSIDE TACDATA! :", filename.data);
+                
+            })
+            .catch((err) => {
+                console.log('Error from useData');
+            }
+            );
+        }
+        else
+        {
+            console.log("API DATA FETCHED FEMALES:");
+            axios
+            .get('http://localhost:3001/api/FP' + Sorting[1])
+            .then((res) => {
+                // console.log("Setting tournament");
+                setLead(res.data);
+                setData(Sorting[1])
+                console.log("WOMAN! :", res.data);
+                
+            })
+            .catch((err) => {
+                console.log('Error from useData');
+            });
+        }
+      }
+  });
+  }
+  LEAD_data();
+
+
     const handleSubmitPT = (genderPT) => {
-        console.log(genderPT)
+        console.log(genderPT);
+        setSorting(genderPT);
     }
 
     const handleSubmitPM = (genderPM) => {
         console.log(genderPM)
+        setSorting(genderPM);
     }
     return (
         <>
@@ -36,8 +88,8 @@ const Leaderboards = (props) => {
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>{props.data[0].PlayerName}</Typography>
-                            <Typography>{props.data[0].Points}&nbsp;&nbsp; ${props.data[0].PrizeMoney}</Typography>
+                            <Typography>{Lead[0].ID}</Typography>
+                            <Typography>{Lead[0].Points}&nbsp;&nbsp; ${Lead[0].Money}</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4}>
@@ -52,15 +104,15 @@ const Leaderboards = (props) => {
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>{props.data[1].PlayerName}</Typography>
-                            <Typography>{props.data[1].Points}&nbsp;&nbsp;${props.data[1].PrizeMoney}</Typography>
+                            <Typography>{Lead[1].ID}</Typography>
+                            <Typography>{Lead[1].Points}&nbsp;&nbsp;${Lead[1].Money}</Typography>
                         </Box>
                     </Grid>
 
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>{props.data[2].PlayerName}</Typography>
-                            <Typography>{props.data[2].Points}&nbsp;&nbsp;{props.data[2].PrizeMoney}</Typography>
+                            <Typography>{Lead[2].ID}</Typography>
+                            <Typography>{Lead[2].Points}&nbsp;&nbsp;${Lead[2].Money}</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
@@ -96,15 +148,15 @@ const Leaderboards = (props) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {props.data.slice(3).map((row) => (
+                            {Lead.slice(3).map((row, index) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align='center'>{row.Rank}</TableCell>
-                                    <TableCell align='center'>{row.PlayerName}</TableCell>
+                                    <TableCell align='center'>{index + 4}</TableCell>
+                                    <TableCell align='center'>{row.ID}</TableCell>
                                     <TableCell align='center'>{row.Points}</TableCell>
-                                    <TableCell align='center'>{row.PrizeMoney}</TableCell>
+                                    <TableCell align='center'>${row.Money}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

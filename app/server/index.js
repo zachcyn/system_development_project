@@ -21,6 +21,7 @@ const app = express();
 app.use(cors());
 
 app.use(require("./routes/tournamentRoute"));
+app.use(require("./routes/leaderboardRoute"));
 
 app.listen(3001, () => {
     console.log("Server is servering...");

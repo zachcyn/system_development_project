@@ -127,24 +127,24 @@ export default function AddRound(props) {
     props.setTrigger(false)
     //SEND_data(inputs);
     
-    axios.post('http://localhost:3001/api/AddRound', {
-        // inputs
-          email: 123,
-          password: 123,
-          username: 123,
-          company: 123
-        }, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
+    // axios.post('http://localhost:3001/api/AddRound', {
+    //     // inputs
+    //       email: 123,
+    //       password: 123,
+    //       username: 123,
+    //       company: 123
+    //     }, {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       }
         
-    })
-      .then(function (response) {
-        console.log(response);
-    })
-      .catch(function (error) {
-        console.log(error);
-    });
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    // })
+    //   .catch(function (error) {
+    //     console.log(error);
+    // });
     // Goodluck backend :)
 
     setInputs({
