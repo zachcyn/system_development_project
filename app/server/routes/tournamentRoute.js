@@ -6,15 +6,62 @@ const maleGames = dbo.MaleDB.models['Game'];
 const femaleGames = dbo.FMaleDB.models['Game'];
 const tournaments = dbo.TournDB.models['Tournament']
 
-// const tournaments = ["TAC1", "TAE21", "TAW11", "TBS2"]
+function FetchAllTournaments() {
+    return tournaments.find({ }).exec()
+}
 
-// recordRoutes.route("/api/GetTournamentData").get(function (req, res) {
-//     console.log(tournaments[0])
-//     maleGames.find({ Round: "S1" + tournaments[0] +"R1" }).then( Games => {
-//         console.log(Games);
-//         res.json(Games);
-//     });
-// });
+async function FetchAllTournamentsData() {
+    let Tournaments = await FetchAllTournaments();
+    let allTournaments = []
+    for (let i = 0; i < Tournaments.length; i++) {
+        // console.log("Tournament:", Tournaments[i]);
+        
+        allTournaments.push({
+            route: "/Tournament/" + Tournaments[i].name,
+            tournament_name: Tournaments[i].name,
+        })
+    }
+    // console.log("All tours:", allTournaments);
+
+    let tournaments = {
+        name: "Tournaments",
+        collapse: allTournaments,
+    }
+
+    const routes = [
+    {
+        name: "Tournament",
+        columns: 1,
+        rowsPerColumn: 2,
+        collapse: [
+            tournaments,
+        ],
+    },
+    {
+        name: "Leaderboards",
+        columns: 1,
+        rowsPerColumn: 2,
+        collapse: [
+        {
+            name: "Gender",
+            collapse: [
+            {
+                name: "Male",
+                gender: "Male",
+                route: "/pages/maleLeaderboard"
+            },
+            {
+                name: "Female",
+                gender: "Female",
+                route: "/pages/femaleLeaderboard"
+            },
+            ],
+        },
+        ],
+    },];
+
+    return routes;
+}
 
 function FetchTournament(TournamentName) {
     return tournaments.findOne({ name: TournamentName }).exec()
@@ -52,6 +99,7 @@ async function FetchTournamentData(TournamentName) {
         else break;
     }
     Tournament = await FetchTournament(TournamentName);
+
     // console.log("Difficulty found:", Tournament.difficulty);
     details = [{
         gender: "men",
@@ -61,12 +109,24 @@ async function FetchTournamentData(TournamentName) {
         game: FemaleRounds 
     }]
 
-    tournament_data = [
+    if(Tournament){
+        tournament_data = [
+        {
+            title: TournamentName,
+            difficulty: Tournament.difficulty,
+            details: details
+        }];
+    }
+    else
     {
-        title: TournamentName,
-        difficulty: Tournament.difficulty,
-        details: details
-    }];
+        tournament_data = [
+        {
+            title: TournamentName,
+            difficulty: "",
+            details: details
+        }];
+    }
+    
 
     // console.log("Async data: ", tournament_data);
     return tournament_data;
@@ -75,7 +135,17 @@ async function FetchTournamentData(TournamentName) {
 recordRoutes.route("/api/T/:tour").get(function (req, res) {
     tournamentName = req.params.tour;
     console.log("Tournament name: ", tournamentName);
+
     FetchTournamentData(tournamentName).then( data => {
+        res.json(data);
+    });
+});
+
+recordRoutes.route("/api/Tournaments").get(function (req, res) {
+    console.log("All Tournaments");
+
+    FetchAllTournamentsData().then( data => {
+        console.log(data);
         res.json(data);
     });
 });

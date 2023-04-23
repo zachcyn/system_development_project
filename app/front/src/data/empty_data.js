@@ -3,7 +3,7 @@ import { Man, Woman, LooksOne, LooksTwo, Looks3, Looks4, Looks5 } from "@mui/ico
 export const empty_data = [
     {
         title: "Loading...",
-        difficulty: 0,
+        difficulty: "",
         details:
             [
                 {

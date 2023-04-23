@@ -11,6 +11,7 @@ import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import MuiLink from "@mui/material/Link";
+import { SportsTennis, Leaderboard } from "@mui/icons-material";
 
 // edited material
 import EditedBox from "../../material/EditedBox/EditedBox";
@@ -30,6 +31,7 @@ import ProfilePic from "../../assets/img/profile.png";
 import FormComponent from "../SignInUp/webIndex";
 import { useNavigate } from "react-router-dom";
 import { UserLoggedIn } from "../../App";
+import empty_routes from "./empty_headerRoutes";
 
 import axios from 'axios'
 
@@ -51,6 +53,8 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
   const navigation = useNavigate();
   const [tournament, setTournament] = useState([]);
   const [user, setUser] = useContext(UserLoggedIn)
+  const [allroutes, setRoutes] = useState(empty_routes);
+  //routes = empty_routes;
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -111,11 +115,11 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
     }return "none"
   }
 
-  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
+  const renderNavbarItems = allroutes.map(({ name, icon, href, route, collapse }) => ( 
     <Dropdown
       key={name}
       name={name}
-      icon={icon}
+      icon={name=="Tournament" ? <SportsTennis/>  :  <Leaderboard/> }
       href={href}
       route={route}
       collapse={Boolean(collapse)}
@@ -131,31 +135,32 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
     />
   ));
   
-  // const TAC_data = function useData() {
-  //   useEffect(() => {
-  //       axios
-  //       .get('http://localhost:3001/api/T/' + names)
-  //       .then((res) => {
-  //           setTournament(res.data);
-  //           console.log("API GET INSIDE TACDATA! :", names);
-  //       })
-  //       .catch((err) => {
-  //           console.log('Error from useData');
-  //       });
-  //   }, []);
-  // }
-  // TAC_data();
+  const ROUTES_data = function useRoutes() {
+    useEffect(() => {
+      if(allroutes === empty_routes) {
+        axios
+        .get('http://localhost:3001/api/Tournaments')
+        .then((res) => {
+            console.log("Setting tournament");
+            setRoutes(res.data);
+            //console.log("API GET INSIDE TACDATA! :", filename.data);
+            console.log("API DATA FETCHED:", res.data)
+        })
+        .catch((err) => {
+            console.log('Error from useRoutes');
+        }
+        );
+      }
+  });
+  }
+  ROUTES_data();
   
   // Render the routes on the dropdown menu
-  const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
+  const renderRoutes = allroutes.map(({ name, collapse, columns, rowsPerColumn }) => {
     let template;
 
-
-    const handleClick = (name, level, file) => {
+    const handleClick = (name) => {
       names = name;
-      console.log("ONCLICK!: ", names);
-      levels = level;
-      filename = file;
     }
 
     // Render the dropdown menu that should be display as columns
@@ -219,10 +224,9 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
                           }})}
                         px={2}
                         >
-                          {item.file?.map((index) => (
-                          <EditedTypo fontSize="15px" onClick={() =>{handleClick(index.title,index.difficulty,item.file)}}>{index.title}</EditedTypo>))
-                          }
-                          {item.name}
+                          { item.tournament_name ? 
+                          <EditedTypo fontSize="15px" onClick={() =>{handleClick(item.tournament_name)}}>{item.tournament_name}</EditedTypo>
+                           : item.name }
                       </EditedTypo>))
                     }
                   </Fragment>
@@ -474,7 +478,7 @@ function Navbar({ brand, routes, transparent, light, action, sticky, relative, c
           borderRadius="xl"
           px={transparent ? 2 : 0}
         >
-          {mobileView && <MobileNavbar routes={routes} open={mobileNavbar} />}
+          {mobileView && <MobileNavbar routes={allroutes} open={mobileNavbar} />}
         </EditedBox>
       </EditedBox>
       {dropdownMenu}
