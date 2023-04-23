@@ -29,7 +29,7 @@ const saveLadiesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePl
     return;
   }
 
-  if (ScorePlayerA !== 3 && ScorePlayerB !== 3) {
+  if (ScorePlayerA !== 2 && ScorePlayerB !== 2) {
     console.log(`Error: At least one player's score must be 3 to save the game to the database. Game not saved to database.`);
     return;
   }
@@ -43,7 +43,7 @@ const saveLadiesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePl
     Winner: winner 
   });
 
-  if (ScorePlayerA === 3 || ScorePlayerB === 3) {
+  if (ScorePlayerA === 2 || ScorePlayerB === 2) {
     ladiesGames.save().then(() => {
       console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
     }).catch(err => {
