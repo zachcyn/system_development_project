@@ -125,8 +125,6 @@ const Tournaments = (filename) => {
   }
   return (
     <>
-    {(loading ? (
-    <>
       <Grid
         container
         spacing={2}
@@ -179,42 +177,7 @@ const Tournaments = (filename) => {
               ))}
           </Grid>
         ))}
-      </Grid>  
-    </>
-  ) : (
-    <>
-      <Grid
-        container
-        spacing={2}
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-      <EditedTypo variant="h1" sx={{mt:5}} align='center' width="20%"><Skeleton variant="text" animation="wave"/></EditedTypo>
-      <EditedTypo variant="subtitle1" textTransform="capitalize" align='center' width="10%"><Skeleton variant="text" animation="wave"/></EditedTypo>
-            {tournament?.map((elem) => (
-              <Grid item key={tournament.indexOf(elem)} width="70%" md={2}>
-                {elem.details.map((index) => (
-                  <>
-                    <Box display="flex" alignItems={"center"} justifyContent={"center"}>
-                    <EditedTypo width="15%" textTransform="capitalize" sx={{textAlign:"center", mt:2}}><Skeleton variant="text" animation="wave"/></EditedTypo>
-                    </Box>
-                    {index.game.map((item) => (
-                      <Box>
-                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mb:2}}/>
-                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave"/>
-                      <Skeleton height={60} key={index.game.indexOf(item)} variant="rectangular" animation="wave" sx={{mt:2}}/>
-                      </Box>
-                    ))}
-                    
-                    </>
-                    ))}
-              </Grid>
-            ))}
-          </Grid>
-    </>
-  )
-  )}
+      </Grid>
     </>
   );
 };   
