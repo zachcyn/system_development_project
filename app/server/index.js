@@ -173,3 +173,9 @@ app.get("/getlolol9",(req,res)=>{
 })
 
 
+app.get("/getlolol10", async (req, res) => {
+    console.log("lololworks");
+    const tournamentData = await maleplayerController.updateMalePlayerPoints("../../Upload/MALE PLAYERS.csv");
+    const tournamentRankingPoints = maleplayerController.assignTournamentRankingPoints(tournamentData);
+    res.json(tournamentRankingPoints);
+  });
