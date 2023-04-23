@@ -2,6 +2,7 @@ const conn = require('../dbConn');
 const RankingPoints = conn.TournDB.models['RankingPoints']
 const csvhandler = require('./csvhandler')
 
+
 const saveRankingPoints = function rankingPoints(TournamentRankingPoints,Place)
 {
     console.log(TournamentRankingPoints,Place);
@@ -27,5 +28,4 @@ const save = function saveAllRanking(fileName)
 
 module.exports = {
     saveAllRanking:save,
-    rankingPoints:saveRankingPoints
-}
+    rankingPoints:saveRankingPoints}
