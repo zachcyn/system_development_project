@@ -1,15 +1,12 @@
 import React from 'react';
 import EditedBox from '../../material/EditedBox/EditedBox';
-import { styled } from '@mui/material/styles';
-import { TableSortLabel, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid, Typography } from '@mui/material';
+import { Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid, Typography } from '@mui/material';
 import colors from "../../assets/theme/base/colors";
-import maleLeaderboard from '../../pages/maleLeaderboard';
 import gold from "../../assets/img/gold1.png";
 import sliver from "../../assets/img/silver.png";
 import bronze from "../../assets/img/bronze.png";
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
-const { white, text, info, secondary } = colors;
+const { white } = colors;
 
 const Leaderboards = (props) => {
 
@@ -30,8 +27,8 @@ const Leaderboards = (props) => {
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                        <Typography>Chu Yie Nian</Typography>
-                        <Typography>25&nbsp;&nbsp; $25,000</Typography>
+                            <Typography>Chu Yie Nian</Typography>
+                            <Typography>25&nbsp;&nbsp; $25,000</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4}>
@@ -42,30 +39,30 @@ const Leaderboards = (props) => {
                         <img src={bronze} width='20%' height='100%' alt="bronze medal" />
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                        
+
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                        <Typography>Eddy Levinskas</Typography>
-                        <Typography>15&nbsp;&nbsp;$10,000</Typography>
+                            <Typography>Eddy Levinskas</Typography>
+                            <Typography>15&nbsp;&nbsp;$10,000</Typography>
                         </Box>
                     </Grid>
 
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                        <Typography>Hatim Bossman</Typography>
-                        <Typography>23&nbsp;&nbsp;$6,500</Typography>
+                            <Typography>Hatim Bossman</Typography>
+                            <Typography>23&nbsp;&nbsp;$6,500</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
 
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
-                
+
                     </Grid>
 
                     <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
-                        
+
                     </Grid>
                     <Grid item align='center' justifyContent='center' md={4} bgcolor='grey'>
                     </Grid>
