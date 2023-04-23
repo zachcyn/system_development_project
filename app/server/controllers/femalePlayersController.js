@@ -8,61 +8,46 @@ const TournModel = conn.TournDB.models['Tournament'];
 
 
 const updateTournamentRankingPoints = function(rankingBoard) {
-  // Create a map to store playerIDs and their updated ranking points
   const updatedRankingPointsMap = new Map();
 
-  // Loop through the rankingBoard array
   for (const rankingData of rankingBoard) {
     const playerId = rankingData.playerId;
     const tournamentId = rankingData.tournamentId;
     const rankingPoint = rankingData.rankingPoint;
 
-    // Find the tournament in the TournModel database based on the tournamentId (assuming 'name' is the field name for the tournament name)
     TournModel.findOne({ name: tournamentId })
       .then(tournament => {
         if (tournament) {
-          // Multiply rankingPoint with the tournament's difficulty
           const updatedRankingPoint = rankingPoint * tournament.difficulty;
 
-          // Check if playerId already exists in the updatedRankingPointsMap
           if (updatedRankingPointsMap.has(playerId)) {
-            // If playerId exists, add the updatedRankingPoint to the existing value
             const existingRankingPoint = updatedRankingPointsMap.get(playerId);
             updatedRankingPointsMap.set(playerId, existingRankingPoint + updatedRankingPoint);
           } else {
-            // If playerId doesn't exist, set the updatedRankingPoint as the value
             updatedRankingPointsMap.set(playerId, updatedRankingPoint);
           }
 
-          // Check if this is the last data in the rankingBoard array
           if (rankingData === rankingBoard[rankingBoard.length - 1]) {
-            // If this is the last data, update the ranking points in the MALEPLAYER database for each playerID
             for (const [playerId, updatedRankingPoint] of updatedRankingPointsMap) {
-              // Find the male player in the MALEPLAYER database based on the playerID
               FEMALEPLAYER.findOne({ ID: playerId })
                 .then(player => {
                   if (player) {
-                    // Update the player's Points with the updatedRankingPoint
                     player.Points += updatedRankingPoint;
                     player.save().then(() => console.log(`Updated Points for Player ID: ${playerId}`));
                   } else {
-                    // Handle error if player not found in MALEPLAYER database
                     console.error(`Player not found for playerID: ${playerId}`);
                   }
                 })
                 .catch(error => {
-                  // Handle error if any error occurs during database query
                   console.error(error);
                 });
             }
           }
         } else {
-          // Handle error if tournament not found in TournModel database
           console.error(`Tournament not found for tournamentId: ${tournamentId}`);
         }
       })
       .catch(error => {
-        // Handle error if any error occurs during database query
         console.error(error);
       });
   }
@@ -91,7 +76,6 @@ const assignTournamentRankingPoints = async (leaderboard) => {
         rankingPoint = playerRankingPoint.TournamentRankingPoints;
       }
   
-      // Push player object with additional ranking points to rankingboard array
       rankingboard.push({
         playerId: playerId,
         position: playerPosition,
@@ -111,19 +95,18 @@ const calculatePrizeMoney = async function(leaderboard) {
     const playerPrizeMoney = [];
     for (let i = 0; i < leaderboard.length; i++) {
       const playerID = leaderboard[i][0];
-      const position = leaderboard[i][2];
+      const position = leaderboard[i][2]; // Update to use third column as position
       const tournamentID = leaderboard[i][3];
 
       const tournament = tournamentPrizeMoney.find(tournament => tournament.name === tournamentID);
       if (tournament) {
-        const prizeMoney = tournament.prizeMoney[position - 1] || 0;
+        const prizeMoney = tournament.prizeMoney[position ] || 0;
         const existingPlayer = playerPrizeMoney.find(player => player[0] === playerID);
         if (existingPlayer) {
-          existingPlayer[1] += prizeMoney; // Sum the prize money if playerID already exists in playerPrizeMoney array
+          existingPlayer[1] += prizeMoney; 
         } else {
           playerPrizeMoney.push([playerID, prizeMoney]);
         }
-        // Update prize money in MALEPLAYER database
         await FEMALEPLAYER.findOneAndUpdate({ ID: playerID }, { $inc: { Money: prizeMoney } });
       } else {
         playerPrizeMoney.push([playerID, 0]);
@@ -137,17 +120,17 @@ const calculatePrizeMoney = async function(leaderboard) {
   }
 };
 
+
 const sortLeaderboardByPrizeMoney = async function(playerPrizeMoney) {
   try {
-    // Sort the leaderboard by prize money in descending order
     const sortedLeaderboard = playerPrizeMoney.sort((a, b) => b[1] - a[1]);
 
-    // Handle cases where players have the same prize money
     const rankingboard = [];
     let rank = 1;
     for (let i = 0; i < sortedLeaderboard.length; i++) {
       const playerID = sortedLeaderboard[i][0];
       const prizeMoney = sortedLeaderboard[i][1];
+      const originalIndex = playerPrizeMoney.findIndex(player => player[0] === playerID);
       rankingboard.push([playerID, rank, prizeMoney]);
       if (i < sortedLeaderboard.length - 1 && prizeMoney !== sortedLeaderboard[i + 1][1]) {
         rank = i + 2;
@@ -164,7 +147,7 @@ const sortLeaderboardByPrizeMoney = async function(playerPrizeMoney) {
 
 
 
-// Function to get tournament name from round string
+
 const getTournamentName = function(roundString) {
   const regex = /S(\d+)(\w+)R(\d+)/;
   const match = roundString.match(regex);
@@ -176,13 +159,11 @@ const getTournamentName = function(roundString) {
 
 const generateTournamentLeaderboard = async (tournamentArray) => {
   tournamentArray.sort((a, b) => {
-    // Sort by tournament name (currentPlayer[2]) first
     if (a[2] < b[2]) {
       return -1;
     } else if (a[2] > b[2]) {
       return 1;
     } else {
-      // If tournament names are equal, sort by score (currentPlayer[1])
       return b[1] - a[1];
     }
   });
@@ -246,7 +227,7 @@ const generateTournamentLeaderboard = async (tournamentArray) => {
   
       setTimeout(() => {
         console.log('Tournament Leaderboards:');
-        const leaderboardArray = []; // Create an array to store leaderboards for all tournaments
+        const leaderboardArray = [];
         for (let tournamentName in tournamentScores) {
           console.log(`Tournament: ${tournamentName}`);
           const playerScores = tournamentScores[tournamentName];
@@ -258,7 +239,7 @@ const generateTournamentLeaderboard = async (tournamentArray) => {
             const totalScore = scores[i];
             tournamentArray.push([playerID, totalScore,tournamentName]);
           }
-          leaderboardArray.push(...tournamentArray);} // Push the tournamentArray into the leaderboardArray
+          leaderboardArray.push(...tournamentArray);} 
           leaderboardArray.sort((a, b) => b[1] - a[1]);
           console.log(leaderboardArray)
         const leaderboard = generateTournamentLeaderboard(leaderboardArray); 
@@ -271,41 +252,43 @@ const generateTournamentLeaderboard = async (tournamentArray) => {
       console.error('Error finding players:', error);
     }
   };
+  
+  
+  
+  
 
-const saveFemalePlayer = function saveTheFeplayer(ID='', Name='', Points=0, Money=0) {
-    FEMALEPLAYER.findOne({ ID: ID }).then(existingPlayer => {
-        if (existingPlayer) {
-            console.log(existingPlayer)
-            console.error(`Error: Player already exists in the database.`);
-        } 
-        else {
-            const femalePlayer = new FEMALEPLAYER({
-                ID: ID,
-                Name: Name,
-                Points: Points,
-                Money: Money
-            });
-            femalePlayer.save().then(() => console.log("Saved"+ Name));
-        }
-    }).catch(error => {
-        console.error(error);
-    });
+const savefemalePlayer = function(ID = '', Name = '', Points = 0, Money = 0) {
+  FEMALEPLAYER.findOne({ ID: ID }).then(existingPlayer => {
+    if (existingPlayer) {
+      console.error(`Error: Player already exists in the database.`);
+    } else {
+      const testplayer = new FEMALEPLAYER({
+        ID: ID,
+        Name: Name,
+        Points: Points,
+        Money: Money,
+        TournamentPlayed: [] 
+      });
+      testplayer.save().then(() => console.log("Saved"));
+    }
+  }).catch(error => {
+    console.error(error);
+  });
 };
 
-const saveFemalePlayers = function saveFemalePlayers(fileName) {
-    ID = csvhandler.processData(fileName);
+const savefemalePlayers = function(fileName) {
+  const ID = csvhandler.processData(fileName);
 
-    for (let i in ID) {
-        saveFemalePlayer(ID[i][0]);
-        console.log(ID[i][0]);
-    }
+  for (let i in ID) {
+    savefemalePlayer(ID[i][0]);
+    console.log(ID[i][0]);
+  }
 };
 
 module.exports = {
-    saveThePlayer: saveFemalePlayer,
-    savefemalePlayers: saveFemalePlayers,
+    saveThePlayer: savefemalePlayer,
+    savefemalePlayers: savefemalePlayers,
     updateFemalePlayerPoints: updateFemalePlayerPoints,
     getTournamentName: getTournamentName,
 generateTournamentLeaderboard:generateTournamentLeaderboard,
-assignTournamentRankingPoints:assignTournamentRankingPoints
-};
+assignTournamentRankingPoints:assignTournamentRankingPoints}

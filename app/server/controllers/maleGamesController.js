@@ -2,7 +2,6 @@ const conn = require('../dbConn');
 const Game = conn.MaleDB.models['Game']
 const csvhandler = require('./csvhandler')
 
-// Function to calculate and validate the winner
 const getMalesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
   let winner = '';
 
@@ -12,7 +11,6 @@ const getMalesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
     winner = PlayerB;
   }
 
-  // Validate winner
   if (ScorePlayerA === 3 && ScorePlayerB === 3) {
     console.error(`Error: Both ${PlayerA} and ${PlayerB} cannot win two points each in the same match.`);
     return '';
@@ -24,13 +22,16 @@ const getMalesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
   return winner;
 };
 
-// Function to save ladies games
 const saveMalesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
-  // Call getWinner function to calculate and validate the winner
   const winner = getMalesWinner(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB);
 
-  // If winner is not valid, return
   if (winner === '') {
+    console.log(`Error: No winner found for match between ${PlayerA} and ${PlayerB}. Game not saved to database.`);
+    return;
+  }
+
+  if (ScorePlayerA !== 3 && ScorePlayerB !== 3) {
+    console.log(`Error: At least one player's score must be 3 to save the game to the database. Game not saved to database.`);
     return;
   }
 
@@ -40,14 +41,21 @@ const saveMalesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePla
     PlayerB: PlayerB,
     ScorePlayerB: ScorePlayerB,
     Round: Round,
-    Winner: winner // Add winner to the Game schema
+    Winner: winner 
   });
-  malesGames.save().then(() => {
-    console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
-  }).catch(err => {
-    console.error("Error saving game:", err);
-  });
+
+  if (ScorePlayerA === 3 || ScorePlayerB === 3) {
+    malesGames.save().then(() => {
+      console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
+    }).catch(err => {
+      console.error("Error saving game:", err);
+    });
+  } else {
+    console.log(`Error: At least one player's score must be 3 to save the game to the database. Game not saved to database.`);
+  }
 };
+
+
 
 
 const saveAllMales = function(fileName) {
@@ -67,8 +75,6 @@ const saveAllMales = function(fileName) {
     console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
   }
 };
-
-
 
 module.exports = {
   saveMalesGames: saveMalesGames,
