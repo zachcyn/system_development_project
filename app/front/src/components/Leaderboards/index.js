@@ -1,15 +1,24 @@
 import React from 'react';
 import EditedBox from '../../material/EditedBox/EditedBox';
-import { Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid, Typography } from '@mui/material';
+import { Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper, Grid, Typography, Button } from '@mui/material';
 import colors from "../../assets/theme/base/colors";
 import gold from "../../assets/img/gold1.png";
 import sliver from "../../assets/img/silver.png";
 import bronze from "../../assets/img/bronze.png";
+import EditedButton from "../../material/EditedButton/EditedButton";
 
 const { white } = colors;
 
+
 const Leaderboards = (props) => {
 
+    const handleSubmitPT = (genderPT) => {
+        console.log(genderPT)
+    }
+
+    const handleSubmitPM = (genderPM) => {
+        console.log(genderPM)
+    }
     return (
         <>
             <EditedBox sx={{ minWidth: '200px', maxWidth: '900px', margin: 'auto', display: "flex", mb: '20px', mt: '50px' }}>
@@ -27,8 +36,8 @@ const Leaderboards = (props) => {
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>Chu Yie Nian</Typography>
-                            <Typography>25&nbsp;&nbsp; $25,000</Typography>
+                            <Typography>{props.data[0].PlayerName}</Typography>
+                            <Typography>{props.data[0].Points}&nbsp;&nbsp; ${props.data[0].PrizeMoney}</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4}>
@@ -43,15 +52,15 @@ const Leaderboards = (props) => {
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>Eddy Levinskas</Typography>
-                            <Typography>15&nbsp;&nbsp;$10,000</Typography>
+                            <Typography>{props.data[1].PlayerName}</Typography>
+                            <Typography>{props.data[1].Points}&nbsp;&nbsp;${props.data[1].PrizeMoney}</Typography>
                         </Box>
                     </Grid>
 
                     <Grid item align='center' md={4} bgcolor='grey'>
                         <Box>
-                            <Typography>Hatim Bossman</Typography>
-                            <Typography>23&nbsp;&nbsp;$6,500</Typography>
+                            <Typography>{props.data[2].PlayerName}</Typography>
+                            <Typography>{props.data[2].Points}&nbsp;&nbsp;{props.data[2].PrizeMoney}</Typography>
                         </Box>
                     </Grid>
                     <Grid item align='center' md={4} bgcolor='grey'>
@@ -73,6 +82,10 @@ const Leaderboards = (props) => {
 
             <EditedBox minWidth='200px' maxWidth='900px' margin='auto' display="flex">
                 <TableContainer component={Paper}>
+                    <EditedBox align='center'>
+                        <EditedButton margin='auto' onClick={() => handleSubmitPT(props.genderPT)}>sort by Points</EditedButton>
+                        <EditedButton margin='auto' onClick={() => handleSubmitPM(props.genderPM)}>sort by Prize Money</EditedButton>
+                    </EditedBox>
                     <Table sx={{ minWidth: 650 }} aria-label="Male Leaderboard">
                         <TableHead sx={{ display: "table-header-group" }}>
                             <TableRow>
@@ -83,21 +96,21 @@ const Leaderboards = (props) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {props.gender.map((row) => (
+                            {props.data.slice(3).map((row) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align='center'>{row.Rank}</TableCell>
-                                    <TableCell align='center'>{row["Player Name"]}</TableCell>
+                                    <TableCell align='center'>{row.PlayerName}</TableCell>
                                     <TableCell align='center'>{row.Points}</TableCell>
-                                    <TableCell align='center'>{row["Prize Money"]}</TableCell>
+                                    <TableCell align='center'>{row.PrizeMoney}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </EditedBox>
+            </EditedBox >
         </>
     );
 }
