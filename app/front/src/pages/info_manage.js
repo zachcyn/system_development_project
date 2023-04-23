@@ -1,5 +1,4 @@
 import Footer from "../components/Footer/footer";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Routes
@@ -19,7 +18,6 @@ import {
 import { Delete } from "@mui/icons-material";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
 import { Tournament } from "../data/tournaments_data";
-import ModifyMatch from "../components/Modifier/modify_match";
 import Navbar from "../components/Header";
 
 export var filetitle;
@@ -28,7 +26,7 @@ export var levels;
 
 function InfoManage() {
   const navigation = useNavigate();
-  
+
   const handleListItemClick = (tournament, level, file) => {
     tournaments = tournament;
     levels = level;
@@ -58,7 +56,7 @@ function InfoManage() {
         >
           {Tournament.map((elem) => (
             <ListItem secondaryAction={<IconButton aria-label="delete"><Delete /></IconButton>} disablePadding>
-              <ListItemButton onClick={() => handleListItemClick(elem.name,elem.subtitle,elem.file)}>
+              <ListItemButton onClick={() => handleListItemClick(elem.name, elem.subtitle, elem.file)}>
                 <ListItemAvatar>
                   <Avatar>{elem.icon}</Avatar>
                 </ListItemAvatar>

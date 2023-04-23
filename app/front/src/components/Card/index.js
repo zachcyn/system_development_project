@@ -1,8 +1,7 @@
 import React from "react";
 import { Typography, Button, Card, CardContent, Grid, Container } from "@mui/material";
 import colors from "../../assets/theme/base/colors";
-import { green } from "@mui/material/colors";
-const { white, text, info, primary, success, dark, secondary, transparent } = colors;
+const { white } = colors;
 
 const sxCard = {
     minWidth: 150,
@@ -34,6 +33,7 @@ const Cards = () => {
                 {/* <Typography variant="h1" align='center'>Tournaments</Typography> */}
                 <Grid container>
                     {cards.map((card) => (
+
                         <Grid item key={card} xs={12} sm={6} md={3} align='center' margin='50px 0'>
                             <Card sx={sxCard}>
                                 <Button variant="contained" sx={sxButton}>
