@@ -2,9 +2,6 @@ const conn = require('../dbConn');
 const Game = conn.FMaleDB.models['Game']
 const csvhandler = require('./csvhandler')
 
-
-
-// Function to calculate and validate the winner
 const getLadiesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
   let winner = '';
 
@@ -14,7 +11,6 @@ const getLadiesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
     winner = PlayerB;
   }
 
-  // Validate winner
   if (ScorePlayerA === 2 && ScorePlayerB === 2) {
     console.error(`Error: Both ${PlayerA} and ${PlayerB} cannot win two points each in the same match.`);
     return '';
@@ -26,13 +22,15 @@ const getLadiesWinner = function(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB) {
   return winner;
 };
 
-// Function to save ladies games
 const saveLadiesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePlayerB=0, Round='') {
-  // Call getWinner function to calculate and validate the winner
   const winner = getLadiesWinner(ScorePlayerA, ScorePlayerB, PlayerA, PlayerB);
 
-  // If winner is not valid, return
   if (winner === '') {
+    return;
+  }
+
+  if (ScorePlayerA !== 3 && ScorePlayerB !== 3) {
+    console.log(`Error: At least one player's score must be 3 to save the game to the database. Game not saved to database.`);
     return;
   }
 
@@ -42,14 +40,18 @@ const saveLadiesGames = function(PlayerA='', ScorePlayerA=0, PlayerB='', ScorePl
     PlayerB: PlayerB,
     ScorePlayerB: ScorePlayerB,
     Round: Round,
-    Winner: winner // Add winner to the Game schema
+    Winner: winner 
   });
 
-  ladiesGames.save().then(() => {
-    console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
-  }).catch(err => {
-    console.error("Error saving game:", err);
-  });
+  if (ScorePlayerA === 3 || ScorePlayerB === 3) {
+    ladiesGames.save().then(() => {
+      console.log(PlayerA, ScorePlayerA, PlayerB, ScorePlayerB, Round);
+    }).catch(err => {
+      console.error("Error saving game:", err);
+    });
+  } else {
+    console.log(`Error: At least one player's score must be 3 to save the game to the database. Game not saved to database.`);
+  }
 };
 
 
