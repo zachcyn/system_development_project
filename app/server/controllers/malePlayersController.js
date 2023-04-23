@@ -123,6 +123,8 @@ const calculatePrizeMoney = async function(leaderboard) {
         } else {
           playerPrizeMoney.push([playerID, prizeMoney]);
         }
+        // Update prize money in MALEPLAYER database
+        await MALEPLAYER.findOneAndUpdate({ ID: playerID }, { $inc: { Money: prizeMoney } });
       } else {
         playerPrizeMoney.push([playerID, 0]);
       }
@@ -173,32 +175,51 @@ const getTournamentName = function(roundString) {
 };
 
 const generateTournamentLeaderboard = async (tournamentArray) => {
-    tournamentArray.sort((a, b) => b[1] - a[1]);
-  
-    const leaderboard = [];
-    let previousScore = null;
-    let position = 0;
-    let rank = 1;
-  
-    for (let i = 0; i < tournamentArray.length; i++) {
-      const currentPlayer = tournamentArray[i];
-      const currentScore = currentPlayer[1];
-  
-      if (currentScore === previousScore) {
-        position = rank - 1;
-      }
-  
-      if (currentScore !== previousScore) {
-        position = rank++;
-      }
-  
-      leaderboard.push([currentPlayer[0], currentScore, position, currentPlayer[2]]);
-      previousScore = currentScore;
+  tournamentArray.sort((a, b) => {
+    // Sort by tournament name (currentPlayer[2]) first
+    if (a[2] < b[2]) {
+      return -1;
+    } else if (a[2] > b[2]) {
+      return 1;
+    } else {
+      // If tournament names are equal, sort by score (currentPlayer[1])
+      return b[1] - a[1];
     }
-    console.log(leaderboard)
-    const rankingboard = await calculatePrizeMoney(leaderboard);
-    console.log(rankingboard);
-  };
+  });
+
+  const leaderboard = [];
+  let previoustournament = null;
+  let previousScore = null;
+  let position = 0;
+  let rank = 1;
+
+  for (let i = 0; i < tournamentArray.length; i++) {
+    const currentPlayer = tournamentArray[i];
+    const currentScore = currentPlayer[1];
+    const currentTournament = currentPlayer[2];
+
+    if (currentTournament !== previoustournament) {
+      position = 0;
+      rank = 1;
+    }
+
+    if (currentScore === previousScore) {
+      position = rank - 1;
+    } else {
+      position = rank++;
+    }
+
+    leaderboard.push([currentPlayer[0], currentScore, position, currentTournament]);
+    previousScore = currentScore;
+    previoustournament = currentTournament;
+  }
+
+  console.log(leaderboard);
+  const rankingboard = await assignTournamentRankingPoints(leaderboard);
+  const prizeMoney = await calculatePrizeMoney(leaderboard);
+  console.log(rankingboard);
+  console.log(prizeMoney);
+};
 
 
   let tournamentScores = {}; 
