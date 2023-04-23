@@ -8,7 +8,7 @@ const rankingPointController = require('./controllers/rankingpointController')
 const prizeMoneyController = require('./controllers/prizeMoneyController')
 const ladiesGamesController = require('./controllers/ladiesGamesController')
 const maleGamesController = require('./controllers/maleGamesController')
-const playerController = require('./controllers/playersController')
+const positionScoreHandler = require('./controllers/positionScoreHandler')
 const cors = require('cors');
 
 
@@ -141,7 +141,7 @@ app.get("/getMalePayers",(req,res)=>{
 
 app.get("/getlolol6",(req,res)=>{
     console.log("lololworks");
-    positionScoreHandler.findListPlayers("../../Upload/MALE PLAYERS.csv",true);
+    positionScoreHandler.printMalePlayerDataByMoney();
 })
 
 
