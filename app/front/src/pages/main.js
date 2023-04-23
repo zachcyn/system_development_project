@@ -1,6 +1,7 @@
 import Footer from "../components/Footer/footer";
 import Navbar from "../components/Header";
 import routes from "../components/Header/headerRoutes";
+import empty_routes from "../components/Header/empty_headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import ImageSlider from "../components/Carousel";
@@ -11,7 +12,7 @@ function Main() {
   return (
     <>
       <Navbar
-        routes={routes}
+        routes={empty_routes}
         sticky
       />
       <EditedBox>
