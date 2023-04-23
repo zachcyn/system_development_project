@@ -10,6 +10,22 @@ function FetchAllTournaments() {
     return tournaments.find({ }).exec()
 }
 
+async function FetchTournamentList() {
+    let Tournaments = await FetchAllTournaments();
+    let allTournaments = []
+    for (let i = 0; i < Tournaments.length; i++) {
+        // console.log("Tournament:", Tournaments[i]);
+        
+        allTournaments.push({
+            name: Tournaments[i].name,
+            subtitle: "Difficulty Degree " + Tournaments[i].difficulty,
+        })
+    }
+    // console.log("All tours:", allTournaments);
+
+    return allTournaments;
+}
+
 async function FetchAllTournamentsData() {
     let Tournaments = await FetchAllTournaments();
     let allTournaments = []
@@ -76,8 +92,6 @@ function FetchFMaleRound(TournamentName, Round) {
 }
 
 async function FetchTournamentData(TournamentName) {
-    // round1 = await FetchRound1();
-    // round2 = await FetchRound2();
     MaleRounds = []
     for (let i = 1; i < 60; i++) {
         round = await FetchMaleRound(TournamentName, i);
@@ -148,6 +162,24 @@ recordRoutes.route("/api/Tournaments").get(function (req, res) {
         console.log(data);
         res.json(data);
     });
+});
+
+recordRoutes.route("/api/TournamentList").get(function (req, res) {
+    console.log("All Tournaments List");
+
+    FetchTournamentList().then( data => {
+        console.log(data);
+        res.json(data);
+    });
+});
+
+recordRoutes.route("/api/AddRound").post(function (req, res) {
+    console.log("Add Round IN BACKEND!", req.body);
+
+    // FetchTournamentList().then( data => {
+    //     console.log(data);
+    //     res.json(data);
+    // });
 });
 
 module.exports = recordRoutes;

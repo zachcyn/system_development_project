@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Components from "./rounds_components";
 import { Box, MenuItem, TextField, Typography } from "@mui/material";
 import Icon from "@mui/material/Icon";
@@ -76,6 +76,21 @@ export default function AddRound(props) {
 
   };
 
+  // const SEND_data = function useSend(inputs) {
+  //   console.log("SENDING DATA FROM FRONT TO BACK!:", inputs);
+  //   useEffect(() => {
+  //     axios.post('/api/AddRound', {
+  //       inputs
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // });
+  // }
+
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -107,7 +122,29 @@ export default function AddRound(props) {
       return;
     }
 
-    console.log(inputs)
+    console.log(inputs);
+    // console.log(tournaments)
+    props.setTrigger(false)
+    //SEND_data(inputs);
+    
+    // axios.post('http://localhost:3001/api/AddRound', {
+    //     // inputs
+    //       email: 123,
+    //       password: 123,
+    //       username: 123,
+    //       company: 123
+    //     }, {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       }
+        
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    // })
+    //   .catch(function (error) {
+    //     console.log(error);
+    // });
     // Goodluck backend :)
 
     setInputs({

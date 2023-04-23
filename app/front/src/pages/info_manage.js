@@ -1,10 +1,11 @@
 import Footer from "../components/Footer/footer";
 import { useNavigate } from "react-router-dom";
-
+import { SportsTennis } from "@mui/icons-material"
 // Routes
 import routes from "../components/Header/headerRoutes";
 import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
+import { useState, useEffect } from "react";
 import {
   Grid,
   List,
@@ -18,7 +19,9 @@ import {
 import { Delete } from "@mui/icons-material";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
 import { Tournament } from "../data/tournaments_data";
+import { empty_Tournament } from "../data/tournaments_data_empty";
 import Navbar from "../components/Header";
+import axios from 'axios'
 
 export var filetitle;
 export var tournaments;
@@ -26,11 +29,33 @@ export var levels;
 
 function InfoManage() {
   const navigation = useNavigate();
+  
+  const [alltournaments, setTournaments] = useState(empty_Tournament);
 
-  const handleListItemClick = (tournament, level, file) => {
+  const TOURNAMENT_data = function useRoutes() {
+    useEffect(() => {
+      if(alltournaments === empty_Tournament) {
+        axios
+        .get('http://localhost:3001/api/TournamentList')
+        .then((res) => {
+            console.log("Setting tournament");
+            setTournaments(res.data);
+            //console.log("API GET INSIDE TACDATA! :", filename.data);
+            console.log("API DATA FETCHED:", res.data)
+        })
+        .catch((err) => {
+            console.log('Error from useRoutes');
+        }
+        );
+      }
+  });
+  }
+  TOURNAMENT_data();
+
+  const handleListItemClick = (tournament) => {
     tournaments = tournament;
-    levels = level;
-    filetitle = file;
+    // levels = level;
+    // filetitle = file;
     navigation("/tournament_manage")
   };
 
@@ -54,11 +79,11 @@ function InfoManage() {
         <List
           sx={{ width: "70%", bgcolor: "background.paper", mt: "30px" }}
         >
-          {Tournament.map((elem) => (
+          {alltournaments.map((elem) => (
             <ListItem secondaryAction={<IconButton aria-label="delete"><Delete /></IconButton>} disablePadding>
-              <ListItemButton onClick={() => handleListItemClick(elem.name, elem.subtitle, elem.file)}>
+              <ListItemButton onClick={() => handleListItemClick(elem.name)}>
                 <ListItemAvatar>
-                  <Avatar>{elem.icon}</Avatar>
+                  <Avatar>{<SportsTennis />}</Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={elem.name} secondary={elem.subtitle} />
               </ListItemButton>

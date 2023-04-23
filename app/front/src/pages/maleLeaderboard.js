@@ -6,6 +6,9 @@ import EditedBox from "../material/EditedBox/EditedBox";
 import footerRoutes from "../components/Footer/footerRoutes";
 import { Typography } from '@mui/material';
 import maleLeaderboard_data from "../data/maleLeaderboard_data";
+// import Leaderboard_data_empty from "../data/Leaderboard_data_empty";
+
+
 
 function MaleLeaderboard() {
   const malePT = ["male", 0]
@@ -17,7 +20,7 @@ function MaleLeaderboard() {
         sticky
       />
       <Typography variant='h1' align='center'>Male Leaderboard</Typography>
-      <Leaderboards data={maleLeaderboard_data} genderPT={malePT} genderPM={malePM} />
+      <Leaderboards data={""} genderPT={malePT} genderPM={malePM} />
 
       <EditedBox pt={6} px={1} mt={6}>
         <Footer content={footerRoutes} />
