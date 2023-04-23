@@ -6,7 +6,7 @@ import footerRoutes from "../components/Footer/footerRoutes";
 import ModifyMatch from "../components/Modifier/modify_match";
 import { TAC_data } from "../data/tac_data";
 import EditedTypo from "../material/EditedTypo/EditedTypo";
-import { filetitle, tournaments, levels } from "./info_manage";
+import { tournaments } from "./info_manage";
 import Navbar from "../components/Header";
 
 function TourModify() {
@@ -17,9 +17,6 @@ function TourModify() {
                 sticky
             />
 
-            <EditedTypo variant="h1" sx={{mt:5}} align='center'>{tournaments}</EditedTypo>
-            <EditedTypo variant="subtitle1" textTransform="capitalize" align='center'>{levels}</EditedTypo>
-            <br />
             <ModifyMatch data={tournaments} />
 
             <EditedBox pt={6} px={1} mt={6}>
