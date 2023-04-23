@@ -122,7 +122,6 @@ export default function AddRound(props) {
       return;
     }
 
-    console.log(inputs)
     console.log(inputs);
     // console.log(tournaments)
     props.setTrigger(false)
