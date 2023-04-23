@@ -8,6 +8,8 @@ import { Typography } from '@mui/material';
 import femaleLeaderboard_data from "../data/femaleLeaderboard_data";
 
 function FemaleLeaderboard() {
+    const femalePT = ["female", 0]
+    const femalePM = ["female", 1]
     return (
         <>
             <Navbar
@@ -15,7 +17,7 @@ function FemaleLeaderboard() {
                 sticky
             />
             <Typography variant='h1' align='center'>Female Leaderboard</Typography>
-            <Leaderboards gender={femaleLeaderboard_data} />
+            <Leaderboards data={femaleLeaderboard_data} genderPT={femalePT} genderPM={femalePM} />
 
             <EditedBox pt={6} px={1} mt={6}>
                 <Footer content={footerRoutes} />

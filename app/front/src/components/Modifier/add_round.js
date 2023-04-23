@@ -4,7 +4,7 @@ import { Box, MenuItem, TextField, Typography } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import { tournaments } from "../../pages/info_manage";
 
-const genders = ['Male', 'Female']
+const genders = ['men', 'ladies']
 
 const isAlphanumeric = (str) => {
   return /^[a-zA-Z0-9]+$/.test(str);
@@ -76,16 +76,51 @@ export default function AddRound(props) {
 
   };
 
+
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
-    // console.log(tournaments)
-    props.setTrigger(false)
 
+    if (!inputs.playerA || !inputs.playerB || !inputs.scoreA || !inputs.scoreB) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
 
+    if (hasSpecialCharacters(inputs.playerA) || hasSpecialCharacters(inputs.playerB)) {
+      setErrorMessage("Player names cannot contain special characters.");
+      return;
+    }
+
+    if (!isAlphanumeric(inputs.playerA) || !isAlphanumeric(inputs.playerB) || !isAlphanumeric(inputs.scoreA) || !isAlphanumeric(inputs.scoreB)) {
+      setErrorMessage("Player names and scores can only contain letters and numbers.");
+      return;
+    }
+
+    if (!Number.isInteger(+inputs.scoreA) || !Number.isInteger(+inputs.scoreB)) {
+      setErrorMessage("Scores must be integers.");
+      return;
+    }
+
+    if (+inputs.scoreA < 0 || +inputs.scoreB < 0) {
+      setErrorMessage("Scores must be positive.");
+      return;
+    }
+
+    console.log(inputs)
     // Goodluck backend :)
 
+    setInputs({
+      gender: 'Male',
+      playerA: '',
+      scoreA: '',
+      playerB: '',
+      scoreB: ''
+    });
+    setErrorMessage("");
+    setDisableButton(false);
   };
+
 
   return props.trigger ? (
     <>
@@ -137,9 +172,6 @@ export default function AddRound(props) {
                 name="gender"
                 value={inputs.gender}
                 onChange={handleChange}
-              // error={error && !inputs.gender}
-              // helperText={error && !inputs.gender ? "Please select a gender" : ""}
-
               >
                 {genders.map((gender) => (
                   <MenuItem key={gender} value={gender}>
@@ -155,11 +187,8 @@ export default function AddRound(props) {
                 onChange={handleChange}
                 value={inputs.playerA || ""}
               />
-              {errorPA && inputs.playerA.length <= 0 ?
-                <Typography variant='h6' color='error' >Please fill out this field</Typography> : ""}
-
+              {errorPA && inputs.playerA.length <= 0 ? <Typography variant='h6' color='error' >Please fill out this field</Typography> : ""}
               {errorPA && inputs.playerA && !isAlphanumeric(inputs.playerA) ? <Typography variant='h6' color='error'>Invalid Player A name</Typography > : ""}
-
 
               <Components.Input
                 name="scoreA"
