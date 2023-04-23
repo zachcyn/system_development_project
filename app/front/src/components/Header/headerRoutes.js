@@ -19,23 +19,26 @@ const routes = [
         collapse: [
           {
             route: "/pages/tac1",
-            component: <Tournaments_page />,
+            tournament_name: "TAC1",
+            // component: <Tournaments_page />,
             file: TAC_data,
-          }
-          ,
+          },
           {
             route: "/pages/tae21",
-            component: <Tournaments_page />,
+            tournament_name: "TAE21",
+            // component: <Tournaments_page />,
             file: TAE_data,
           },
           {
             route: "/pages/taw11",
-            component: <Tournaments_page />,
+            tournament_name: "TAW11",
+            // component: <Tournaments_page />,
             file: TAW_data,
           },
           {
             route: "/pages/tbs2",
-            component: <Tournaments_page />,
+            tournament_name: "TBS2",
+            // component: <Tournaments_page />,
             file: TBS_data,
           },
         ],
@@ -53,11 +56,13 @@ const routes = [
         collapse: [
           {
             name: "Male",
+            gender: "Male",
             route: "/pages/maleLeaderboard",
             component: <MaleLeaderboard />,
           },
           {
             name: "Female",
+            gender: "Female",
             route: "/pages/femaleLeaderboard",
             component: <FemaleLeaderboard />,
           },

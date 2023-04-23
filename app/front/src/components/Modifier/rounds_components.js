@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import colors from '../../assets/theme/base/colors';
 
-const { white, text, error, primary, success, dark, secondary, transparent } = colors;
+const { success } = colors;
 
- export const Container = styled.div`
+export const Container = styled.div`
  background-color: #fff;
  border-radius: 10px;
  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -12,10 +12,10 @@ const { white, text, error, primary, success, dark, secondary, transparent } = c
  width: 678px;
  max-width: 100%;
  min-height: 400px;
- height: 550px;
+ height: 485px;
  `;
 
- export const SignInContainer = styled.div`
+export const SignInContainer = styled.div`
  position: absolute;
  top: 0;
  height: 100%;
@@ -24,8 +24,8 @@ const { white, text, error, primary, success, dark, secondary, transparent } = c
  width: 100%;
  z-index: 2;
  `;
- 
- export const Form = styled.form`
+
+export const Form = styled.form`
  background-color: #ffffff;
  display: flex;
  align-items: center;
@@ -35,14 +35,14 @@ const { white, text, error, primary, success, dark, secondary, transparent } = c
  height: 100%;
  text-align: center;
  `;
- 
- export const Title = styled.h1`
+
+export const Title = styled.h3`
  font-weight: bold;
  margin: 0;
  font: 
  `;
- 
- export const Input = styled.input`
+
+export const Input = styled.input`
  background-color: #eee;
  border: none;
  padding: 7px 15px;
@@ -50,9 +50,9 @@ const { white, text, error, primary, success, dark, secondary, transparent } = c
  width: 100%;
  border-radius: 10px;
  `;
- 
 
- export const Button = styled.button`
+
+export const Button = styled.button`
     border-radius: 20px;
     border: 1px solid #0066ff;
     background-color: ${success.main};
