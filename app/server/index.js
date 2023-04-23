@@ -159,17 +159,11 @@ app.get("/getlolol7", async (req, res) => {
 app.get("/getlolol8", async (req, res) => {
     console.log("lololworks");
     try {
-        await maleplayerController.generateRankingPoints();
-        res.status(200).json({ message: "ranking points points updated successfully." });
+        await femaleplayerController.updateFemalePlayerPoints("../../Upload/FEMALE PLAYERS.csv");
+        res.status(200).json({ message: "Player points updated successfully." });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Failed to update player points." });
     }
 });
-
-app.get("/getlolol9",(req,res)=>{
-    console.log("lololworks");
-    prizeMoneyController.getPrizeMoneyArray();
-})
-
 
