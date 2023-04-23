@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Components from "./rounds_components";
 import { Box, MenuItem, TextField, Typography } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import { tournaments } from "../../pages/info_manage";
-
+import axios from 'axios';
+axios.defaults.headers.common = {
+  "Content-Type": "application/json"
+}
 const genders = ['Male', 'Female']
 
 const isAlphanumeric = (str) => {
@@ -76,13 +79,47 @@ export default function AddRound(props) {
 
   };
 
+  // const SEND_data = function useSend(inputs) {
+  //   console.log("SENDING DATA FROM FRONT TO BACK!:", inputs);
+  //   useEffect(() => {
+  //     axios.post('/api/AddRound', {
+  //       inputs
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // });
+  // }
+  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(inputs);
     // console.log(tournaments)
     props.setTrigger(false)
-
-
+    //SEND_data(inputs);
+    
+    axios.post('http://localhost:3001/api/AddRound', {
+        // inputs
+          email: 123,
+          password: 123,
+          username: 123,
+          company: 123
+        }, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        
+    })
+      .then(function (response) {
+        console.log(response);
+    })
+      .catch(function (error) {
+        console.log(error);
+    });
     // Goodluck backend :)
 
   };
