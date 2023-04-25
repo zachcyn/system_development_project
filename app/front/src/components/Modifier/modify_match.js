@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import axios from 'axios'
 import { Grid, Stack, Paper, TextField, IconButton, Box, Button, Icon, Skeleton } from "@mui/material";
 import { ExpandMore, Clear, Check } from "@mui/icons-material";
@@ -125,11 +125,12 @@ const ModifyMatch = (props) => {
   // console.log(values);
 
   const handleChange = (index) => {
-    let tempValues = values;
-    for (let i = 0; i < tournament[0].details[0].game.length; i++) {
-      tempValues[index] = [a, sA, b, sB];
-    };
-    setValues(tempValues);
+      let tempValues = values;
+      for (let i = 0; i < tournament[0].details[0].game.length; i++) {
+        console.log(a.current)
+        tempValues[index] = [a.current.value, sA.current.value, b.current.value, sB.current.value];
+      };
+      setValues(tempValues);
   }
 
   const handleSubmit = (event, index) => {
