@@ -50,28 +50,28 @@ app.get("/getPlayers", (req, res)  => {
 })
 
 
-app.get("/getlol", (req, res)  => {
+app.get("/saveFemalePlayer", (req, res)  => {
    console.log("lolworks");
    femaleplayerController.savefemalePlayers("../../Upload/FEMALE PLAYERS.csv",true);
     
 })
 
-app.get("/getlolol",(req,res)=>{
+app.get("/saveMalePlayer",(req,res)=>{
     console.log("lololworks");
     maleplayerController.saveMalePlayers("../../Upload/MALE PLAYERS.csv",true);
 })
 
-app.get("/getlolol2",(req,res)=>{
+app.get("/uploadRankingPoints",(req,res)=>{
     console.log("lololworks");
     rankingPointController.saveAllRanking("../../Upload/Ranking Points.csv");
 })
 
-app.get("/getlolol3",(req,res)=>{
+app.get("/saveAllTournaments",(req,res)=>{
     console.log("lololworks");
     prizeMoneyController.saveAllTournaments("../../Upload/PRIZE MONEY.csv","../../Upload/DEGREE OF DIFFICULTY.csv");
 })
 
-app.get("/getlolol4",(req,res)=>{
+app.get("/UpdateRoundsLadies",(req,res)=>{
     console.log("lololworks");
     const csvFiles = [
         "../../Upload/TAC1 ROUND 1 LADIES.csv",
@@ -100,7 +100,7 @@ app.get("/getlolol4",(req,res)=>{
     });
 });
 
-app.get("/getlolol5",(req,res)=>{
+app.get("/updateRoundsMale",(req,res)=>{
     console.log("lololworks");
     const csvFiles = [
         "../../Upload/TAC1 ROUND 1 MEN.csv",
@@ -140,13 +140,13 @@ app.get("/getMalePayers",(req,res)=>{
 // })})
 
 
-app.get("/getlolol6",(req,res)=>{
+app.get("/printMaleData",(req,res)=>{
     console.log("lololworks");
     positionScoreHandler.printMalePlayerDataByMoney();
 })
 
 
-app.get("/getlolol7", async (req, res) => {
+app.get("/updateMalePoints", async (req, res) => {
     console.log("lololworks");
     try {
         await maleplayerController.updateMalePlayerPoints("../../Upload/MALE PLAYERS.csv");
@@ -157,7 +157,7 @@ app.get("/getlolol7", async (req, res) => {
     }
 });
 
-app.get("/getlolol8", async (req, res) => {
+app.get("/updateFemalePoints", async (req, res) => {
     console.log("lololworks");
     try {
         await femaleplayerController.updateFemalePlayerPoints("../../Upload/FEMALE PLAYERS.csv");
